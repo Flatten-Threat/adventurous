@@ -1,5 +1,7 @@
 # Spree
 
-Product Owner: 
+Product Owner:
+
 Lead Developer:
+
 Scrum Master:

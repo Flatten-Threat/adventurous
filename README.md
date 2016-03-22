@@ -2,6 +2,6 @@
 
 Product Owner: Jenna Vuong
 
-Lead Developer: Tritia Timmins
+Lead Developer: Andrew Lloyd
 
-Scrum Master: Andrew Lloyd
+Scrum Master: Tritia Timmins

@@ -1,7 +1,7 @@
 # Spree
 
-Product Owner:
+Product Owner: Jenna Vuong
 
-Lead Developer:
+Lead Developer: Tritia Timmins
 
-Scrum Master:
+Scrum Master: Andrew Lloyd

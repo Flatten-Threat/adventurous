@@ -1,0 +1,72 @@
+/********************************
+      Global Elements
+*********************************/
+
+html {
+  font-family: sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* clear floats (add to parent container) */
+.clear-fix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* remove default <ul> list styles */
+.unstyled-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+
+/********************************
+          Menu Bar
+*********************************/
+
+.menu-bar {
+  position: relative;
+  background-color: crimson;
+  color: rgba(255,255,100,0.75);
+  text-align: center;
+  padding: 12px 20px;
+}
+
+.menu-bar .title {
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 1.25px;
+}
+
+.menu-bar .menu {
+  position: absolute;
+  top: 16px;
+  right: 20px;
+  text-transform: uppercase;
+}
+
+.menu .menu-link {
+  text-decoration: none;
+  color: white;
+  letter-spacing: 1.25px;
+}
+
+
+/********************************
+           Home Page
+*********************************/
+
+.temp-page-title {
+  text-align: center;
+}
+
+
+/********************************
+          Travels Page
+*********************************/

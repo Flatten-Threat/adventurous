@@ -4,13 +4,17 @@ export default React.createClass({
   render() {
     return (
       <div className="sign-in-dialog">
-        <h4>Please Sign In...</h4>
-        <input type="text" placeholder="username" required />
-	    <br/>
-	    <input type="password" placeholder="password" required />
-	    <br/>
-	    <button>Sign In</button>
+        <h2>Please Sign In...</h2>
+        <form>
+          <input type="text" placeholder="username" required />
+          <input type="password" placeholder="password" required />
+          <input type="submit" value="Welcome Back"/>
+        </form>
+        <footer>
+          <span>Not a member?</span><a href="#">Sign Up!</a>
+        </footer>
       </div>
     )
   }
 })
+

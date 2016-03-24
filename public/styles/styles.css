@@ -68,5 +68,93 @@ body {
 
 
 /********************************
+           Login Dialog
+*********************************/
+
+/* horiz & vert centered dialog */
+/*
+.sign-in-dialog {
+  padding: 0 20px 20px 20px;
+  background-color: rgba(0,0,0,0.65);
+  color: white;
+  border-radius: 6px;
+}
+
+.sign-in-dialog input {
+  font-size: 1.25em;
+}
+*/
+
+.sign-in-dialog {
+  position: relative;
+  width: 320px;
+  margin: 32px auto;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, .3);
+  border-radius: 10px;
+}
+
+.sign-in-dialog input {
+  display: block;
+  width: 250px;
+  margin: 7px auto;
+  padding: 11px;
+  font-size: 14px;
+  border: 1px solid #7D7D7D;
+  border-radius: 4px;
+}
+
+.sign-in-dialog input[type='submit'] {
+  background-color: #428BCA;
+  color: rgb(225,225,255);
+  border: none;
+  font-size: 16px;
+}
+
+.sign-in-dialog input[type='submit']:hover {
+  background-color: #529BDA;
+  color: white;
+}
+
+
+/* TEMPORARY HACK !!!
+   remove temp hack button elements as soon as
+   we handle App 'sign-in' state properly using
+   a React pop-up component (WITHOUT routing?)
+*/
+
+.sign-in-dialog .temp-hack-button {
+  display: block;
+  width: 250px;
+  margin: 7px auto;
+  padding: 11px;
+  background-color: #428BCA;
+  color: rgb(225,225,255);
+  border-radius: 4px;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* TEMPORARY HACK !!! (remove this too) */
+
+.sign-in-dialog .temp-hack-button:hover {
+  background-color: #529BDA;
+  color: white;
+}
+
+
+.sign-in-dialog footer {
+  margin-top: 24px;
+  text-align: right;
+}
+
+.sign-in-dialog footer a {
+  margin-left: 8px;
+  text-transform: uppercase;
+}
+
+
+/********************************
           Travels Page
 *********************************/

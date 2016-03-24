@@ -8,7 +8,7 @@ export default React.createClass({
       <div className="menu-bar">
         <div className="title">Welcome to Trippin!</div>
         <div className="menu">
-          <Link to="travels" className="menu-link">Travels</Link>
+          <Link to="sign-in" className="menu-link">Sign In</Link>
         </div>
       </div>
     );

@@ -10,8 +10,6 @@ Scrum Master: Tritia Timmins
 Instructions:
 
     npm install
-
-    npm install webpack --save -g
     
 To start,
 

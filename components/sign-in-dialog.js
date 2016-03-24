@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router'
+
 
 export default React.createClass({
   render() {
@@ -8,7 +10,10 @@ export default React.createClass({
         <form>
           <input type="text" placeholder="username" required />
           <input type="password" placeholder="password" required />
+          {/* temp HACK uses Link in place of actual control below
           <input type="submit" value="Welcome Back"/>
+          */}
+          <Link to="travels" className="temp-hack-button">Welcome Back</Link>
         </form>
         <footer>
           <span>Not a member?</span><a href="#">Sign Up!</a>

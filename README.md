@@ -7,4 +7,16 @@ Lead Developer: Andrew Lloyd
 
 Scrum Master: Tritia Timmins
 
+Instructions:
+
     npm install
+
+    npm install webpack --save -g
+    
+To start,
+
+    npm start
+
+Go to,
+
+    http://localhost:8080/

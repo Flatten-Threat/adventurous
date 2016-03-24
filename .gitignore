@@ -2,6 +2,7 @@ node_modules/
 bundle.js
 bower_components/
 *.log
+.babelrc
 
 build/
 dist/

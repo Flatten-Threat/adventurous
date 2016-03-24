@@ -18,3 +18,19 @@ To start,
 Go to,
 
     http://localhost:8080/
+
+
+Tech. Stack:
+
+    React
+    React Router
+    Webpack
+    (planned) - Express
+    (planned) - Axios
+    (planned) - MongoDB
+    (planned) - Heroku
+    (planned) - React Native
+    (probably) - Bootstrap
+    (probably) - Less
+    (maybe) - Redux
+    (maybe) - D3

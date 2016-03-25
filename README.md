@@ -9,19 +9,21 @@ Scrum Master: Tritia Timmins
 
 Instructions:
 
-  npm install
+    npm install
     
 to start with webpack-dev-server (port 8080):
 
-  npm start
+    npm start
 
 to start with express server (PORT optional, defaults to 3000):
 
-  PORT=4568 NODE_ENV=production npm start
+    mongod (start in a separate terminal)
+    
+    PORT=4568 NODE_ENV=production npm start
 
 to view:
 
-  browse to localhost + port (e.g. localhost:8080 etc.)
+    browse to localhost + port (e.g. localhost:8080 etc.)
 
 
 Tech. Stack:

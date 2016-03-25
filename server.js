@@ -23,7 +23,7 @@ app.listen(PORT, function() {
 });
 
 
-var dbURI = 'mongodb://localhost/trippin';
+var dbURI = 'mongodb://localhost/adventureUS';
 
 mongoose.connect( dbURI );
 

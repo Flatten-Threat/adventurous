@@ -31,8 +31,8 @@ Tech. Stack:
     Webpack
     Web Fonts
     Express
+    MongoDB
     (planned) - Axios
-    (planned) - MongoDB
     (planned) - Heroku
     (planned) - React Native
     (probably) - Bootstrap

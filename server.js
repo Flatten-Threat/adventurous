@@ -1,6 +1,8 @@
 var express = require('express');
 var path = require('path');
 var compression = require('compression');
+var mongoose = require('mongoose');
+var demoData = require( './models/demo-data' );
 
 var app = express();
 app.use( compression() ); // must come first!
@@ -13,10 +15,19 @@ app.get('*', function (req, res) {
   res.sendFile( path.join(__dirname, 'public', 'index.html') );
 });
 
-process.env.PORT = 3000;
 
-var PORT = process.env.PORT || 8080;
+var PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function() {
   console.log('Production Express server running at localhost:' + PORT);
+});
+
+
+var dbURI = 'mongodb://localhost/trippin';
+
+mongoose.connect( dbURI );
+
+mongoose.connection.on( 'connected', function () {
+  console.log( 'successful db connection to: ' + dbURI + '\n' );
+  demoData.initDatabase(); // clear database, and seed with demo data
 });

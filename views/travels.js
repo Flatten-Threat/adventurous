@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { Component } from 'react'
+import Activities from '../components/activities'
 
-export default React.createClass({
+
+export default class Travels extends Component {
   render() {
     return (
-      <h3 className="temp-page-title">Nested TRAVELS Page..</h3>
-
-    )
+      <div className="bordered-page">
+        <div className="description-container">
+          <Activities activities={[
+            {title: "hang-gliding"},
+            {title: "underwater boxing"},
+            {title: "jazz dance class"},
+            {title: "petting zoo"},
+            {title: "quilting"}
+          ]}/>
+        </div>
+      </div>
+    );
   }
-})
+};
+

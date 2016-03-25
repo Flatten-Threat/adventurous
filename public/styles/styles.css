@@ -27,6 +27,14 @@ body {
 }
 
 
+/* TEMPORARY, unless/until we use Bootstrap etc.,
+// create margins around page content */
+
+.bordered-page {
+  padding: 20px;
+}
+
+
 /********************************
           Menu Bar
 *********************************/
@@ -192,3 +200,19 @@ body {
 /********************************
           Travels Page
 *********************************/
+
+.activity-list li {
+  margin-top: 16px;
+}
+
+.activity-image {
+  height: 200px;
+  margin-bottom: 8px;
+  background-color: #428BCA;
+}
+
+.upgrade .attributes {
+  max-height: 200px;
+}
+
+

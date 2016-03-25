@@ -15,13 +15,13 @@ to start with webpack-dev-server (port 8080):
 
   npm start
 
-to start with express server (specify any port):
+to start with express server (PORT optional, defaults to 3000):
 
-  PORT=3000 NODE_ENV=production npm start
+  PORT=4568 NODE_ENV=production npm start
 
 to view:
 
-  browse to localhost:8080 (or other PORT number)
+  browse to localhost + port (e.g. localhost:8080 etc.)
 
 
 Tech. Stack:
@@ -35,6 +35,7 @@ Tech. Stack:
     (planned) - Axios
     (planned) - Heroku
     (planned) - React Native
+    (planned) - Mocha/Chai
     (probably) - Bootstrap
     (probably) - Less
     (maybe) - Google maps & mobile device geo-loc

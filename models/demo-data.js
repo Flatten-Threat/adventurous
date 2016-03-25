@@ -1,6 +1,30 @@
-// seed data for database (dev. environment only)
+var Activity = require( './activity' );
 
-module.exports = [
+
+module.exports.initDatabase = function() {
+  
+  /********************* IMPORTANT !!! ************************
+  need to figure out how to use demo data in dev. mode AND
+  with webpack-dev-server (which currently hi-jacks dev. mode)
+  *************************************************************/
+
+  //if( app.get('env') === 'development' ) {
+
+    Activity.remove().exec(); // clear database
+
+    Activity.collection.insertMany( demoData, function(err,r) {
+
+      if( err )
+        console.log( "error loading demo data:", err );
+      else
+        console.log( "seeded database with " + r.insertedCount + " records\n" );
+    });
+
+  //}
+};
+
+
+var demoData = [
 
   {
     'title' : 'Great Spot for Ice Cream!',
@@ -21,3 +45,4 @@ module.exports = [
   },
 
 ];
+

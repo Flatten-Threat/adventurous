@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var compression = require('compression');
 var mongoose = require('mongoose');
-var Activity = require( './models/activity' );
+var demoData = require( './models/demo-data' );
 
 var app = express();
 app.use( compression() ); // must come first!
@@ -16,11 +16,6 @@ app.get('*', function (req, res) {
 });
 
 
-var dbURI = 'mongodb://localhost/trippin';
-
-mongoose.connect( dbURI );
-
-
 var PORT = process.env.PORT || 3000;
 
 app.listen(PORT, function() {
@@ -28,28 +23,11 @@ app.listen(PORT, function() {
 });
 
 
+var dbURI = 'mongodb://localhost/trippin';
+
+mongoose.connect( dbURI );
+
 mongoose.connection.on( 'connected', function () {
-
   console.log( 'successful db connection to: ' + dbURI + '\n' );
-
-  /********************* IMPORTANT !!! ************************
-  need to figure out how to use demo data in dev. mode AND
-  with webpack-dev-server (which currently hi-jacks dev. mode)
-  *************************************************************/
-
-  //if( app.get('env') === 'development' ) {
-
-    var demoData = require( './models/demo-data' );
-
-    Activity.remove().exec(); // clear database
-
-    Activity.collection.insertMany( demoData, function(err,r) {
-
-      if( err )
-        console.log( "error loading demo data:", err );
-      else
-        console.log( "seeded database with " + r.insertedCount + " records\n" );
-    });
-
-  //}
+  demoData.initDatabase(); // clear database, and seed with demo data
 });

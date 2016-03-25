@@ -9,15 +9,19 @@ Scrum Master: Tritia Timmins
 
 Instructions:
 
-    npm install
+  npm install
     
-To start,
+to start with webpack-dev-server (port 8080):
 
-    npm start
+  npm start
 
-Go to,
+to start with express server (specify any port):
 
-    http://localhost:8080/
+  PORT=3000 NODE_ENV=production npm start
+
+to view:
+
+  browse to localhost:8080 (or other PORT number)
 
 
 Tech. Stack:
@@ -25,12 +29,15 @@ Tech. Stack:
     React
     React Router
     Webpack
-    (planned) - Express
+    Web Fonts
+    Express
     (planned) - Axios
     (planned) - MongoDB
     (planned) - Heroku
     (planned) - React Native
     (probably) - Bootstrap
     (probably) - Less
-    (maybe) - Redux
-    (maybe) - D3
+    (maybe) - Google maps & mobile device geo-loc
+    (maybe) - server-side rendering
+    (maybe) - Redux, Redux Router
+    (maybe) - mySQL, D3

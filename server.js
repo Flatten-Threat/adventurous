@@ -3,7 +3,6 @@ var path = require('path');
 var compression = require('compression');
 var mongoose = require('mongoose');
 var demoData = require( './models/demo-data' );
-var Activity = require( './models/activity' );
 
 var app = express();
 app.use( compression() ); // must come first!
@@ -29,7 +28,10 @@ mongoose.connection.on( 'connected', function () {
 });
 
 
-// handle this elsewhere...
+
+// move this, and other API handlers, into their own file...
+
+var Activity = require( './models/activity' );
 
 app.get( '/api/activities', function( req, res ) {
 
@@ -42,17 +44,8 @@ app.get( '/api/activities', function( req, res ) {
       res.json('Empty data')
     }
     else {
-      console.log("returning activities to client...:", data );
       res.json(data);
     }      
   });
 
 });
-
-
-// send all requests to index.html so browserHistory in React Router works
-/*
-app.get('*', function (req, res) {
-  res.sendFile( path.join(__dirname, 'public', 'index.html') );
-});
-*/

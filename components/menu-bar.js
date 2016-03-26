@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 
-export default React.createClass({
+export default class MenuBar extends Component {
+
   render() {
     return (
       <div className="menu-bar">
@@ -12,4 +13,5 @@ export default React.createClass({
       </div>
     );
   }
-})
+
+};

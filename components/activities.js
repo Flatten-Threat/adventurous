@@ -3,6 +3,7 @@ import Activity from './activity'
 
 
 export default class Activities extends Component {
+
   render() {
     var activities = this.props.activities;
     return (
@@ -15,4 +16,5 @@ export default class Activities extends Component {
       </div>
     );
   }
+  
 };

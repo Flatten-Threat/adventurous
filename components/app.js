@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import MenuBar from './menu-bar'
 
-export default React.createClass({
+
+export default class App extends Component {
+  
   render() {
     return (
       <div>
@@ -10,4 +12,5 @@ export default React.createClass({
       </div>
     );
   }
-})
+
+};

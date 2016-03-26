@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link } from 'react-router'
 
 
-export default React.createClass({
+export default class SignInDialog extends Component {
+
   render() {
     return (
       <div className="sign-in-dialog">
@@ -21,5 +22,6 @@ export default React.createClass({
       </div>
     )
   }
-})
+
+};
 

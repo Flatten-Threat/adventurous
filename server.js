@@ -7,29 +7,41 @@ var demoData = require( './models/demo-data' );
 var app = express();
 app.use( compression() ); // must come first!
 
+
 // serve static files like index.html, css etc.
 app.use( express.static( path.join( __dirname, 'public' ) ) );
 
 
 var PORT = process.env.PORT || 3000;
 
-app.listen(PORT, function() {
-  console.log('Production Express server running at localhost:' + PORT);
+
+var server = app.listen(PORT, function() {
+
+  console.log('\nProduction Express server running at localhost:' + PORT);
+
+  var dbURI = 'mongodb://localhost/adventureUS';
+
+  mongoose.connect( dbURI, function(error) {
+    if(error) {
+      console.log( '\n****** ERROR! ****** ERROR! ****** ERROR! ******' );
+      console.log( 'Unable to connect to: ' + dbURI + ' Is mongod running?' );
+      console.log( '\nShutting down all servers...\n' );
+      server.close();
+    }
+  });
+
+  mongoose.connection.on( 'connected', function () {
+    console.log( 'successful db connection to: ' + dbURI + '\n' );
+    demoData.initDatabase(); // clear database, and seed with demo data
+  });
+
 });
 
 
-var dbURI = 'mongodb://localhost/adventureUS';
 
-mongoose.connect( dbURI );
-
-mongoose.connection.on( 'connected', function () {
-  console.log( 'successful db connection to: ' + dbURI + '\n' );
-  demoData.initDatabase(); // clear database, and seed with demo data
-});
-
-
-
-// move this, and other API handlers, into their own file...
+/***********************************************************
+  move this, and other API handlers, into their own file...
+***********************************************************/
 
 var Activity = require( './models/activity' );
 

@@ -13,6 +13,8 @@ import React, {
 } from 'react-native';
 
 var Map = React.createClass({
+  
+
   render: function(){
     return ( <MapView style={styles.map}></MapView> );
   }

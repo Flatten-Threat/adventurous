@@ -3,39 +3,12 @@
  * https://github.com/facebook/react-native
  */
 
-import React, {
-  AppRegistry,
-  Component,
-  StyleSheet,
-  Text,
-  View,
-  MapView
-} from 'react-native';
+//app registry is how we tell react native what its most core component is
 
-var Map = React.createClass({
-  
+var React = require('react-native');
+var { AppRegistry } = React;
 
-  render: function(){
-    return ( <MapView style={styles.map}></MapView> );
-  }
-})
+//requires main and requires it as its main component
+var Main = require('./src/main.js');
 
-class adventureus extends Component {
-  render() {
-    return (
-     
-        <MapView style={styles.map}>
-        </MapView>
-     
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-
-  map: {
-    flex: 1
-  }
-});
-
-AppRegistry.registerComponent('adventureus', () => adventureus);
+AppRegistry.registerComponent('adventureus', () => Main)

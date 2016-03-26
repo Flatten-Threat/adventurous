@@ -23,7 +23,19 @@ export default class Travels extends Component {
     }.bind(this))
     .catch(function(resp) {
       console.log( 'axios get error', resp );
-    });
+
+      // this is TEMPORARY, until we resolve webpack-dev-server access to Mongo
+      this.setState({
+        activities: [
+          {title: '(dev. mode DB access still under development...)', description: 'blah blah blah...'},
+          {title: '(dev. mode DB access still under development...)', description: 'blah blah blah...'},
+          {title: '(dev. mode DB access still under development...)', description: 'blah blah blah...'},
+          {title: '(dev. mode DB access still under development...)', description: 'blah blah blah...'},
+          {title: '(dev. mode DB access still under development...)', description: 'blah blah blah...'}
+        ]
+      })
+
+    }.bind(this));
   }
   
 
@@ -37,4 +49,3 @@ export default class Travels extends Component {
     );
   }
 };
-

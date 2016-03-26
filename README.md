@@ -34,7 +34,7 @@ Tech. Stack:
     Web Fonts
     Express
     MongoDB
-    (planned) - Axios
+    Axios
     (planned) - Heroku
     (planned) - React Native
     (planned) - Mocha/Chai

@@ -27,7 +27,7 @@ module.exports.initDatabase = function() {
 var demoData = [
 
   {
-    'title' : 'Awesome Spot for Ice Cream!',
+    'title' : 'Amazing Spot for Ice Cream!',
     'description' : 'I LUV this little corner cafe, and the owner is the sweetest old lady (practice your Greek language skills, for some free Ouzo!).',
     'image' : 'http://someurl...',
     'region': {

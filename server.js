@@ -3,13 +3,29 @@ var path = require('path');
 var compression = require('compression');
 var mongoose = require('mongoose');
 var demoData = require( './models/demo-data' );
+var Activity = require( './models/activity' );
 
 var app = express();
 app.use( compression() ); // must come first!
 
 
 // serve static files like index.html, css etc.
-app.use( express.static( path.join( __dirname, 'public' ) ) );
+app.use( express.static( __dirname + '/public' ) );
+
+
+app.get('*', function (req, res) {
+  
+  var url = req.url;
+
+  if( url === '/api/activities' ) {
+    sendActivityData(res);
+  }
+  else {
+    // return index.html (keeps react-router browserHistory working on page refresh)
+    res.sendFile( path.join(__dirname, 'public', 'index.html') );
+  }
+
+});
 
 
 var PORT = process.env.PORT || 3000;
@@ -19,13 +35,12 @@ var server = app.listen(PORT, function() {
 
   console.log('\nProduction Express server running at localhost:' + PORT);
 
-  var dbURI = 'mongodb://localhost/adventureUS';
-
+  //var dbURI = 'mongodb://localhost/adventureUS';
+  var dbURI = 'mongodb://missedmemo:34212x@ds025379.mlab.com:25379/tga';
+  
   mongoose.connect( dbURI, function(error) {
     if(error) {
-      console.log( '\n****** ERROR! ****** ERROR! ****** ERROR! ******' );
-      console.log( 'Unable to connect to: ' + dbURI + ' Is mongod running?' );
-      console.log( '\nShutting down all servers...\n' );
+      console.log( '\nERROR! Unable to connect to: ' + dbURI + ' Is mongod running?\n' );
       server.close();
     }
   });
@@ -43,10 +58,8 @@ var server = app.listen(PORT, function() {
   move this, and other API handlers, into their own file...
 ***********************************************************/
 
-var Activity = require( './models/activity' );
-
-app.get( '/api/activities', function( req, res ) {
-
+function sendActivityData( res ) {
+  
   Activity.find( {}, function(error, data) {
 
     if(error) {
@@ -60,4 +73,4 @@ app.get( '/api/activities', function( req, res ) {
     }      
   });
 
-});
+};

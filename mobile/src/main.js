@@ -22,7 +22,6 @@ var Routes = {
   camera: Camera
 };
 
-
 //add <Signin /> before closing view tag to see sign in 
 module.exports = React.createClass({
 
@@ -32,7 +31,6 @@ module.exports = React.createClass({
     var Component = Routes[route.name]; //ROUTES['signin'] => would return the sign in component
     return <Component route={route} navigator={navigator} />;
   },
-
 
   render: function () {
     return (
@@ -50,7 +48,7 @@ module.exports = React.createClass({
           /> 
 
         <Map/>
-          
+
       </View>  
     )
   }

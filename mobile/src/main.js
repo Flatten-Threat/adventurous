@@ -49,7 +49,6 @@ module.exports = React.createClass({
          renderScene={this.renderScene}
          //how newly rendered components will appear to the user / LIKE AN ANIMATION
          configureScene={()=> {return Navigator.SceneConfigs.FloatFromRight;} }
-
           /> 
 
       </View>  

@@ -35,7 +35,7 @@ Tech. Stack:
     Express
     MongoDB
     Axios
-    (planned) - Heroku
+    Heroku
     (planned) - React Native
     (planned) - Mocha/Chai
     (probably) - Bootstrap

@@ -8,13 +8,10 @@ var {
   Navigator
 } = React;
 
-
 var Map = require('./components/map/map');
 var Signin = require('./components/authentication/signin');
 var Activities = require('./components/activities/activities');
 var Camera = require('./components/camera/camera');
-
-
 
 //define our routes
 var Routes = {
@@ -36,6 +33,7 @@ module.exports = React.createClass({
     return <Component route={route} navigator={navigator} />;
   },
 
+
   render: function () {
     return (
       <View style={styles.container}>  
@@ -51,6 +49,8 @@ module.exports = React.createClass({
          configureScene={()=> {return Navigator.SceneConfigs.FloatFromRight;} }
           /> 
 
+        <Map/>
+          
       </View>  
     )
   }

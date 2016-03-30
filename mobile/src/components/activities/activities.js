@@ -5,15 +5,15 @@ var {
   StyleSheet,
   View,
   Text,
-  TextInput,
-  Dimensions
+  TextInput
+  // Dimensions
 } = React;
 
 //require the button to navigate to the sign in page
 var Button = require('../common/button');
 
 //import Camera from 'react-native-camera'
-import Camera from 'react-native-camera';
+// import Camera from 'react-native-camera';
 
 module.exports = React.createClass({
   render: function(){

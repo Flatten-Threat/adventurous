@@ -53,11 +53,9 @@ module.exports = React.createClass({
           style={styles.map}
           >
           </MapView>
+
+          <Button style={styles.button} text={'Add Activity'} onPress={this.onPress} />
           
-          <View style={styles.buttonWrapper}>
-            <Button style={styles.button} text={'Add Activity'} onPress={this.onPress} />
-          </View>
-        
         </View>
     );
   },

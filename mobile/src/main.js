@@ -4,8 +4,8 @@ var {
   View,
   Text,
   StyleSheet,
-  MapView,
-  Navigator
+  Navigator,
+  MapView
 } = React;
 
 var Map = require('./components/map/map');
@@ -36,7 +36,6 @@ module.exports = React.createClass({
     return (
       <View style={styles.container}>  
 
-
          <Navigator
          style={styles.container}
          //determines what first component is when navigator is first rendered
@@ -46,8 +45,6 @@ module.exports = React.createClass({
          //how newly rendered components will appear to the user / LIKE AN ANIMATION
          configureScene={()=> {return Navigator.SceneConfigs.FloatFromRight;} }
           /> 
-
-        <Map/>
 
       </View>  
     )

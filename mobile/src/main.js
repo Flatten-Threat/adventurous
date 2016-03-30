@@ -11,13 +11,18 @@ var {
 
 var Map = require('./components/map/map');
 var Signin = require('./components/authentication/signin');
+var Activities = require('./components/activities/activities');
+var Camera = require('./components/camera/camera');
+
 
 
 //define our routes
 var Routes = {
   //key can be anything: value must be a component
   map: Map,
-  signin: Signin
+  signin: Signin,
+  activities: Activities,
+  camera: Camera
 };
 
 

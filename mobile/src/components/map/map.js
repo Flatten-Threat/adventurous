@@ -9,33 +9,37 @@ var {
 } = React;
 
 
+
 var Button = require('../common/button');
 
 
 module.exports = React.createClass({
   render: function(){
     return(
+
         <View style={styles.container}>
-          <MapView style={styles.map}>
+          <MapView style={styles.map} onRegionChangeComplete={this.onRegionChangeComplete}>
           
           </MapView>
           
           <View style={styles.buttonWrapper}>
-            <Button style={styles.button} text={'Sign up'} onPress={this.onPress} />
-            <Button style={styles.button} text={'Activities'} />
+            <Button style={styles.button} text={'Add Activity'} onPress={this.onPress} />
           </View>
         
         </View>
     );
   },
 
+  //when the user stops dragging the map this function is called
+  onRegionChangeComplete: function(region){
+    console.log(region);
+  },
+
   //refer to this on line 20.
   onPress: function() {
     //navigate over to signup
     //push into the navigator stack
-    this.props.navigator.push({name: 'signin'})
-    // this.props.navigator.push({name: 'activities'});
-
+    this.props.navigator.push({name: 'activities'})
   }
 
 })

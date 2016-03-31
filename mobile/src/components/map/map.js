@@ -1,4 +1,7 @@
 var React = require('react-native');
+var Icon_Restaurant = require('../images/icon_restaurant.png');
+var Icon_Shopping = require('../images/icon_shopping.png');
+var Icon_Pub = require('../images/icon_pub.png');
 
 var {
   Component,
@@ -14,12 +17,15 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      markers: [],
-      activityRootUrl: 'http://adventureus.herokuapp.com/api/activities'
+      markers: [], // for pins
+      activityRootUrl: 'http://adventureus.herokuapp.com/api/activities' // jenna: needs to be prop, not sure where to put it
     };
   },
 
   componentWillMount: function(){
+
+    // holder array for pins
+    var tempMarker = [];
 
     //get activities
     return fetch( this.state.activityRootUrl )
@@ -27,14 +33,39 @@ module.exports = React.createClass({
         return response.json();
       })
       .then(function(json){
-        var tempMarker = [];
-        for (var i = 0; i < json.length; i ++) {
-          tempMarker.push(json[i].region);
-        }
-        this.setState({
-          markers:tempMarker
-        });
 
+        for (var i = 0; i < json.length; i++) {
+
+          // holder for region object
+          var holder = json[i].region;
+
+          // add title, description, image to region object
+          holder['title'] = json[i].title;
+          holder['subtitle'] = json[i].description;
+
+          console.log('json[i]: ', json[i]);
+
+          // assign pin image based on category
+          if ( json[i].category === 'Restaurant' ) {
+            holder['image'] = Icon_Restaurant;
+            console.log('inside restaurant! ');
+          }
+          else if ( json[i].category === 'Bar' ) {
+            holder['image'] = Icon_Pub;
+            console.log('inside bar! ');
+          }
+          else if ( json[i].category === 'Shopping' ) {
+            holder['image'] = Icon_Shopping;
+            console.log('inside shopping! ');
+          }
+
+          tempMarker.push(holder);
+        }
+
+        // set pins state
+        this.setState({
+          markers: tempMarker
+        });
 
       }.bind(this));
 

@@ -5,61 +5,127 @@ var {
   StyleSheet,
   View,
   Text,
-  TextInput
-  // Dimensions
+  TextInput,
+  Image
 } = React;
 
-//require the button to navigate to the sign in page
 var Button = require('../common/button');
-
-//import Camera from 'react-native-camera'
-// import Camera from 'react-native-camera';
+var DropDown = require('../common/dropdown');
 
 module.exports = React.createClass({
+
   render: function(){
+
+    console.log("---->", this.props.route.passProps.isNew);
+
     return (
-
+    
       <View style={styles.container}>
-
-        <Button style={styles.button} text={'Add a photo'} onPress={this.changeToCamera}/> 
-
-        <TextInput style={styles.input} multiline={true} maxLength={200} placeholder={'Add a description'}/>
-        
-        <View style={styles.buttonWrapper}>
-            <Button style={styles.button} text={'Submit'} onPress={this.changeToSignIn}/>
+          
+        <View style={[styles.header, this.border('blue')]}>
+          <Image source={{uri: this.props.route.passProps.photo}}/>
         </View>
+
+        <View style={[styles.footer, this.border('green')]}>
+          
+          {this.titleInput()}
+          {this.dropDownMenu()}
+          {this.descriptionInput()}
+
+        </View>
+          
+          {this.submitButton()}
       
       </View>    
-
-  
     )
+    
   },
 
-  changeToCamera: function(){
-    //switch to sign in view
-    this.props.navigator.push({name: 'camera'})
+  border: function(color) {
+    return {
+      borderColor: color,
+      borderWidth: 4
+    }
+  },
+
+
+  //helper functions
+  titleInput: function() {
+    return <View style={[styles.titleWrapper, this.border('yellow')]}>
+        <TextInput editable={this.props.route.passProps.isNew} height={25} maxLength={20} placeholder={'Edit title'}/>
+      </View>
+  },
+
+
+  dropDownMenu: function() {
+    return <View style={[styles.dropDownWrapper, this.border('red')]}>
+      <DropDown/>
+    </View> 
+
+  },
+
+  descriptionInput: function() {
+    return <View style={[styles.descriptionWrapper, this.border('purple')]}>
+      <TextInput editable={this.props.route.passProps.isNew} height={50} maxLength={200} multiline={true} placeholder={'Edit description'}/>
+    </View>
+
+  },
+
+  submitButton: function(){
+    return <View style={styles.buttonWrapper} >
+     <Button text={'Submit'} onPress={this.changeToSignIn}/>
+    </View>
   },
 
   changeToSignIn: function(){
-    this.props.navigator.push({name: 'signin'})
+    this.props.navigator.push({name: 'signin'});
   }
 
-})
+});
+
 
 var styles = StyleSheet.create({
+  
+
   container: {
     flex: 1,
+    alignItems: 'stretch'
+
+  },
+
+  header: {
+    flex: 2,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+
+  footer: {
+    flex: 3
+  },
+
+  titleWrapper: {
+    flex: 1,
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
 
-  buttonWrapper: {
+  dropDownWrapper: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'stretch'
+  },
+
+  descriptionWrapper: {
+    flex: 3,
+    flexDirection: 'column',
     alignItems: 'center'
   },
 
-  input: {
-    height: 90,
-    borderColor: 'black',
-    borderWidth: 1
+  buttonWrapper: {
+    flex: .5,
+    justifyContent: 'center',
+    alignItems: 'center'
   }
+
 })

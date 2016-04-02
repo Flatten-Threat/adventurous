@@ -32,7 +32,6 @@ var styles = StyleSheet.create({
   },
   buttonText: {
     flex: 1,
-    alignSelf: 'center',
-    // text: 20
+    alignSelf: 'center'
   }
 })

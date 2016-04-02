@@ -5,35 +5,25 @@ var {
   StyleSheet,
   View,
   Text,
-  TextInput
+  TextInput,
+  Image
 } = React;
 
 var Button = require('../common/button');
 var DropDown = require('../common/dropdown');
 
 module.exports = React.createClass({
-  getInitialState: function() {
-    return {
-      // this.state= {
-      // editable: 
-      // }
-    }
-  },
-
-  // setText: function() {
-  //   this.setState({
-  //     ...this.state,
-  //     editable: 
-  //   })
-  // },
 
   render: function(){
+
+    console.log("---->", this.props.route.passProps.isNew);
+
     return (
     
       <View style={styles.container}>
           
         <View style={[styles.header, this.border('blue')]}>
-          <Text> Insert image here! </Text>
+          <Image source={{uri: this.props.route.passProps.photo}}/>
         </View>
 
         <View style={[styles.footer, this.border('green')]}>
@@ -58,10 +48,11 @@ module.exports = React.createClass({
     }
   },
 
+
   //helper functions
   titleInput: function() {
     return <View style={[styles.titleWrapper, this.border('yellow')]}>
-        <TextInput  height={25} maxLength={20} placeholder={'Edit title'}/>
+        <TextInput editable={this.props.route.passProps.isNew} height={25} maxLength={20} placeholder={'Edit title'}/>
       </View>
   },
 
@@ -75,7 +66,7 @@ module.exports = React.createClass({
 
   descriptionInput: function() {
     return <View style={[styles.descriptionWrapper, this.border('purple')]}>
-      <TextInput height={50} maxLength={200} multiline={true} placeholder={'Edit description'}/>
+      <TextInput editable={this.props.route.passProps.isNew} height={50} maxLength={200} multiline={true} placeholder={'Edit description'}/>
     </View>
 
   },
@@ -86,6 +77,9 @@ module.exports = React.createClass({
     </View>
   },
 
+  changeToSignIn: function(){
+    this.props.navigator.push({name: 'signin'});
+  }
 
 });
 

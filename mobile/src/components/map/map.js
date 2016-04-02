@@ -85,7 +85,7 @@ module.exports = React.createClass({
           >
           </MapView>
 
-          <Button style={styles.button} text={'Add Activity'} onPress={this.onPress} />
+          <Button style={styles.button} text={'Add Activity'} onPress={this.showActivity} />
           
         </View>
     );
@@ -97,10 +97,10 @@ module.exports = React.createClass({
   },
 
   //refer to this on line 20.
-  onPress: function() {
+  showActivity: function() {
     //navigate over to signup
     //push into the navigator stack
-    this.props.navigator.push({name: 'activities'})
+    this.props.navigator.push({name: 'camera', passProps: {isNew: true}})
   }
 
 })

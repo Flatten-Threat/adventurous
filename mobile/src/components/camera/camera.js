@@ -12,6 +12,13 @@ var  {
 import Camera from 'react-native-camera';
 
 module.exports = React.createClass({
+  
+  getInitialState: function() {
+    return {
+      photo: null
+    };
+  },
+
   render: function(){
     return (
       
@@ -22,18 +29,28 @@ module.exports = React.createClass({
             this.camera = cam;
           }}
           style = {styles.preview}
-          aspect = {Camera.constants.Aspect.fill}>
+          aspect = {Camera.constants.Aspect.fill}
+          captureTarget={Camera.constants.CaptureTarget.disk}
+          >
           <Text style={styles.capture} onPress={this.takePicture}>Add Photo</Text>
         </Camera>
+
       </View>
     )
   },
 
   takePicture: function(){
     this.camera.capture()
-      .then((data) => console.log(data))
+      .then((data) => {
+        // this.setState({photo: data}); 
+        // console.log(data)
+        this.props.navigator.push({name: 'activities', passProps:{isNew: true, photo: data}});
+
+      })
       .catch(err => console.error(err))
-  }
+  },
+
+
 
 })
 

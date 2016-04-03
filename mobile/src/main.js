@@ -34,8 +34,6 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-      <View style={styles.container}>  
-
          <Navigator
          style={styles.container}
          //determines what first component is when navigator is first rendered
@@ -45,8 +43,6 @@ module.exports = React.createClass({
          //how newly rendered components will appear to the user / LIKE AN ANIMATION
          configureScene={()=> {return Navigator.SceneConfigs.FloatFromRight;} }
           /> 
-
-      </View>  
     )
   }
 });

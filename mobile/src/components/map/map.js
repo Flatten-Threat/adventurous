@@ -2,8 +2,8 @@ var React = require('react-native');
 var Icon_Restaurant = require('../images/icon_restaurant.png');
 var Icon_Shopping = require('../images/icon_shopping.png');
 var Icon_Pub = require('../images/icon_pub.png');
-var Button = require('../common/button.js'); // jenna moved here
-var MapPin = require('./mapPin.js'); // jenna
+var Button = require('../common/button.js');
+var MapPin = require('./mapPin.js');
 var RightArrow = require('../images/icon_right_arrow.png');
 
 var {
@@ -12,8 +12,8 @@ var {
   MapView,
   View,
   Text,
-  TouchableOpacity, // jenna
-  Image // jenna
+  TouchableOpacity,
+  Image
 } = React;
 
 module.exports = React.createClass({
@@ -50,7 +50,7 @@ module.exports = React.createClass({
 
         <View style={styles.container}>
           <MapView 
-          showsPointsOfInterest={false} // jenna
+          showsPointsOfInterest={false}
           annotations={ this.state.markers }
           showsUserLocation={true}
           followUserLocation={true}

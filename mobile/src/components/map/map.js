@@ -22,9 +22,8 @@ module.exports = React.createClass({
     return {
       markers: [
         this.createMapMarkers()
-        ],
-      activityRootUrl: 'http://adventureus.herokuapp.com/api/activities' // jenna: needs to be prop, not sure where to put it
-    };
+        ]    
+      };
   },
 
   componentWillMount: function(){
@@ -33,7 +32,7 @@ module.exports = React.createClass({
     var tempMarker = [];
 
     //get activities
-    return fetch( this.state.activityRootUrl )
+    return fetch( this.props.route.passProps.activityRootUrl )
       .then(function(response){
         return response.json();
       })
@@ -67,8 +66,8 @@ module.exports = React.createClass({
   // create 1 pin
   createMapMarkers: function() {
     return {
-      "title": "test pin state and navigation!",
-      "subtitle": "fun times ahead!",
+      "title": "Best cappuccino in the city!",
+      "subtitle": "The smoothest cappuccino, not too caffeinated",
       "longitude": -122.268393,
       "latitude": 37.880196,
       "image": Icon_Shopping,

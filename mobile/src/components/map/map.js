@@ -26,12 +26,7 @@ module.exports = React.createClass({
         ]    
       };
   },
-
   componentWillMount: function(){
-
-    // holder array for pins
-    var tempMarker = [];
-
     //get activities
     return fetch( this.props.route.passProps.activityRootUrl )
       .then(function(response){
@@ -43,9 +38,7 @@ module.exports = React.createClass({
         // this.createActivityMarkers(json);
       }.bind(this));
   },
-
   render: function(){
-
     return(
 
         <View style={styles.container}>
@@ -63,8 +56,7 @@ module.exports = React.createClass({
         </View>
     );
   },
-
-  // create 1 pin
+  // create 1 marker
   createMapMarkers: function() {
     return {
       "title": "Best cappuccino in the city!",
@@ -83,56 +75,13 @@ module.exports = React.createClass({
   navigateToActivityDetailView: function() {
     this.props.navigator.push({name: 'activities', passProps: {isNew: false}})
   },
-
   addActivity: function() {
     //navigate over to signup
     //push into the navigator stack
     this.props.navigator.push({name: 'camera', passProps: {isNew: true}})
-  }
+  },
+  // create 1 pin for user location
 
-  // // create array of markers
-  // createMarkerArray: function() {
-
-  //   var result = [];
-  //   result.push(createMapMarkers());
-
-  //   console.log('result: ', result);
-  //   return result;
-  // },
-
-  // createActivityMarkers: function(json) {
-
-  //   console.log('json: ', json);
-
-  //   // holder array for pins
-  //   var tempMarker = [];
-
-  //   for (var i = 0; i < json.length; i++) {
-
-  //     // holder for ea region object
-  //     var holder = json[i].region;
-
-  //     // add title, description, image to region object
-  //     holder['title'] = json[i].title;
-  //     holder['subtitle'] = json[i].description;
-
-  //     if ( json[i].category === 'Restaurant' ) {
-  //       holder['image'] = Icon_Restaurant;
-  //     }
-  //     else if ( json[i].category === 'Bar' ) {
-  //       holder['image'] = Icon_Pub;
-  //     }
-  //     else if ( json[i].category === 'Shopping' ) {
-  //       holder['image'] = Icon_Shopping;
-  //     }
-        
-  //     tempMarker.push(holder);
-  //   }
-
-  //   this.setState({
-  //     markers: tempMarker
-  //   });
-  // },
 
 }) // end of react class
 

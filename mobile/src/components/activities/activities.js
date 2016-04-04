@@ -23,7 +23,7 @@ module.exports = React.createClass({
       <View style={styles.container}>
           
         <View style={[styles.header, this.border('blue')]}>
-          <Image source={{uri: this.props.route.passProps.photo}}/>
+          <Image source={{uri: this.props.route.passProps.photo}} style={styles.cover}/>
         </View>
 
         <View style={[styles.footer, this.border('green')]}>
@@ -95,8 +95,10 @@ var styles = StyleSheet.create({
 
   header: {
     flex: 2,
-    alignItems: 'center',
-    justifyContent: 'center'
+    // alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignItems: 'stretch'
   },
 
   footer: {
@@ -126,6 +128,11 @@ var styles = StyleSheet.create({
     flex: .5,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  cover: {
+    flex: 1,
+    width: null,
+    height: null
   }
 
 })

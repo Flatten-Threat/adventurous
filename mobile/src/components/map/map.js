@@ -8,7 +8,8 @@ var {
   StyleSheet,
   MapView,
   View,
-  Text
+  Text,
+  TouchableOpacity
 } = React;
 
 var Button = require('../common/button');
@@ -85,8 +86,10 @@ module.exports = React.createClass({
           >
           </MapView>
 
-          <Button style={styles.button} text={'Add Activity'} onPress={this.showActivity} />
-          
+          <TouchableOpacity style={styles.button} onPress={this.showActivity}>
+              <Text>Hello</Text>
+          </TouchableOpacity>
+
         </View>
     );
   },
@@ -113,13 +116,18 @@ var styles = StyleSheet.create ({
   },
 
   map: {
-    flex: 2,
+    flex: 1,
     marginTop: 30
   },
 
-  buttonWrapper: {
-   flex: 1,
-   alignItems: 'center'
+  button: {
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 50,
+    flexDirection: 'row',
+    position: 'absolute',
+    bottom: 20,
+    right: 20
   }
 
 });

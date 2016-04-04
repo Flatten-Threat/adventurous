@@ -34,4 +34,5 @@ var styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'center'
   }
-})
+
+});

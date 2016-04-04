@@ -17,19 +17,22 @@ module.exports = React.createClass({
   render: function(){
 
     console.log("---->", this.props.route.passProps.isNew);
-
+    console.log("---->", this.props.route.passProps.photo)
     return (
     
       <View style={styles.container}>
           
         <View style={[styles.header, this.border('blue')]}>
-          <Image source={{uri: this.props.route.passProps.photo}}/>
+          <Image 
+          // source={require('../images/brussels.jpg')}
+          source={{uri: this.props.route.passProps.photo}}
+          style={styles.cover} 
+          />
         </View>
 
         <View style={[styles.footer, this.border('green')]}>
           
           {this.titleInput()}
-          {this.dropDownMenu()}
           {this.descriptionInput()}
 
         </View>
@@ -40,6 +43,8 @@ module.exports = React.createClass({
     )
     
   },
+
+  // {uri: this.props.route.passProps.photo}
 
   border: function(color) {
     return {
@@ -54,14 +59,6 @@ module.exports = React.createClass({
     return <View style={[styles.titleWrapper, this.border('yellow')]}>
         <TextInput editable={this.props.route.passProps.isNew} height={25} maxLength={20} placeholder={'Edit title'}/>
       </View>
-  },
-
-
-  dropDownMenu: function() {
-    return <View style={[styles.dropDownWrapper, this.border('red')]}>
-      <DropDown/>
-    </View> 
-
   },
 
   descriptionInput: function() {
@@ -95,8 +92,8 @@ var styles = StyleSheet.create({
 
   header: {
     flex: 2,
-    alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'row',
+    alignItems: 'stretch'
   },
 
   footer: {
@@ -126,6 +123,12 @@ var styles = StyleSheet.create({
     flex: .5,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+
+  cover: {
+    flex: 1,
+    width: null,
+    height: null
   }
 
-})
+});

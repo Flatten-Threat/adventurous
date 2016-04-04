@@ -37,7 +37,7 @@ module.exports = React.createClass({
          <Navigator
          style={styles.container}
          //determines what first component is when navigator is first rendered
-         initialRoute={{name: 'map'}}
+         initialRoute={{name: 'map', passProps: {activityRootUrl: 'http://adventureus.herokuapp.com/api/activities'}}}
          //contains functionality that tells the navigator how to render at any given time
          renderScene={this.renderScene}
          //how newly rendered components will appear to the user / LIKE AN ANIMATION

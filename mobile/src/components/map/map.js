@@ -1,7 +1,8 @@
 var React = require('react-native');
 var Icon_Restaurant = require('../images/icon_restaurant.png');
 var Icon_Shopping = require('../images/icon_shopping.png');
-var Icon_Pub = require('../images/icon_pub.png');
+var Icon_Pub = require('../images/icon_bar.png');
+var Icon_Coffee = require('../images/icon_coffee.png');
 var Button = require('../common/button.js');
 var MapPin = require('./mapPin.js');
 var RightArrow = require('../images/icon_right_arrow.png');
@@ -22,9 +23,8 @@ module.exports = React.createClass({
     return {
       markers: [
         this.createMapMarkers()
-        ],
-      activityRootUrl: 'http://adventureus.herokuapp.com/api/activities' // jenna: needs to be prop, not sure where to put it
-    };
+        ]    
+      };
   },
 
   componentWillMount: function(){
@@ -33,7 +33,7 @@ module.exports = React.createClass({
     var tempMarker = [];
 
     //get activities
-    return fetch( this.state.activityRootUrl )
+    return fetch( this.props.route.passProps.activityRootUrl )
       .then(function(response){
         return response.json();
       })
@@ -67,11 +67,11 @@ module.exports = React.createClass({
   // create 1 pin
   createMapMarkers: function() {
     return {
-      "title": "test pin state and navigation!",
-      "subtitle": "fun times ahead!",
+      "title": "Best cappuccino in the city!",
+      "subtitle": "The smoothest cappuccino, not too caffeinated",
       "longitude": -122.268393,
       "latitude": 37.880196,
-      "image": Icon_Shopping,
+      "image": Icon_Coffee,
       "rightCalloutView": (
         <TouchableOpacity onPress={ this.navigateToActivityDetailView }>
           <Image source={RightArrow} />

@@ -18,7 +18,7 @@ module.exports = React.createClass({
   },
   render: function(){
 
-    // var isNew = this.props.route.passProps.isNew;
+    var isNew = this.props.route.passProps.isNew;
 
     return (
     
@@ -29,20 +29,38 @@ module.exports = React.createClass({
         </View>
 
         <View style={[styles.footer, this.border('green')]}>
-          
-          {this.titleInput()}
+
+          <View style={[styles.titleWrapper, this.border('yellow')]}>
+          <TextInput
+           style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
+           editable={ isNew }
+           placeholder={ 'add a title...' }
+           // value = { this.state.activity.title }
+          />
+          </View>
           {this.dropDownMenu()}
-          {this.descriptionInput()}
+          <TextInput
+            style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
+            multiline={true}
+            maxLength={200}
+            editable={ isNew }
+            placeholder={'What makes this place so special?'}
+            // value = { this.state.activity.description }
+          />
 
         </View>
           
-          {this.submitButton()}
+        <View style={styles.buttonWrapper}>
+          <Button text={'Save'} onPress={ this.save }/>
+        </View>
       
       </View>    
     )
     
   },
-
+  save: function() {
+    this.props.navigator.popToTop();
+  },
   border: function(color) {
     return {
       borderColor: color,
@@ -51,12 +69,12 @@ module.exports = React.createClass({
   },
 
 
-  //helper functions
-  titleInput: function() {
-    return <View style={[styles.titleWrapper, this.border('yellow')]}>
-        <TextInput editable={this.props.route.passProps.isNew} height={25} maxLength={20} placeholder={'Edit title'}/>
-      </View>
-  },
+  // //helper functions
+  // titleInput: function() {
+  //   return <View style={[styles.titleWrapper, this.border('yellow')]}>
+  //       <TextInput editable={this.props.route.passProps.isNew} height={25} maxLength={20} placeholder={'Edit title'}/>
+  //     </View>
+  // },
 
 
   dropDownMenu: function() {
@@ -66,35 +84,33 @@ module.exports = React.createClass({
 
   },
 
-  descriptionInput: function() {
-    return <View style={[styles.descriptionWrapper, this.border('purple')]}>
-      <TextInput editable={this.props.route.passProps.isNew} height={50} maxLength={200} multiline={true} placeholder={'Edit description'}/>
-    </View>
+  // descriptionInput: function() {
+  //   return <View style={[styles.descriptionWrapper, this.border('purple')]}>
+  //     <TextInput editable={this.props.route.passProps.isNew} height={50} maxLength={200} multiline={true} placeholder={'Edit description'}/>
+  //   </View>
 
-  },
+  // },
 
-  submitButton: function(){
-    return <View style={styles.buttonWrapper} >
-     <Button text={'Submit'} onPress={this.changeToSignIn}/>
-    </View>
-  },
+  // submitButton: function(){
+  //   return <View style={styles.buttonWrapper} >
+  //    <Button text={'Submit'} onPress={this.changeToSignIn}/>
+  //   </View>
+  // },
 
-  changeToSignIn: function(){
-    this.props.navigator.push({name: 'signin'});
-  }
+  // changeToSignIn: function(){
+  //   this.props.navigator.push({name: 'signin'});
+  // }
 
 });
 
 
 var styles = StyleSheet.create({
   
-
   container: {
     flex: 1,
     alignItems: 'stretch'
 
   },
-
   header: {
     flex: 2,
     // alignItems: 'center',
@@ -102,30 +118,25 @@ var styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch'
   },
-
   footer: {
     flex: 3
   },
-
   titleWrapper: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center'
   },
-
   dropDownWrapper: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'stretch'
   },
-
   descriptionWrapper: {
     flex: 3,
     flexDirection: 'column',
     alignItems: 'center'
   },
-
   buttonWrapper: {
     flex: .5,
     justifyContent: 'center',
@@ -135,6 +146,17 @@ var styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null
+  },
+  input: {
+    flex: 0,
+    margin: 4,
+    padding: 8,
+    fontSize: 18,
+    height: 36
+  },
+  editable: {
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 3
   }
-
 })

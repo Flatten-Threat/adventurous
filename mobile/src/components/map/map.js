@@ -1,5 +1,5 @@
 var React = require('react-native');
-var Icon_Restaurant = require('../images/icon_restaurant.png');
+var Icon_Restaurant = require('./images/restaurant.png');
 var Icon_Shopping = require('../images/icon_shopping.png');
 var Icon_Pub = require('../images/icon_bar.png');
 var Icon_Coffee = require('../images/icon_coffee.png');

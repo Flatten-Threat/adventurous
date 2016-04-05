@@ -73,16 +73,15 @@ module.exports = React.createClass({
     }
   },
   // navigate to activity view
-  navigateToActivityDetailView: function() {
-    this.props.navigator.push({name: 'activities', passProps: {isNew: false}})
+  navigateToActivityDetailView: function( activity ) {
+    this.props.navigator.push({name: 'activities', passProps: {isNew: false, activity: activity}})
   },
   addActivity: function() {
-    //navigate over to signup
-    //push into the navigator stack
-    this.props.navigator.push({name: 'camera', passProps: {isNew: true}})
-  },
-  // create 1 pin for user location
-
+    var newActivity = { title: '', description: '' };
+    this.props.navigator.push({
+      name: 'camera', 
+      passProps: {isNew: true, activity: newActivity }})
+  }
 
 }) // end of react class
 

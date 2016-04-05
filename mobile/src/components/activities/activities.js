@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      activity: this.props.route.passProps.activity
+      activity: this.props.route.passProps.activities
     };
   },
   render: function(){
@@ -21,7 +21,6 @@ module.exports = React.createClass({
     var isNew = this.props.route.passProps.isNew;
 
     return (
-    
       <View style={styles.container}>
           
         <View style={[styles.header]}>
@@ -29,7 +28,6 @@ module.exports = React.createClass({
         </View>
 
         <View style={[styles.footer]}>
-
           <View style={[styles.titleWrapper]}>
           <TextInput
            style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
@@ -47,7 +45,6 @@ module.exports = React.createClass({
             placeholder={'What makes this place so special?'}
             // value = { this.state.activity.description }
           />
-
         </View>
           
         <View style={styles.buttonWrapper}>
@@ -68,14 +65,12 @@ module.exports = React.createClass({
     }
   },
 
-
   // //helper functions
   // titleInput: function() {
   //   return <View style={[styles.titleWrapper, this.border('yellow')]}>
   //       <TextInput editable={this.props.route.passProps.isNew} height={25} maxLength={20} placeholder={'Edit title'}/>
   //     </View>
   // },
-
 
   dropDownMenu: function() {
     return <View style={[styles.dropDownWrapper]}>

@@ -1,5 +1,5 @@
 var React = require('react-native');
-var Icon_Shopping = require('../images/icon_shopping.png');
+//var Icon_Shopping = require('../images/icon_shopping.png');
 
 var {
     Image,

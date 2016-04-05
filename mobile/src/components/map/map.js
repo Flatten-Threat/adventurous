@@ -1,10 +1,10 @@
 var React = require('react-native');
 var Icon_Restaurant = require('./images/restaurant.png');
-var Icon_Shopping = require('../images/icon_shopping.png');
-var Icon_Pub = require('../images/icon_bar.png');
-var Icon_Coffee = require('../images/icon_coffee.png');
+var Icon_Shopping = require('./images/clothes.png');
+var Icon_Pub = require('./images/bar.png');
+var Icon_Coffee = require('./images/coffee.png');
 var MapPin = require('./mapPin.js');
-var RightArrow = require('../images/icon_right_arrow.png');
+var RightArrow = require('./images/icon_right_arrow.png');
 import FloatingButton from '../common/floating-button';
 
 var {
@@ -16,7 +16,6 @@ var {
 } = React;
 
 module.exports = React.createClass({
-
   getInitialState: function() {
     return {
       markers: [
@@ -86,7 +85,6 @@ module.exports = React.createClass({
 }) // end of react class
 
 var styles = StyleSheet.create ({
-
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -105,5 +103,4 @@ var styles = StyleSheet.create ({
     borderRadius: 2,
     backgroundColor: 'white'
   }
-
 });

@@ -20,8 +20,6 @@ module.exports = React.createClass({
 
     var isNew = this.props.route.passProps.isNew;
 
-    console.log('jenna this.state.activity: ', this.state.activity);
-
     return (
       <View style={styles.container}>
           

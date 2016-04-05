@@ -17,7 +17,7 @@ var Routes = {
 
 module.exports = React.createClass({
 
-  renderScene: function (route, navigator){
+  renderScene: function (route, navigator) {
     var Component = Routes[route.name]; 
     return <Component route={route} navigator={navigator} />;
   },
@@ -29,7 +29,7 @@ module.exports = React.createClass({
          renderScene={this.renderScene}
          configureScene={()=> Navigator.SceneConfigs.FloatFromRight }
         />     
-    )
+    );
   }
 });
 

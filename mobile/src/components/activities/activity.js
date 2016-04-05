@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      activity: this.props.route.passProps.activity // jenna
+      activity: this.props.route.passProps.activity
     };
   },
   render: function(){
@@ -66,36 +66,11 @@ module.exports = React.createClass({
       borderWidth: 4
     }
   },
-
-  // //helper functions
-  // titleInput: function() {
-  //   return <View style={[styles.titleWrapper, this.border('yellow')]}>
-  //       <TextInput editable={this.props.route.passProps.isNew} height={25} maxLength={20} placeholder={'Edit title'}/>
-  //     </View>
-  // },
-
   dropDownMenu: function() {
     return <View style={[styles.dropDownWrapper]}>
       <DropDown/>
     </View> 
   }
-
-  // descriptionInput: function() {
-  //   return <View style={[styles.descriptionWrapper, this.border('purple')]}>
-  //     <TextInput editable={this.props.route.passProps.isNew} height={50} maxLength={200} multiline={true} placeholder={'Edit description'}/>
-  //   </View>
-
-  // },
-
-  // submitButton: function(){
-  //   return <View style={styles.buttonWrapper} >
-  //    <Button text={'Submit'} onPress={this.changeToSignIn}/>
-  //   </View>
-  // },
-
-  // changeToSignIn: function(){
-  //   this.props.navigator.push({name: 'signin'});
-  // }
 
 });
 

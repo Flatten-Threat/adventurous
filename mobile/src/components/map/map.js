@@ -66,14 +66,14 @@ module.exports = React.createClass({
       "latitude": 37.880196,
       "image": Icon_Coffee,
       "rightCalloutView": (
-        <TouchableOpacity onPress={ this.navigateToActivityDetailView }>
+        <TouchableOpacity onPress={ this.showActivity }>
           <Image source={RightArrow} />
         </TouchableOpacity>
         )
     }
   },
   // navigate to activity view
-  navigateToActivityDetailView: function( activity ) {
+  showActivity: function( activity ) {
     this.props.navigator.push({name: 'activity', passProps: {isNew: false, activity: activity}})
   },
   addActivity: function() {

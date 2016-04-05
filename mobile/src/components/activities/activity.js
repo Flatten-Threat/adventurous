@@ -20,6 +20,8 @@ module.exports = React.createClass({
 
     var isNew = this.props.route.passProps.isNew;
 
+    console.log('jenna this.state.activity: ', this.state.activity);
+
     return (
       <View style={styles.container}>
           
@@ -33,7 +35,7 @@ module.exports = React.createClass({
            style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
            editable={ isNew }
            placeholder={ 'add a title...' }
-           // value = { this.state.activity.title }
+           value = { this.state.activity.title }
           />
           </View>
           {this.dropDownMenu()}
@@ -43,7 +45,7 @@ module.exports = React.createClass({
             maxLength={200}
             editable={ isNew }
             placeholder={'What makes this place so special?'}
-            // value = { this.state.activity.description }
+            value = { this.state.activity.description }
           />
         </View>
           
@@ -76,8 +78,7 @@ module.exports = React.createClass({
     return <View style={[styles.dropDownWrapper]}>
       <DropDown/>
     </View> 
-
-  },
+  }
 
   // descriptionInput: function() {
   //   return <View style={[styles.descriptionWrapper, this.border('purple')]}>

@@ -34,10 +34,23 @@ module.exports = React.createClass({
         </View>
 
         <View style={[styles.footer, this.border('green')]}>
-          
-          {this.titleInput()}
-          {this.descriptionInput()}
-
+          <View style={[styles.titleWrapper]}>
+            <TextInput
+             style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
+             editable={ isNew }
+             placeholder={ 'add a title...' }
+             // value = { this.state.activity.title }
+            />
+          </View>
+          {this.dropDownMenu()}
+            <TextInput
+              style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
+              multiline={true}
+              maxLength={200}
+              editable={ isNew }
+              placeholder={'What makes this place so special?'}
+              // value = { this.state.activity.description }
+          />
         </View>
           
           {this.submitButton()}

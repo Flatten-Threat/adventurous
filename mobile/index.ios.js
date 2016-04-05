@@ -1,17 +1,7 @@
-<<<<<<< HEAD
-var React = require('react-native');
-var Main = require('./src/main.js');
-
-React.AppRegistry.registerComponent('adventureus', () => Main)
-=======
 /**********************************************************************
   Standard cross-platform (ios/android) strategy (uses Main as 'root')
 ***********************************************************************/
-
-//app registry is how we tell react native what its most core component is
 var React = require('react-native');
-
-//requires main and requires it as its main component
 var Main = require('./src/main.js');
 
 
@@ -33,4 +23,3 @@ const FloatFromRight = {
   },
 };
 */
->>>>>>> 0313886ba058e4158fed960871128c283c43626e

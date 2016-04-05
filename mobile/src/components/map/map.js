@@ -74,7 +74,7 @@ module.exports = React.createClass({
   },
   // navigate to activity view
   navigateToActivityDetailView: function( activity ) {
-    this.props.navigator.push({name: 'activities', passProps: {isNew: false, activity: activity}})
+    this.props.navigator.push({name: 'activity', passProps: {isNew: false, activity: activity}})
   },
   addActivity: function() {
     var newActivity = { title: '', description: '' };

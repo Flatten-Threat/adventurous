@@ -13,7 +13,7 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      activity: this.props.route.passProps.activities
+      activity: this.props.route.passProps.activity // jenna
     };
   },
   render: function(){

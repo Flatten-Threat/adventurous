@@ -34,11 +34,11 @@ module.exports = React.createClass({
     this.camera.capture()
       .then((data) => {
         this.props.navigator.replace({
-          name: 'activities', 
+          name: 'activity', // jenna
           passProps:{
             isNew: true, 
             photo: data,
-            
+
           }});
 
       })

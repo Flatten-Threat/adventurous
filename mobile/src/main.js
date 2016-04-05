@@ -1,7 +1,7 @@
 var React = require('react-native');
 var Map = require('./components/map/map');
 var Signin = require('./components/authentication/signin');
-var Activities = require('./components/activities/activities');
+var Activity = require('./components/activities/activity');
 var Camera = require('./components/camera/camera');
 
 var {
@@ -14,7 +14,7 @@ var Routes = {
   //key can be anything: value must be a component
   map: Map,
   signin: Signin,
-  activities: Activities,
+  activity: Activity,
   camera: Camera
 };
 

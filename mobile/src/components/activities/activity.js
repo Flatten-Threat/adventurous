@@ -1,6 +1,7 @@
 var React = require('react-native');
 var Button = require('../common/button');
 var DropDown = require('../common/dropdown');
+var _ = require('underscore');
 
 var {
   StyleSheet,
@@ -16,6 +17,7 @@ module.exports = React.createClass({
       activity: this.props.route.passProps.activity
     };
   },
+
   render: function(){
 
     var isNew = this.props.route.passProps.isNew;
@@ -33,6 +35,7 @@ module.exports = React.createClass({
            style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
            editable={ isNew }
            placeholder={ 'add a title...' }
+           onChangeText={ (text) => this.updateActivity({ title: text }) }
            value = { this.state.activity.title }
           />
           </View>
@@ -43,6 +46,7 @@ module.exports = React.createClass({
             maxLength={200}
             editable={ isNew }
             placeholder={'What makes this place so special?'}
+            onChangeText={ (text) => this.updateActivity({ description: text }) }
             value = { this.state.activity.description }
           />
         </View>
@@ -55,15 +59,25 @@ module.exports = React.createClass({
     )
     
   },
+
+  // setState replaces ENTIRE element (can't set properties etc.)
+  updateActivity: function( newValue ) {
+    this.setState({
+      activity: _.extend( this.state.activity, newValue )
+    });
+  },
+
   save: function() {
     this.props.navigator.popToTop();
   },
+
   border: function(color) {
     return {
       borderColor: color,
       borderWidth: 4
     }
   },
+
   dropDownMenu: function() {
     return <View style={[styles.dropDownWrapper]}>
       <DropDown/>
@@ -82,7 +96,6 @@ var styles = StyleSheet.create({
   },
   header: {
     flex: 2,
-    // alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'stretch'

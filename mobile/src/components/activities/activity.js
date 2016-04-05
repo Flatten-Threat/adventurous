@@ -1,6 +1,7 @@
 var React = require('react-native');
 var Button = require('../common/button');
 var DropDown = require('../common/dropdown');
+var _ = require('underscore');
 
 var {
   StyleSheet,
@@ -13,9 +14,10 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      activity: this.props.route.passProps.activity // jenna
+      activity: this.props.route.passProps.activity
     };
   },
+
   render: function(){
 
     var isNew = this.props.route.passProps.isNew;
@@ -33,7 +35,8 @@ module.exports = React.createClass({
            style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
            editable={ isNew }
            placeholder={ 'add a title...' }
-           // value = { this.state.activity.title }
+           onChangeText={ (text) => this.updateActivity({ title: text }) }
+           value = { this.state.activity.title }
           />
           </View>
           {this.dropDownMenu()}
@@ -43,7 +46,8 @@ module.exports = React.createClass({
             maxLength={200}
             editable={ isNew }
             placeholder={'What makes this place so special?'}
-            // value = { this.state.activity.description }
+            onChangeText={ (text) => this.updateActivity({ description: text }) }
+            value = { this.state.activity.description }
           />
         </View>
           
@@ -55,9 +59,18 @@ module.exports = React.createClass({
     )
     
   },
+
+  // setState replaces ENTIRE element (can't set properties etc.)
+  updateActivity: function( newValue ) {
+    this.setState({
+      activity: _.extend( this.state.activity, newValue )
+    });
+  },
+
   save: function() {
     this.props.navigator.popToTop();
   },
+
   border: function(color) {
     return {
       borderColor: color,
@@ -65,36 +78,11 @@ module.exports = React.createClass({
     }
   },
 
-  // //helper functions
-  // titleInput: function() {
-  //   return <View style={[styles.titleWrapper, this.border('yellow')]}>
-  //       <TextInput editable={this.props.route.passProps.isNew} height={25} maxLength={20} placeholder={'Edit title'}/>
-  //     </View>
-  // },
-
   dropDownMenu: function() {
     return <View style={[styles.dropDownWrapper]}>
       <DropDown/>
     </View> 
-
-  },
-
-  // descriptionInput: function() {
-  //   return <View style={[styles.descriptionWrapper, this.border('purple')]}>
-  //     <TextInput editable={this.props.route.passProps.isNew} height={50} maxLength={200} multiline={true} placeholder={'Edit description'}/>
-  //   </View>
-
-  // },
-
-  // submitButton: function(){
-  //   return <View style={styles.buttonWrapper} >
-  //    <Button text={'Submit'} onPress={this.changeToSignIn}/>
-  //   </View>
-  // },
-
-  // changeToSignIn: function(){
-  //   this.props.navigator.push({name: 'signin'});
-  // }
+  }
 
 });
 
@@ -108,7 +96,6 @@ var styles = StyleSheet.create({
   },
   header: {
     flex: 2,
-    // alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'row',
     alignItems: 'stretch'

@@ -1,10 +1,5 @@
 var React = require('react-native');
-var Icon_Restaurant = require('./images/restaurant.png');
-var Icon_Shopping = require('../images/icon_shopping.png');
-var Icon_Pub = require('../images/icon_bar.png');
-var Icon_Coffee = require('../images/icon_coffee.png');
-var MapPin = require('./mapPin.js');
-var RightArrow = require('../images/icon_right_arrow.png');
+var pinFactory = require('./map-markers.js');
 import FloatingButton from '../common/floating-button';
 
 var {
@@ -19,30 +14,25 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      markers: [
-        this.createMapMarkers()
-        ]    
+      mapMarkers: []    
       };
   },
-  componentWillMount: function(){
-    //get activities
-    return fetch( this.props.route.passProps.activityRootUrl )
-      .then(function(response){
-        return response.json();
-      })
-      .then(function(json){
 
-        console.log('this.state.markers: ', this.state.markers);
-        // this.createActivityMarkers(json);
-      }.bind(this));
+  //get activities
+  componentWillMount: function(){
+    this.setState({
+      mapMarkers: this.getMapMarkers()
+    });
   },
+
   render: function(){
+    console.log('this.state.mapPins: ', this.state.mapMarkers);
     return(
 
         <View style={styles.container}>
           <MapView 
             showsPointsOfInterest={false}
-            annotations={ this.state.markers }
+            annotations={ this.state.mapMarkers }
             showsUserLocation={true}
             followUserLocation={true}
             style={styles.map}
@@ -57,36 +47,32 @@ module.exports = React.createClass({
         </View>
     );
   },
+
   // create 1 marker
-  createMapMarkers: function() {
-    return {
-      "title": "Best cappuccino in the city!",
-      "subtitle": "The smoothest cappuccino, not too caffeinated",
-      "longitude": -122.268393,
-      "latitude": 37.880196,
-      "image": Icon_Coffee,
-      "rightCalloutView": (
-        <TouchableOpacity onPress={ this.navigateToActivityDetailView }>
-          <Image source={RightArrow} />
-        </TouchableOpacity>
-        )
-    }
+  getMapMarkers: function( region ) {
+    return [ 
+      pinFactory.createPin( this.showActivity )
+    ];
   },
-  // navigate to activity view
-  navigateToActivityDetailView: function( activity ) {
-    this.props.navigator.push({name: 'activity', passProps: {isNew: false, activity: activity}})
+
+  showActivity: function( activity ) {
+    this.props.navigator.push({
+      name: 'activity', 
+      passProps: { isNew: false, activity: activity }
+    });
   },
+
   addActivity: function() {
     var newActivity = { title: '', description: '' };
     this.props.navigator.push({
       name: 'camera', 
-      passProps: {isNew: true, activity: newActivity }})
+      passProps: {isNew: true, activity: newActivity }
+    });
   }
 
 }) // end of react class
 
 var styles = StyleSheet.create ({
-
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -105,5 +91,4 @@ var styles = StyleSheet.create ({
     borderRadius: 2,
     backgroundColor: 'white'
   }
-
 });

@@ -1,132 +1,111 @@
 var React = require('react-native');
-var Icon_Restaurant = require('../images/icon_restaurant.png');
+var Icon_Restaurant = require('./images/restaurant.png');
 var Icon_Shopping = require('../images/icon_shopping.png');
-var Icon_Pub = require('../images/icon_pub.png');
+var Icon_Pub = require('../images/icon_bar.png');
+var Icon_Coffee = require('../images/icon_coffee.png');
+var MapPin = require('./mapPin.js');
+var RightArrow = require('../images/icon_right_arrow.png');
+import FloatingButton from '../common/floating-button';
 
 var {
   StyleSheet,
   MapView,
   View,
   TouchableOpacity,
-  Text
+  Image
 } = React;
-
-var Button = require('../common/button');
 
 module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      markers: [], // for pins
-      activityRootUrl: 'http://adventureus.herokuapp.com/api/activities' // jenna: needs to be prop, not sure where to put it
-    };
+      markers: [
+        this.createMapMarkers()
+        ]    
+      };
   },
 
-  componentWillMount: function() {
-
-    // holder array for pins
-    var tempMarker = [];
-
+  componentWillMount: function(){
     //get activities
-    return fetch( this.state.activityRootUrl )
-      .then(function(response) {
+    return fetch( this.props.route.passProps.activityRootUrl )
+      .then(function(response){
         return response.json();
       })
       .then(function(json) {
 
-        for (var i = 0; i < json.length; i++) {
-
-          // holder for region object
-          var holder = json[i].region;
-
-          // add title, description, image to region object
-          holder['title'] = json[i].title;
-          holder['subtitle'] = json[i].description;
-
-          console.log('json[i]: ', json[i]);
-
-          // assign pin image based on category
-          if ( json[i].category === 'Restaurant' ) {
-            holder['image'] = Icon_Restaurant;
-            console.log('inside restaurant! ');
-          }
-          else if ( json[i].category === 'Bar' ) {
-            holder['image'] = Icon_Pub;
-            console.log('inside bar! ');
-          }
-          else if ( json[i].category === 'Shopping' ) {
-            holder['image'] = Icon_Shopping;
-            console.log('inside shopping! ');
-          }
-
-          tempMarker.push(holder);
-        }
-
-        // set pins state
-        this.setState({
-          markers: tempMarker
-        });
-
+        console.log('this.state.markers: ', this.state.markers);
+        // this.createActivityMarkers(json);
       }.bind(this));
-
-      console.log('this.state.markers: ', this.state.markers);
   },
-
   render: function(){
-
-    return (
-
-        <View style={styles.container}>
-          <MapView 
-          annotations={this.state.markers}
+  
+    return(
+      <View style={styles.container}>
+        <MapView 
+          showsPointsOfInterest={false}
+          annotations={ this.state.markers }
           showsUserLocation={true}
           followUserLocation={true}
           style={styles.map}
-          >
-          </MapView>
-
-          <TouchableOpacity style={styles.button} onPress={this.addActivity}>
-              <Text>Hello</Text>
-          </TouchableOpacity>
-
+        >
+        </MapView>
+          <FloatingButton
+            onPress={ this.addActivity }
+            text='+'
+            bkColor='#6e73ee'
+            color='white'
+          />
         </View>
     );
   },
-
-  //when the user stops dragging the map this function is called
-  onRegionChangeComplete: function(region) {
-    console.log(region);
+  // create 1 marker
+  createMapMarkers: function() {
+    return {
+      "title": "Best cappuccino in the city!",
+      "subtitle": "The smoothest cappuccino, not too caffeinated",
+      "longitude": -122.268393,
+      "latitude": 37.880196,
+      "image": Icon_Coffee,
+      "rightCalloutView": (
+        <TouchableOpacity onPress={ this.navigateToActivityDetailView }>
+          <Image source={RightArrow} />
+        </TouchableOpacity>
+        )
+    }
   },
-
-  //refer to this on line 20.
+  // navigate to activity view
+  navigateToActivityDetailView: function( activity ) {
+    this.props.navigator.push({name: 'activity', passProps: {isNew: false, activity: activity}})
+  },
   addActivity: function() {
-    //navigate over to signup
-    //push into the navigator stack
-    this.props.navigator.push({name: 'camera', passProps: {isNew: true}})
+    var newActivity = { title: '', description: '' };
+    this.props.navigator.push({
+      name: 'camera', 
+      passProps: {isNew: true, activity: newActivity }});
   }
 
-});
+}); // end of react class
 
 var styles = StyleSheet.create ({
+
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'stretch',
     paddingTop: 30
   },
-
   map: {
     flex: 1
   },
 
-  button: {
-    borderColor: 'black',
+  buttonWrapper: {
+    flex: 1,
+    alignItems: 'center'
+  },
+  mapPin: {
     borderWidth: 1,
-    borderRadius: 50,
-    flexDirection: 'row',
-    position: 'absolute',
-    bottom: 20,
-    right: 20
+    borderRadius: 2,
+    backgroundColor: 'white'
   }
 
 });

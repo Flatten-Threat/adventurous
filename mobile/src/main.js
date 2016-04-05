@@ -5,8 +5,10 @@ var Activity = require('./components/activities/activity');
 var Camera = require('./components/camera/camera');
 
 var {
+
   Navigator 
 } = React;
+
 
 var Routes = {
   map: Map,
@@ -24,11 +26,15 @@ module.exports = React.createClass({
 
   render: function () {
     return (
-        <Navigator
-         initialRoute={ {name: 'map'} }
+         <Navigator
+         style={styles.container}
+         //determines what first component is when navigator is first rendered
+         initialRoute={{name: 'map', passProps: {activityRootUrl: 'http://adventureus.herokuapp.com/api/activities'}}}
+         //contains functionality that tells the navigator how to render at any given time
          renderScene={this.renderScene}
+         //how newly rendered components will appear to the user / LIKE AN ANIMATION
          configureScene={()=> Navigator.SceneConfigs.FloatFromRight }
-        />     
+          /> 
     );
   }
 });

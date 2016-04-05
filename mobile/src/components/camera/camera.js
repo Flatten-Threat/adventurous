@@ -1,7 +1,7 @@
 var React = require('react-native');
 import Camera from 'react-native-camera';
 
-var {
+var  {
   StyleSheet,
   View,
   Text,
@@ -10,7 +10,7 @@ var {
 
 module.exports = React.createClass({
   
-  render: function() {
+  render: function(){
     return (
       
       <View style={styles.container}>
@@ -33,11 +33,12 @@ module.exports = React.createClass({
   takePicture: function() {
     this.camera.capture()
       .then((data) => {
-        this.props.navigator.push({
-          name: 'activity', 
-          passProps: {isNew: true, photo: data
+        this.props.navigator.replace({
+          name: 'activity', // jenna
+          passProps: {
+            isNew: true, 
+            photo: data,
         }});
-
       })
       .catch(err => console.error(err));
   },

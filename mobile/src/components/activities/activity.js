@@ -1,30 +1,33 @@
 var React = require('react-native');
+var Button = require('../common/button');
 
 var {
-  Component,
   StyleSheet,
   View,
-  Text,
   TextInput,
   Image
 } = React;
 
-var Button = require('../common/button');
-var DropDown = require('../common/dropdown');
-
 module.exports = React.createClass({
 
-  render: function(){
+  getInitialState: function() {
+    return {
+      activity: this.props.route.passProps.activity
+    };
+  },
 
+
+  render: function() {
+
+    
     console.log("---->", this.props.route.passProps.isNew);
-    console.log("---->", this.props.route.passProps.photo)
+    console.log("---->", this.props.route.passProps.photo);
     return (
     
       <View style={styles.container}>
           
-        <View style={[styles.header, this.border('blue')]}>
+        <View style={[styles.header]}>
           <Image 
-          // source={require('../images/brussels.jpg')}
           source={{uri: this.props.route.passProps.photo}}
           style={styles.cover} 
           />
@@ -43,8 +46,6 @@ module.exports = React.createClass({
     )
     
   },
-
-  // {uri: this.props.route.passProps.photo}
 
   border: function(color) {
     return {
@@ -91,13 +92,13 @@ var styles = StyleSheet.create({
   },
 
   header: {
-    flex: 2,
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'stretch'
   },
 
   footer: {
-    flex: 3
+    flex: 1
   },
 
   titleWrapper: {

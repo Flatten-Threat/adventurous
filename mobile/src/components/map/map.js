@@ -4,12 +4,11 @@ var Icon_Shopping = require('../images/icon_shopping.png');
 var Icon_Pub = require('../images/icon_pub.png');
 
 var {
-  Component,
   StyleSheet,
   MapView,
   View,
-  Text,
-  TouchableOpacity
+  TouchableOpacity,
+  Text
 } = React;
 
 var Button = require('../common/button');
@@ -23,17 +22,17 @@ module.exports = React.createClass({
     };
   },
 
-  componentWillMount: function(){
+  componentWillMount: function() {
 
     // holder array for pins
     var tempMarker = [];
 
     //get activities
     return fetch( this.state.activityRootUrl )
-      .then(function(response){
+      .then(function(response) {
         return response.json();
       })
-      .then(function(json){
+      .then(function(json) {
 
         for (var i = 0; i < json.length; i++) {
 
@@ -75,7 +74,7 @@ module.exports = React.createClass({
 
   render: function(){
 
-    return(
+    return (
 
         <View style={styles.container}>
           <MapView 
@@ -86,7 +85,7 @@ module.exports = React.createClass({
           >
           </MapView>
 
-          <TouchableOpacity style={styles.button} onPress={this.showActivity}>
+          <TouchableOpacity style={styles.button} onPress={this.addActivity}>
               <Text>Hello</Text>
           </TouchableOpacity>
 
@@ -95,29 +94,29 @@ module.exports = React.createClass({
   },
 
   //when the user stops dragging the map this function is called
-  onRegionChangeComplete: function(region){
+  onRegionChangeComplete: function(region) {
     console.log(region);
   },
 
   //refer to this on line 20.
-  showActivity: function() {
+  addActivity: function() {
     //navigate over to signup
     //push into the navigator stack
     this.props.navigator.push({name: 'camera', passProps: {isNew: true}})
   }
 
-})
+});
 
 var styles = StyleSheet.create ({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    paddingTop: 30
   },
 
   map: {
-    flex: 1,
-    marginTop: 30
+    flex: 1
   },
 
   button: {

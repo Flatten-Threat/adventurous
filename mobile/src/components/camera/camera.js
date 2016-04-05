@@ -1,31 +1,22 @@
 var React = require('react-native');
+import Camera from 'react-native-camera';
 
-var  {
-  Component,
+var {
   StyleSheet,
   View,
   Text,
-  TextInput,
   Dimensions
 } = React;
 
-import Camera from 'react-native-camera';
-
 module.exports = React.createClass({
   
-  getInitialState: function() {
-    return {
-      photo: null
-    };
-  },
-
-  render: function(){
+  render: function() {
     return (
       
       <View style={styles.container}>
 
         <Camera 
-          ref={ (cam) =>  {
+          ref={ (cam) => {
             this.camera = cam;
           }}
           style = {styles.preview}
@@ -36,23 +27,22 @@ module.exports = React.createClass({
         </Camera>
 
       </View>
-    )
+    );
   },
 
-  takePicture: function(){
+  takePicture: function() {
     this.camera.capture()
       .then((data) => {
-        // this.setState({photo: data}); 
-        // console.log(data)
-        this.props.navigator.push({name: 'activities', passProps:{isNew: true, photo: data}});
+        this.props.navigator.push({
+          name: 'activity', 
+          passProps: {isNew: true, photo: data
+        }});
 
       })
-      .catch(err => console.error(err))
+      .catch(err => console.error(err));
   },
 
-
-
-})
+});
 
 var styles = StyleSheet.create({
 
@@ -73,4 +63,4 @@ var styles = StyleSheet.create({
     margin: 40
   }
   
-})
+});

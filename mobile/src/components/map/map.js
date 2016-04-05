@@ -3,16 +3,14 @@ var Icon_Restaurant = require('../images/icon_restaurant.png');
 var Icon_Shopping = require('../images/icon_shopping.png');
 var Icon_Pub = require('../images/icon_bar.png');
 var Icon_Coffee = require('../images/icon_coffee.png');
-var Button = require('../common/button.js');
 var MapPin = require('./mapPin.js');
 var RightArrow = require('../images/icon_right_arrow.png');
+import FloatingButton from '../common/floating-button';
 
 var {
-  Component,
   StyleSheet,
   MapView,
   View,
-  Text,
   TouchableOpacity,
   Image
 } = React;
@@ -43,16 +41,19 @@ module.exports = React.createClass({
 
         <View style={styles.container}>
           <MapView 
-          showsPointsOfInterest={false}
-          annotations={ this.state.markers }
-          showsUserLocation={true}
-          followUserLocation={true}
-          style={styles.map}
+            showsPointsOfInterest={false}
+            annotations={ this.state.markers }
+            showsUserLocation={true}
+            followUserLocation={true}
+            style={styles.map}
           >
           </MapView>
-
-          <Button style={styles.button} text={'Add Activity'} onPress={this.addActivity} />
-          
+          <FloatingButton
+            onPress={ this.addActivity }
+            text='+'
+            bkColor='#6e73ee'
+            color='white'
+          />
         </View>
     );
   },

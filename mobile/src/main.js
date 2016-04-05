@@ -1,17 +1,13 @@
 var React = require('react-native');
-
-var {
-  View,
-  Text,
-  StyleSheet,
-  Navigator,
-  MapView
-} = React;
-
 var Map = require('./components/map/map');
 var Signin = require('./components/authentication/signin');
 var Activities = require('./components/activities/activities');
 var Camera = require('./components/camera/camera');
+
+var {
+  StyleSheet,
+  Navigator
+} = React;
 
 //define our routes
 var Routes = {
@@ -41,7 +37,7 @@ module.exports = React.createClass({
          //contains functionality that tells the navigator how to render at any given time
          renderScene={this.renderScene}
          //how newly rendered components will appear to the user / LIKE AN ANIMATION
-         configureScene={()=> {return Navigator.SceneConfigs.FloatFromRight;} }
+         configureScene={()=> Navigator.SceneConfigs.FloatFromRight }
           /> 
     )
   }

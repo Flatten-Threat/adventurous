@@ -1,22 +1,24 @@
 var React = require('react-native');
+var Button = require('../common/button');
+var DropDown = require('../common/dropdown');
 
 var {
-  Component,
   StyleSheet,
   View,
-  Text,
   TextInput,
   Image
 } = React;
 
-var Button = require('../common/button');
-var DropDown = require('../common/dropdown');
-
 module.exports = React.createClass({
 
+  getInitialState: function() {
+    return {
+      activity: this.props.route.passProps.activity
+    };
+  },
   render: function(){
 
-    console.log("---->", this.props.route.passProps.isNew);
+    // var isNew = this.props.route.passProps.isNew;
 
     return (
     

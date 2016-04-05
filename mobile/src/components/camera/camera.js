@@ -1,24 +1,15 @@
 var React = require('react-native');
+import Camera from 'react-native-camera';
 
 var  {
-  Component,
   StyleSheet,
   View,
   Text,
-  TextInput,
   Dimensions
 } = React;
 
-import Camera from 'react-native-camera';
-
 module.exports = React.createClass({
   
-  getInitialState: function() {
-    return {
-      photo: null
-    };
-  },
-
   render: function(){
     return (
       
@@ -42,8 +33,6 @@ module.exports = React.createClass({
   takePicture: function(){
     this.camera.capture()
       .then((data) => {
-        // this.setState({photo: data}); 
-        // console.log(data)
         this.props.navigator.push({name: 'activities', passProps:{isNew: true, photo: data}});
 
       })

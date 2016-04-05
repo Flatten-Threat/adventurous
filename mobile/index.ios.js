@@ -1,15 +1,29 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- */
+/**********************************************************************
+  Standard cross-platform (ios/android) strategy (uses Main as 'root')
+***********************************************************************/
 
 //app registry is how we tell react native what its most core component is
-
 var React = require('react-native');
-var { AppRegistry } = React;
 
 //requires main and requires it as its main component
 var Main = require('./src/main.js');
 
 
-AppRegistry.registerComponent('adventureus', () => Main)
+React.AppRegistry.registerComponent('adventureus', () => Main)
+
+/*
+// IOS-specific: Override navigator method for wider back swiping margin
+// see: http://adrian-philipp.com/post/react-native-navigator-swipe-from-middle/
+
+const SCREEN_WIDTH = require('Dimensions').get('window').width;
+
+const FloatFromRight = {
+  ...Navigator.SceneConfigs.FloatFromRight,
+  gestures: {
+    pop: {
+      ...Navigator.SceneConfigs.FloatFromRight.gestures.pop,
+      edgeHitWidth: SCREEN_WIDTH / 2,
+    },
+  },
+};
+*/

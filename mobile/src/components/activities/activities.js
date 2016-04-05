@@ -24,13 +24,13 @@ module.exports = React.createClass({
     
       <View style={styles.container}>
           
-        <View style={[styles.header, this.border('blue')]}>
+        <View style={[styles.header]}>
           <Image source={{uri: this.props.route.passProps.photo}} style={styles.cover}/>
         </View>
 
-        <View style={[styles.footer, this.border('green')]}>
+        <View style={[styles.footer]}>
 
-          <View style={[styles.titleWrapper, this.border('yellow')]}>
+          <View style={[styles.titleWrapper]}>
           <TextInput
            style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
            editable={ isNew }
@@ -78,7 +78,7 @@ module.exports = React.createClass({
 
 
   dropDownMenu: function() {
-    return <View style={[styles.dropDownWrapper, this.border('red')]}>
+    return <View style={[styles.dropDownWrapper]}>
       <DropDown/>
     </View> 
 
@@ -108,8 +108,8 @@ var styles = StyleSheet.create({
   
   container: {
     flex: 1,
-    alignItems: 'stretch'
-
+    alignItems: 'stretch',
+    paddingTop: 30 // offset for wifi, time, battery etc. display
   },
   header: {
     flex: 2,
@@ -119,7 +119,9 @@ var styles = StyleSheet.create({
     alignItems: 'stretch'
   },
   footer: {
-    flex: 3
+    flex: 3,
+    paddingRight: 20,
+    paddingLeft: 20
   },
   titleWrapper: {
     flex: 1,
@@ -130,7 +132,8 @@ var styles = StyleSheet.create({
   dropDownWrapper: {
     flex: 1,
     flexDirection: 'row',
-    alignItems: 'stretch'
+    alignItems: 'stretch',
+    justifyContent: 'center'
   },
   descriptionWrapper: {
     flex: 3,

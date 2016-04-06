@@ -17,7 +17,6 @@ module.exports = {
 
     return {
       "title": "Best cappuccino in the city!",
-      "subtitle": "The smoothest cappuccino, not too caffeinated",
       "longitude": -122.268393,
       "latitude": 37.880196,
       "image": Icon_Coffee,

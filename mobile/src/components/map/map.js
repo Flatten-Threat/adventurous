@@ -1,5 +1,6 @@
 var React = require('react-native');
 var pinFactory = require('./map-markers.js');
+var Api = require('../network/api.js');
 import FloatingButton from '../common/floating-button';
 
 var {
@@ -7,14 +8,15 @@ var {
   MapView,
   View,
   TouchableOpacity,
-  Image
+  Image,
+  Navigator // jenna
 } = React;
 
 module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      mapMarkers: []    
+      mapMarkers: []
       };
   },
 
@@ -26,7 +28,7 @@ module.exports = React.createClass({
   },
 
   render: function(){
-    console.log('this.state.mapPins: ', this.state.mapMarkers);
+    console.log('this.state.mapMarkers: ', this.state.mapMarkers);
     return(
 
         <View style={styles.container}>
@@ -35,6 +37,7 @@ module.exports = React.createClass({
             annotations={ this.state.mapMarkers }
             showsUserLocation={true}
             followUserLocation={true}
+            onRegionChangeComplete={ this.onRegionChangeComplete }
             style={styles.map}
           >
           </MapView>
@@ -50,9 +53,7 @@ module.exports = React.createClass({
 
   // create 1 marker
   getMapMarkers: function( region ) {
-    return [ 
-      pinFactory.createPin( this.showActivity )
-    ];
+    return [ pinFactory.createPin( this.showActivity ) ];
   },
 
   showActivity: function( activity ) {
@@ -68,6 +69,14 @@ module.exports = React.createClass({
       name: 'camera', 
       passProps: {isNew: true, activity: newActivity }
     });
+  },
+
+  onRegionChangeComplete: function( region ) {
+
+    console.log('onRegionChangeComplete!');
+
+    // call api, fetch new markers within local range
+
   }
 
 }) // end of react class

@@ -8,19 +8,23 @@ var RightArrow = require('./images/icon_right_arrow.png');
 var {
     Image,
     StyleSheet,
-    TouchableHighlight
+    TouchableHighlight,
+    TouchableOpacity
 } = React;
 
 module.exports = {
 
   create: function( activity, callback ) {
     return {
+      title: activity.title,
       longitude: activity.region.longitude,
       latitude: activity.region.latitude,
-      view:
-        <TouchableHighlight onPress={ ()=> callback( activity ) } >
-          <Image style={ styles.image }  source={ Icon_Coffee } />
-        </TouchableHighlight>
+      rightCalloutView: (
+          <TouchableOpacity onPress={ ()=> callback( activity ) }>
+            <Image style={ styles.image } source={RightArrow} />
+          </TouchableOpacity>
+          ),
+      image: Icon_Coffee
     }
   }
 };

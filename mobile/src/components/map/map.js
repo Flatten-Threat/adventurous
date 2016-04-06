@@ -19,18 +19,6 @@ module.exports = React.createClass({
       };
   },
 
-  //get activities
-  componentWillMount: function(){
-
-    api.getNearbyActivities( region = null )
-      .then( function( activities ) {
-          this.setState({
-          mapMarkers: activities.map( (activity) => pinFactory.create( activity, this.showActivity ) )
-        });
-
-      }.bind(this));
-  },
-
   render: function(){
     console.log('this.state.mapMarkers: ', this.state.mapMarkers);
     return(
@@ -83,9 +71,15 @@ module.exports = React.createClass({
 
   onRegionChangeComplete: function( region ) {
 
-    console.log('onRegionChangeComplete!');
+    console.log('onRegionChangeComplete! new region: ', region);
 
-    // call api, fetch new markers within local range
+      api.getNearbyActivities( region = null )
+      .then( function( activities ) {
+          this.setState({
+          mapMarkers: activities.map( (activity) => pinFactory.create( activity, this.showActivity ) )
+        });
+
+      }.bind(this));
   },
 
   createEmptyActivity: function() {

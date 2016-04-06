@@ -1,13 +1,12 @@
 var React = require('react-native');
 var pinFactory = require('./map-markers.js');
-var Api = require('../network/api.js');
+var api = require('../network/api.js');
 import FloatingButton from '../common/floating-button';
 
 var {
   StyleSheet,
   MapView,
   View,
-  TouchableOpacity,
   Image,
   Navigator // jenna
 } = React;
@@ -22,9 +21,14 @@ module.exports = React.createClass({
 
   //get activities
   componentWillMount: function(){
-    this.setState({
-      mapMarkers: this.getMapMarkers()
-    });
+
+    api.getNearbyActivities( region = null )
+      .then( function( activities ) {
+          this.setState({
+          mapMarkers: activities.map( (activity) => pinFactory.create( activity, this.showActivity ) )
+        });
+
+      }.bind(this));
   },
 
   render: function(){
@@ -42,18 +46,13 @@ module.exports = React.createClass({
           >
           </MapView>
           <FloatingButton
-            onPress={ this.addActivity }
+            onPress={ this.startAddActivity }
             text='+'
             bkColor='#6e73ee'
             color='white'
           />
         </View>
     );
-  },
-
-  // create 1 marker
-  getMapMarkers: function( region ) {
-    return [ pinFactory.createPin( this.showActivity ) ];
   },
 
   showActivity: function( activity ) {
@@ -63,11 +62,22 @@ module.exports = React.createClass({
     });
   },
 
-  addActivity: function() {
-    var newActivity = { title: '', description: '' };
-    this.props.navigator.push({
-      name: 'camera', 
-      passProps: {isNew: true, activity: newActivity }
+  startAddActivity: function() {
+
+    this.createEmptyActivity()
+      .then( function( newActivity ) {
+
+        this.props.navigator.push({
+          name: 'camera',
+          passProps: { isNew: true, initiateSave: this.endAddActivity, activity: newActivity }
+        });
+
+      }.bind(this));
+  },
+
+  endAddActivity: function( newActivity ) {
+    this.setState({
+      mapMarkers: this.state.mapMarkers.concat( [ pinFactory.create( newActivity, this.showActivity ) ] )
     });
   },
 
@@ -76,7 +86,34 @@ module.exports = React.createClass({
     console.log('onRegionChangeComplete!');
 
     // call api, fetch new markers within local range
+  },
 
+  createEmptyActivity: function() {
+
+    return new Promise( function( fulfill, reject ) {
+
+      var newActivity = { title: '', description: '', region: {} };
+
+      // geolocation call requires 'simulate location' to be active in XCode
+      // otherwise, we'll default to TGA location in Berkeley...
+
+      navigator.geolocation.getCurrentPosition(
+        (location) => {
+          newActivity.region.latitude = location.coords.latitude;
+          newActivity.region.longitude = location.coords.longitude;
+          console.log('succeeded getting geo coords');
+          fulfill( newActivity );
+        },
+        (error) => {
+          newActivity.region.latitude = 37.7873589;
+          newActivity.region.longitude = -122.408227;
+          console.log('failed getting geo coords:', error.message );
+          fulfill( newActivity );
+        },
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      );
+
+    });
   }
 
 }) // end of react class

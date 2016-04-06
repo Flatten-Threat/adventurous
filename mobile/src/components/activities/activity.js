@@ -49,15 +49,16 @@ module.exports = React.createClass({
             onChangeText={ (text) => this.updateActivity({ description: text }) }
             value = { this.state.activity.description }
           />
-        </View>
-          
-        <View style={styles.buttonWrapper}>
-          <Button text={'Save'} onPress={ this.save }/>
+          { isNew ? // only show 'save' button if this is a NEW activity
+            <View style={styles.buttonWrapper}>
+              <Button text={'Save'} onPress={ this.save }/>
+            </View>
+            : null
+          }
         </View>
       
       </View>    
     )
-    
   },
 
   // setState replaces ENTIRE element (can't set properties etc.)
@@ -69,6 +70,7 @@ module.exports = React.createClass({
 
   save: function() {
     this.props.navigator.popToTop();
+    this.props.route.passProps.initiateSave( this.state.activity );
   },
 
   border: function(color) {

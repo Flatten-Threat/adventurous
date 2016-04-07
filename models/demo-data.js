@@ -30,7 +30,7 @@ var demoData = [
     'title' : 'Affordable Pottery and Glassware by Local Artists',
     'description' : 'Some truly amazing pieces, and totally worth browsing, even if your not in the market to buy -- although the prices are totally affordable.',
     'image' : 'http://someurl...',
-    'category' : 'museum',
+    'category' : 'museum_art',
     'region' : {
        longitude: -122.269195,
        latitude: 37.877361

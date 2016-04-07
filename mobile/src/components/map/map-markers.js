@@ -14,7 +14,7 @@ var iconMap = {
   shopping : require('./images/clothes.png'),
   bar : require('./images/bar.png'),
   coffee : require('./images/coffee.png'),
-  museum : require('./images/museum_historical.png'),
+  museum_art : require('./images/museum_art.png'),
   groceries : require('./images/supermarket.png'),
   books : require('./images/books.png'),
   hotel : require('./images/hotel.png')

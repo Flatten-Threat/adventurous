@@ -37,8 +37,6 @@ module.exports = {
   },
 
   getPinIcon: function( category ) {
-    console.log('category: ', category);
-    console.log('iconMap[category]: ', iconMap[category]);
 
     // get pin icon or use default pin
     if ( iconMap[category] !== undefined ) {

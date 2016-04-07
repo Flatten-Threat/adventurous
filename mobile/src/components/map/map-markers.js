@@ -16,7 +16,8 @@ var iconMap = {
   coffee : require('./images/coffee.png'),
   museum : require('./images/museum_historical.png'),
   groceries : require('./images/supermarket.png'),
-  books : require('./images/books.png')
+  books : require('./images/books.png'),
+  hotel : require('./images/hotel.png')
 };
 
 module.exports = {

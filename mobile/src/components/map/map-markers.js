@@ -1,8 +1,4 @@
 var React = require('react-native');
-var Icon_Restaurant = require('./images/restaurant.png');
-var Icon_Shopping = require('./images/clothes.png');
-var Icon_Pub = require('./images/bar.png');
-var Icon_Coffee = require('./images/coffee.png');
 var RightArrow = require('./images/icon_right_arrow.png');
 
 var {
@@ -11,6 +7,13 @@ var {
     TouchableHighlight,
     TouchableOpacity
 } = React;
+
+var iconMap = {
+  restaurant : require('./images/restaurant.png'),
+  shopping : require('./images/clothes.png'),
+  bar : require('./images/bar.png'),
+  coffee : require('./images/coffee.png')
+};
 
 module.exports = {
 
@@ -24,9 +27,19 @@ module.exports = {
             <Image style={ styles.image } source={RightArrow} />
           </TouchableOpacity>
           ),
-      image: Icon_Coffee
+      image: this.getPinIcon( activity.category )
+    }
+  },
+
+  getPinIcon: function( category ) {
+
+    // get pin icon or use default
+    if ( iconMap[category] !== undefined ) {
+      // var icon = require( './images/' + iconMap[category] );
+      return iconMap[category];
     }
   }
+
 };
 
 var styles = StyleSheet.create({

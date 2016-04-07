@@ -27,35 +27,68 @@ module.exports.initDatabase = function() {
 var demoData = [
 
   {
-    'title' : 'Amazing Spot for Ice Cream!',
-    'description' : 'I LUV this little corner cafe, and the owner is the sweetest old lady (practice your Greek language skills, for some free Ouzo!).',
+    'title' : 'Affordable Pottery and Glassware by Local Artists',
+    'description' : 'Some truly amazing pieces, and totally worth browsing, even if your not in the market to buy -- although the prices are totally affordable.',
     'image' : 'http://someurl...',
-    'category' : 'Restaurant',
+    'category' : 'museum/gallery',
     'region' : {
-       longitude: -122.4046101306659,
-       latitude: 37.78151983393839
+       longitude: -122.269195,
+       latitude: 37.877361
     }
   },
 
   {
-    'title' : 'Best Irish Pub!',
-    'description' : 'Awesome brew pub with all your Emerald Isle favs plus ALL THE MALTS (natch)',
+    'title' : 'Best Local Grocery Store',
+    'description' : 'Lots of quality stuff -- priced so you will not have to rub elbows with the riff-raff while you shop.',
     'image' : 'http://someurl...',
-    'category' : 'Bar',
+    'category' : 'groceries',
     'region' : {
-       longitude: -122.4081291893224,
-       latitude: 37.78213036011432
+       longitude: -122.269948,
+       latitude: 37.878923
     }
   },
 
   {
-    'title' : 'Harajuku Fashion Outlet in S.F',
-    'description' : 'Had no idea this existed, and I freaked out a little and dropped about $2K on crazy threads... but totally worth it (cuz paying your rent should be optional)',
+    'title' : 'World-Famous Chez Panisse Restaurant',
+    'description' : 'Gordon Ramsay WISHES he could cook like this! Pricey (~$100), but worth it. Dont bother trying to get reservations for the main restaurant, but the cafe is just as good, and usually has a few spots, with just a slightly more limited menu.',
     'image' : 'http://someurl...',
-    'category' : 'Shopping',
+    'category' : 'restaurant',
     'region' : {
-       longitude: -122.4117340786778,
-       latitude: 37.78308005747538
+       longitude: -122.268963,
+       latitude: 37.879590
+    }
+  },
+
+  {
+    'title' : 'Chat With Published Local Authors',
+    'description' : 'Little corner book shop targeting the Birkenstock-wearing wheat-grass-drinking college town demographic... which is why I love it so much!',
+    'image' : 'http://someurl...',
+    'category' : 'books',
+    'region' : {
+       longitude: -122.268875,
+       latitude: 37.880460
+    }
+  },
+
+  {
+    'title' : 'Pizza To Corrupt Your Soul',
+    'description' : 'I honestly dont know how they do it, but I budget about $100/wk for pizza at this place.',
+    'image' : 'http://someurl...',
+    'category' : 'restaurant',
+    'region' : {
+       longitude: -122.269528,
+       latitude: 37.879975
+    }
+  },
+
+  {
+    'title' : 'Quiet Little Hotel, Near Everything Downtown',
+    'description' : 'Great little family-run hotel with a fantastic cafe on the ground floor. On one of the major shopping streets in Berkeley, but a few blocks away from the grittier area downtown.',
+    'image' : 'http://someurl...',
+    'category' : 'hotel',
+    'region' : {
+       longitude: -122.269355,
+       latitude: 37.879590
     }
   }
 

@@ -8,12 +8,15 @@ var {
     TouchableOpacity
 } = React;
 
+// jenna: later refactor and figure out why 'require' doesn't work in getPinIcon()
 var iconMap = {
   restaurant : require('./images/restaurant.png'),
   shopping : require('./images/clothes.png'),
   bar : require('./images/bar.png'),
   coffee : require('./images/coffee.png'),
-  museum : require('./images/museum_historical.png')
+  museum : require('./images/museum_historical.png'),
+  groceries : require('./images/supermarket.png'),
+  books : require('./images/books.png')
 };
 
 module.exports = {

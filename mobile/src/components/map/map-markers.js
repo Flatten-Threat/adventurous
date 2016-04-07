@@ -12,7 +12,8 @@ var iconMap = {
   restaurant : require('./images/restaurant.png'),
   shopping : require('./images/clothes.png'),
   bar : require('./images/bar.png'),
-  coffee : require('./images/coffee.png')
+  coffee : require('./images/coffee.png'),
+  museum : require('./images/museum_historical.png')
 };
 
 module.exports = {
@@ -32,8 +33,10 @@ module.exports = {
   },
 
   getPinIcon: function( category ) {
+    console.log('category: ', category);
+    console.log('iconMap[category]: ', iconMap[category]);
 
-    // get pin icon or use default
+    // get pin icon or use default pin
     if ( iconMap[category] !== undefined ) {
       // var icon = require( './images/' + iconMap[category] );
       return iconMap[category];

@@ -6,9 +6,7 @@ import FloatingButton from '../common/floating-button';
 var {
   StyleSheet,
   MapView,
-  View,
-  Image,
-  Navigator // jenna
+  View
 } = React;
 
 module.exports = React.createClass({

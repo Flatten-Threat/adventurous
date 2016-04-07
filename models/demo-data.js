@@ -29,7 +29,7 @@ var demoData = [
     'title' : 'Affordable Pottery and Glassware by Local Artists',
     'description' : 'Some truly amazing pieces, and totally worth browsing, even if your not in the market to buy -- although the prices are totally affordable.',
     'image' : 'http://someurl...',
-    'category' : 'museum_art',
+    'category' : 'museum-art',
     'region' : {
        longitude: -122.269195,
        latitude: 37.877361
@@ -97,8 +97,8 @@ var demoData = [
     'image' : 'http://someurl...',
     'category' : 'garden',
     'region' : {
-        longitude: -122.26940,
-        latitude: 37.88765
+        longitude: -122.262901,
+        latitude: 37.885296
     }
   },
 
@@ -121,6 +121,28 @@ var demoData = [
     'region' : {
         longitude: -122.26204,
         latitude: 37.88484
+    }
+  },
+
+  {
+    'title' : 'Walk through and smell the eucalyptus trees here',
+    'description' : 'There are benches for you to sit and enjoy the natural setting',
+    'image' : 'http://someurl...',
+    'category' : 'hiking',
+    'region' : {
+      longitude: -122.26429,
+      latitude: 37.87094
+    }
+  },
+
+  {
+    'title' : 'Cozy space for working remotely!',
+    'description' : 'Fast free wifi, upstairs area is very cozy and there are plenty of outlets!',
+    'image' : 'http://someurl...',
+    'category' : 'coffee',
+    'region' : {
+      longitude: -122.26832,
+      latitude: 37.87155
     }
   }
 

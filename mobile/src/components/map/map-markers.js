@@ -18,7 +18,8 @@ var iconMap = {
   books : require('./images/books.png'),
   hotel : require('./images/hotel.png'),
   garden : require('./images/garden.png'),
-  outdoors : require('./images/hiking.png')
+  hiking : require('./images/hiking.png'),
+  sports : require('./images/sports.png')
 };
 
 module.exports = {

@@ -8,7 +8,6 @@ var {
     TouchableOpacity
 } = React;
 
-// jenna: later refactor and figure out why 'require' doesn't work in getPinIcon()
 var iconMap = {
   restaurant : require('./images/restaurant.png'),
   shopping : require('./images/clothes.png'),
@@ -17,7 +16,9 @@ var iconMap = {
   museum_art : require('./images/museum_art.png'),
   groceries : require('./images/supermarket.png'),
   books : require('./images/books.png'),
-  hotel : require('./images/hotel.png')
+  hotel : require('./images/hotel.png'),
+  garden : require('./images/garden.png'),
+  outdoors : require('./images/hiking.png')
 };
 
 module.exports = {
@@ -38,6 +39,7 @@ module.exports = {
 
   getPinIcon: function( category ) {
 
+    console.log('category: ', category);
     // get pin icon or use default pin
     if ( iconMap[category] !== undefined ) {
       // var icon = require( './images/' + iconMap[category] );

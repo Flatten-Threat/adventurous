@@ -69,10 +69,27 @@ module.exports = React.createClass({
 
   onRegionChangeComplete: function( region ) {
 
+    // previous position
+    var previousPosition = {
+      longitudeDelta: 0.005000000117433956, 
+      latitude: 37.88021599999999,
+      longitude: -122.268381,
+      latitudeDelta: 0.00670375545112023
+    }
+    
+    // current position
+    var currentPosition = {
+      longitudeDelta: 0.005000000117448167,
+      latitude: 37.88036859710102,
+      longitude: -122.2647876665823, 
+      latitudeDelta: 0.006703741561835841
+    }
+
     console.log('onRegionChangeComplete! new region: ', region);
 
       api.getNearbyActivities( region = null )
       .then( function( activities ) {
+        console.log('activities: ', activities);
           this.setState({
           mapMarkers: activities.map( (activity) => pinFactory.create( activity, this.showActivity ) )
         });

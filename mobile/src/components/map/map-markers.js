@@ -1,36 +1,52 @@
 var React = require('react-native');
-var Icon_Restaurant = require('./images/restaurant.png');
-var Icon_Shopping = require('./images/clothes.png');
-var Icon_Pub = require('./images/bar.png');
-var Icon_Coffee = require('./images/coffee.png');
 var RightArrow = require('./images/icon_right_arrow.png');
 
 var {
     Image,
     StyleSheet,
+    TouchableHighlight,
     TouchableOpacity
 } = React;
 
+// jenna: later refactor and figure out why 'require' doesn't work in getPinIcon()
+var iconMap = {
+  restaurant : require('./images/restaurant.png'),
+  shopping : require('./images/clothes.png'),
+  bar : require('./images/bar.png'),
+  coffee : require('./images/coffee.png'),
+  museum : require('./images/museum_historical.png'),
+  groceries : require('./images/supermarket.png'),
+  books : require('./images/books.png'),
+  hotel : require('./images/hotel.png')
+};
+
 module.exports = {
 
-  createPin: function( callback ) {
-
+  create: function( activity, callback ) {
     return {
-      "title": "Best cappuccino in the city!",
-      "subtitle": "The smoothest cappuccino, not too caffeinated",
-      "longitude": -122.268393,
-      "latitude": 37.880196,
-      "image": Icon_Coffee,
-      "rightCalloutView": (
-        <TouchableOpacity onPress={ ()=> callback( {
-            title: 'Best cappuccino in the city!',
-            description: 'The smoothest cappuccino, not too caffeinated'
-          }) }>
-          <Image style={ styles.image } source={RightArrow} />
-        </TouchableOpacity>
-        )
-    };
+      title: activity.title,
+      longitude: activity.region.longitude,
+      latitude: activity.region.latitude,
+      rightCalloutView: (
+          <TouchableOpacity onPress={ ()=> callback( activity ) }>
+            <Image style={ styles.image } source={RightArrow} />
+          </TouchableOpacity>
+          ),
+      image: this.getPinIcon( activity.category )
+    }
+  },
+
+  getPinIcon: function( category ) {
+    console.log('category: ', category);
+    console.log('iconMap[category]: ', iconMap[category]);
+
+    // get pin icon or use default pin
+    if ( iconMap[category] !== undefined ) {
+      // var icon = require( './images/' + iconMap[category] );
+      return iconMap[category];
+    }
   }
+
 };
 
 var styles = StyleSheet.create({

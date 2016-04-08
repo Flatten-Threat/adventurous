@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import MenuBar from './menu-bar'
+import React, { Component } from 'react';
+import MenuBar from './menu-bar';
 
 
 export default class App extends Component {
@@ -12,5 +12,4 @@ export default class App extends Component {
       </div>
     );
   }
-
 };

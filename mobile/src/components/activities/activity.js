@@ -1,4 +1,4 @@
-'use strict' // jenna
+'use strict'; // jenna
 var React = require('react-native');
 var Button = require('../common/button');
 var _ = require('underscore');
@@ -27,20 +27,20 @@ module.exports = React.createClass({
     DeviceEventEmitter.addListener('KeyboardWillHide', this.KeyboardWillHide);
   },
 
-  render: function(){
+  render: function() {
 
     var isNew = this.props.route.passProps.isNew;
 
     return (
 
-      <View style={ styles.container, { height: this.state.visibleHeight }}>
+      <View style={[styles.container, { height: this.state.visibleHeight }]}>
         <View style={styles.header}>
-          <Image 
-          source={{uri: this.props.route.passProps.photo}}
-          // source={require('../images/Traveler.jpg')}
-          style={styles.cover}
-          resizeMode={'cover'}
-          />
+          <Image
+            source={{uri: this.props.route.passProps.photo}}
+            // source={require('../images/Traveler.jpg')}
+            style={styles.cover}
+            resizeMode={'cover'}
+            />
         </View>
 
         <View style={styles.footer}>
@@ -72,9 +72,8 @@ module.exports = React.createClass({
             : null
           }
         </View>
-      
-      </View>    
-    )
+    </View>   
+    );
   },
 
   // setState replaces ENTIRE element (can't set properties etc.)
@@ -93,7 +92,7 @@ module.exports = React.createClass({
     return {
       borderColor: color,
       borderWidth: 4
-    }
+    };
   },
 
   keyboardWillShow: function(e) { // jenna
@@ -113,7 +112,7 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'stretch',
-    backgroundColor:'white',
+    backgroundColor: 'white',
     marginTop: 30
   },
 
@@ -162,7 +161,7 @@ var styles = StyleSheet.create({
   },
 
   editable: {
-    borderColor: '#FFD8C7',
+    borderColor: '#7A87A7',
     borderWidth: 1,
     borderRadius: 10
   }

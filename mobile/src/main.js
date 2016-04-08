@@ -29,11 +29,8 @@ module.exports = React.createClass({
 
          <Navigator
          navigationBar={<NavBar />}
-         //determines what first component is when navigator is first rendered
          initialRoute={{name: 'map'}}
-         //contains functionality that tells the navigator how to render at any given time
          renderScene={this.renderScene}
-         //how newly rendered components will appear to the user / LIKE AN ANIMATION
          configureScene={()=> Navigator.SceneConfigs.FloatFromRight }
           /> 
     );

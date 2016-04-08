@@ -27,14 +27,13 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 10,
     padding: 5,
-    borderColor: '#42B299',
-    backgroundColor: '#42B299',
+    borderColor: '#6E73EE',
+    backgroundColor: '#6E73EE',
     marginTop: 10
   },
   buttonText: {
     flex: 1,
     alignSelf: 'center',
-    fontWeight: 'bold',
     color: 'white',
     textShadowColor: 'rgba(0,0,0,0.2)',
     textShadowRadius: 2,

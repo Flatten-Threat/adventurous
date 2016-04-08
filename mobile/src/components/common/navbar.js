@@ -42,8 +42,8 @@ var styles = StyleSheet.create ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#42B299',
-    borderBottomColor: '#36917D',
+    backgroundColor: 'black',
+    // borderBottomColor: '#42B299',
     borderBottomWidth: 1,
     
   },
@@ -57,7 +57,7 @@ var styles = StyleSheet.create ({
   headerText: {
     color: 'white',
     fontSize: 24,
-    fontWeight: 'bold',
+    // fontWeight: 'bold',
     textShadowColor: 'rgba(0,0,0,0.2)',
     textShadowRadius: 2,
     textShadowOffset: {

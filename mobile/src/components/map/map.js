@@ -13,39 +13,6 @@ module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-<<<<<<< HEAD
-      markers: [
-        this.createMapMarkers()
-      ]    
-    };
-  },
-
-  componentWillMount: function() {
-    //get activities
-    return fetch( this.props.route.passProps.activityRootUrl )
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(json) {
-
-        console.log('this.state.markers: ', this.state.markers);
-        // this.createActivityMarkers(json);
-      }.bind(this));
-  },
-
-  render: function() {
-  
-    return (
-      <View style={styles.container}>
-        <MapView 
-          showsPointsOfInterest={false}
-          annotations={this.state.markers}
-          showsUserLocation={true}
-          followUserLocation={true}
-          style={styles.map}
-        >
-        </MapView>
-=======
       mapMarkers: []
       };
   },
@@ -64,7 +31,6 @@ module.exports = React.createClass({
             style={styles.map}
           >
           </MapView>
->>>>>>> 2470b9bc378682c3fce921eccbe96aebceb41242
           <FloatingButton
             onPress={ this.startAddActivity }
             text='+'
@@ -74,37 +40,6 @@ module.exports = React.createClass({
         </View>
     );
   },
-<<<<<<< HEAD
-  // create 1 marker
-  createMapMarkers: function() {
-    return {
-      "title": "Best cappuccino in the city!",
-      "subtitle": "The smoothest cappuccino, not too caffeinated",
-      "longitude": -122.268393,
-      "latitude": 37.880196,
-      "image": Icon_Coffee,
-      "rightCalloutView": (
-        <TouchableOpacity onPress={ this.navigateToActivityDetailView }>
-          <Image source={RightArrow} />
-        </TouchableOpacity>
-        )
-    };
-  },
-
-  // navigate to activity view
-  navigateToActivityDetailView: function( activity ) {
-    this.props.navigator.push({
-      name: 'activity', 
-      passProps: { isNew: false, activity: activity }
-    });
-  },
-
-  addActivity: function() {
-    var newActivity = { title: '', description: '' };
-    this.props.navigator.push({
-      name: 'camera', 
-      passProps: { isNew: true, activity: newActivity }
-=======
 
   showActivity: function( activity ) {
     this.props.navigator.push({
@@ -187,18 +122,12 @@ module.exports = React.createClass({
         { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
       );
 
->>>>>>> 2470b9bc378682c3fce921eccbe96aebceb41242
     });
   }
 
 }); // end of react class
 
-<<<<<<< HEAD
-var styles = StyleSheet.create({
-
-=======
 var styles = StyleSheet.create ({
->>>>>>> 2470b9bc378682c3fce921eccbe96aebceb41242
   container: {
     flex: 1,
     justifyContent: 'center',

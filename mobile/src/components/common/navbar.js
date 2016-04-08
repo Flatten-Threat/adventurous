@@ -19,7 +19,7 @@ module.exports = React.createClass({
           <Text style={ [styles.backButton, styles.headerText] } onPress={ this.back } >&lt;</Text>
           : null
         }
-        <Text style={ styles.headerText }>AdventureUs</Text>
+        <Text style={ styles.headerText }>Adventurous</Text>
       </View>
     );
   },
@@ -42,8 +42,8 @@ var styles = StyleSheet.create ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'green',
-    borderBottomColor: 'darkgreen',
+    backgroundColor: '#42B299',
+    borderBottomColor: '#36917D',
     borderBottomWidth: 1,
     
   },
@@ -55,7 +55,7 @@ var styles = StyleSheet.create ({
   },
 
   headerText: {
-    color: 'lightgreen',
+    color: 'white',
     fontSize: 24,
     fontWeight: 'bold',
     textShadowColor: 'rgba(0,0,0,0.2)',

@@ -1,6 +1,5 @@
 var React = require('react-native');
 var Button = require('../common/button');
-var DropDown = require('../common/dropdown');
 var _ = require('underscore');
 
 var {
@@ -47,7 +46,7 @@ module.exports = React.createClass({
            value = { this.state.activity.title }
           />
           </View>
-          {this.dropDownMenu()}
+
           <TextInput
             style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
             multiline={true}
@@ -88,12 +87,6 @@ module.exports = React.createClass({
     }
   },
 
-  dropDownMenu: function() {
-    return <View style={[styles.dropDownWrapper]}>
-      <DropDown/>
-    </View> 
-  }
-
 });
 
 
@@ -114,7 +107,6 @@ var styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: null,
-    position: 'relative'
   },
 
   footer: {
@@ -125,14 +117,8 @@ var styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
-  },
-
-  dropDownWrapper: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    justifyContent: 'center'
+    alignItems: 'center',
+    paddingTop: 10
   },
 
   descriptionWrapper: {

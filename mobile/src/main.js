@@ -28,7 +28,6 @@ module.exports = React.createClass({
     return (
 
          <Navigator
-         style={styles.container}
          navigationBar={<NavBar />}
          //determines what first component is when navigator is first rendered
          initialRoute={{name: 'map'}}
@@ -37,7 +36,7 @@ module.exports = React.createClass({
          //how newly rendered components will appear to the user / LIKE AN ANIMATION
          configureScene={()=> Navigator.SceneConfigs.FloatFromRight }
           /> 
-    )
+    );
   }
 
 });

@@ -21,14 +21,14 @@ module.exports = React.createClass({
     return {
       markers: [
         this.createMapMarkers()
-        ]    
-      };
+      ]    
+    };
   },
 
-  componentWillMount: function(){
+  componentWillMount: function() {
     //get activities
     return fetch( this.props.route.passProps.activityRootUrl )
-      .then(function(response){
+      .then(function(response) {
         return response.json();
       })
       .then(function(json) {
@@ -37,13 +37,14 @@ module.exports = React.createClass({
         // this.createActivityMarkers(json);
       }.bind(this));
   },
-  render: function(){
+
+  render: function() {
   
-    return(
+    return (
       <View style={styles.container}>
         <MapView 
           showsPointsOfInterest={false}
-          annotations={ this.state.markers }
+          annotations={this.state.markers}
           showsUserLocation={true}
           followUserLocation={true}
           style={styles.map}
@@ -71,29 +72,36 @@ module.exports = React.createClass({
           <Image source={RightArrow} />
         </TouchableOpacity>
         )
-    }
+    };
   },
+
   // navigate to activity view
   navigateToActivityDetailView: function( activity ) {
-    this.props.navigator.push({name: 'activity', passProps: {isNew: false, activity: activity}})
+    this.props.navigator.push({
+      name: 'activity', 
+      passProps: { isNew: false, activity: activity }
+    });
   },
+
   addActivity: function() {
     var newActivity = { title: '', description: '' };
     this.props.navigator.push({
       name: 'camera', 
-      passProps: {isNew: true, activity: newActivity }});
+      passProps: { isNew: true, activity: newActivity }
+    });
   }
 
 }); // end of react class
 
-var styles = StyleSheet.create ({
+var styles = StyleSheet.create({
 
   container: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'stretch',
-    paddingTop: 30
+    marginTop: 30
   },
+
   map: {
     flex: 1
   },
@@ -102,6 +110,7 @@ var styles = StyleSheet.create ({
     flex: 1,
     alignItems: 'center'
   },
+
   mapPin: {
     borderWidth: 1,
     borderRadius: 2,

@@ -15,7 +15,7 @@ export default class FloatingButton extends Component {
 
   render () {
 
-    return(
+    return (
       <TouchableOpacity onPress={ this.props.onPress } >
         <View style={ [styles.floatingButton, {backgroundColor: this.props.bkColor} ] } >
           <Text style={ [styles.buttonText, {color: this.props.color}] }>

@@ -76,8 +76,8 @@ module.exports = class App extends Component {
 
 var styles = StyleSheet.create({
   select: {
-    borderRadius: 5,
-    borderWidth: 1
+    borderRadius: 10,
+    borderWidth: 1,
   }
 });
 

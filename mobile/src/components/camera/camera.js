@@ -1,31 +1,42 @@
 var React = require('react-native');
-import Camera from 'react-native-camera';
 
-var  {
+import Camera from 'react-native-camera';
+import Button from '../common/button';
+
+// import 
+var {
   StyleSheet,
   View,
   Text,
-  Dimensions
+  Dimensions,
+  Image,
+  TouchableHighlight
 } = React;
 
 module.exports = React.createClass({
   
-  render: function(){
+  render: function() {
     return (
       
       <View style={styles.container}>
 
-        <Camera 
-          ref={ (cam) => {
-            this.camera = cam;
-          }}
-          style = {styles.preview}
-          aspect = {Camera.constants.Aspect.fill}
-          captureTarget={Camera.constants.CaptureTarget.disk}
-          >
-          <Text style={styles.capture} onPress={this.takePicture}>Add Photo</Text>
-        </Camera>
-
+        <View style={[styles.header]}>
+          <Camera 
+            ref={ (cam) => {
+              this.camera = cam;
+            }}
+            style = {styles.preview}
+            aspect = {Camera.constants.Aspect.fill}
+            captureTarget={Camera.constants.CaptureTarget.disk}
+            >
+          </Camera>
+        </View> 
+            
+         <View style={styles.footer}>    
+          <TouchableHighlight onPress={this.takePicture}>
+            <Image source={require('../images/Camera.png')}/>
+          </TouchableHighlight>
+         </View> 
       </View>
     );
   },
@@ -38,7 +49,7 @@ module.exports = React.createClass({
           passProps: {
             isNew: true, 
             photo: data,
-        }});
+          }});
       })
       .catch(err => console.error(err));
   },
@@ -55,13 +66,21 @@ var styles = StyleSheet.create({
     width: Dimensions.get('window').width
   },
 
-  capture: {
-    flex: 0,
-    backgroundColor: '#fff',
-    borderRadius: 5,
-    color: '#000',
-    padding: 10,
-    margin: 40
-  }
-  
+  container: {
+    flex: 1,
+    alignItems: 'stretch',
+    marginTop: 30
+  },
+
+  header: {
+    flex: 2
+  },
+
+  footer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#8B8FCC'
+  },
+ 
 });

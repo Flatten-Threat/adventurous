@@ -27,7 +27,7 @@ var styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 5,
     padding: 5,
-    borderColor: 'black',
+    borderColor: '#FFD8C7',
     marginTop: 10
   },
   buttonText: {

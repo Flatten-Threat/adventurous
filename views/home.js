@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 
 export default class Home extends Component {
@@ -7,7 +7,7 @@ export default class Home extends Component {
     return (
       <div className="image-area">
          <div className="home-title">
-            Choose your next adventure.
+            Find a new adventure.
         </div>
         <div className="home-description">
           <h2 className="home-description-h2">
@@ -26,3 +26,4 @@ export default class Home extends Component {
   }
 
 }
+

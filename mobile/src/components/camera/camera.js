@@ -37,6 +37,7 @@ module.exports = React.createClass({
             <Image source={require('../images/Camera.png')}/>
           </TouchableHighlight>
          </View> 
+         
       </View>
     );
   },
@@ -85,7 +86,7 @@ var styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#8B8FCC'
+    backgroundColor: '#7A87A7'
   },
  
 });

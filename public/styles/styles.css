@@ -41,8 +41,9 @@ body {
 
 .menu-bar {
   position: relative;
-  background-color: #FF8E76;
-  color: rgba(255,255,100,0.75);
+  background-color: #FF8E7D;
+  /*color: rgba(255,255,100,0.75);*/
+  color: white;
   text-align: left;
   padding: 12px 20px;
 }
@@ -87,7 +88,8 @@ body {
 .home-title {
   font-size: 60px;
   text-align: center;
-  color: #FF8E76;
+  text-shadow: 'rgba(0,0,0,0.2)'; 
+  color: #FF8E7D;
   font-weight: bold;
   position: relative;
   padding-top: 150px;

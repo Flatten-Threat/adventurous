@@ -18,7 +18,7 @@ module.exports = React.createClass({
     };
   },
 
-  render: function(){
+  render: function() {
 
     var isNew = this.props.route.passProps.isNew;
 
@@ -26,12 +26,12 @@ module.exports = React.createClass({
 
       <View style={styles.container}>
         <View style={styles.header}>
-          <Image 
-          source={{uri: this.props.route.passProps.photo}}
-          // source={require('../images/Traveler.jpg')}
-          style={styles.cover}
-          resizeMode={'cover'}
-          />
+          <Image
+            source={{uri: this.props.route.passProps.photo}}
+            // source={require('../images/Traveler.jpg')}
+            style={styles.cover}
+            resizeMode={'cover'}
+            />
         </View>
 
         <View style={styles.footer}>
@@ -63,9 +63,8 @@ module.exports = React.createClass({
             : null
           }
         </View>
-      
-      </View>    
-    )
+    </View>   
+    );
   },
 
   // setState replaces ENTIRE element (can't set properties etc.)
@@ -84,7 +83,7 @@ module.exports = React.createClass({
     return {
       borderColor: color,
       borderWidth: 4
-    }
+    };
   },
 
 });

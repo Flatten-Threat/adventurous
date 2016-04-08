@@ -34,7 +34,6 @@ var styles = StyleSheet.create({
   buttonText: {
     flex: 1,
     alignSelf: 'center',
-    fontWeight: 'bold',
     color: 'white',
     textShadowColor: 'rgba(0,0,0,0.2)',
     textShadowRadius: 2,

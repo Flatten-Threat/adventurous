@@ -3,6 +3,7 @@ var Map = require('./components/map/map');
 var Signin = require('./components/authentication/signin');
 var Activity = require('./components/activities/activity');
 var Camera = require('./components/camera/camera');
+var NavBar = require('./components/common/navbar');
 
 var {
   StyleSheet,
@@ -32,6 +33,7 @@ module.exports = React.createClass({
     return (
          <Navigator
          style={styles.container}
+         navigationBar={<NavBar />}
          //determines what first component is when navigator is first rendered
          initialRoute={{name: 'map'}}
          //contains functionality that tells the navigator how to render at any given time

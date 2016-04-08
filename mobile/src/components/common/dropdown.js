@@ -22,18 +22,18 @@ module.exports = class App extends Component {
   constructor(props) {
     super(props);
 
-    this.state= {
+    this.state = {
       activity: ''
     };
 
   }
 
-  componentDidMount(){
+  componentDidMount() {
     updatePosition(this.refs['SELECT1']);
     updatePosition(this.refs['OPTIONLIST']);
   }
 
-  _getOptionList(){
+  _getOptionList() {
     return this.refs['OPTIONLIST'];
   }
 
@@ -72,13 +72,13 @@ module.exports = class App extends Component {
       </View>
     );
   }
-}
+};
 
 var styles = StyleSheet.create({
-  select : {
-    borderRadius: 5,
-    borderWidth: 1
+  select: {
+    borderRadius: 10,
+    borderWidth: 1,
   }
-})
+});
 
 AppRegistry.registerComponent('App', () => App);

@@ -13,7 +13,7 @@ var iconMap = {
   shopping : require('./images/clothes.png'),
   bar : require('./images/bar.png'),
   coffee : require('./images/coffee.png'),
-  'museum/gallery' : require('./images/museum_art.png'),
+  'museum-art' : require('./images/museum_art.png'),
   groceries : require('./images/supermarket.png'),
   books : require('./images/books.png'),
   hotel : require('./images/hotel.png'),
@@ -39,8 +39,6 @@ module.exports = {
   },
 
   getPinIcon: function( category ) {
-
-    console.log('category: ', category);
     // get pin icon or use default pin
     if ( iconMap[category] !== undefined ) {
       // var icon = require( './images/' + iconMap[category] );

@@ -3,6 +3,8 @@ var React = require('react-native');
 module.exports = {
 
   getNearbyActivities: function( region ) {
+
+  	console.log('inside getNearbyActivities! region: ', region);
   
     var url = 'http://adventureus.herokuapp.com/api/activities';
 

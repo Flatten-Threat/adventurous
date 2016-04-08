@@ -3,8 +3,6 @@
 ***********************************************************************/
 
 var React = require('react-native');
-
-//requires main and requires it as its main component
 var Main = require('./src/main.js');
 
-React.AppRegistry.registerComponent('adventureus', () => Main)
+React.AppRegistry.registerComponent('adventureus', () => Main);

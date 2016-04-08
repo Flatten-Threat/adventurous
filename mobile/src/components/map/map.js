@@ -125,22 +125,25 @@ module.exports = React.createClass({
     });
   }
 
-}) // end of react class
+}); // end of react class
 
 var styles = StyleSheet.create ({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'stretch'
-  },
-  map: {
-    flex: 2,
+    alignItems: 'stretch',
     marginTop: 30
   },
-  buttonWrapper: {
-   flex: 1,
-   alignItems: 'center'
+
+  map: {
+    flex: 1
   },
+
+  buttonWrapper: {
+    flex: 1,
+    alignItems: 'center'
+  },
+
   mapPin: {
     borderWidth: 1,
     borderRadius: 2,

@@ -6,33 +6,28 @@ var Camera = require('./components/camera/camera');
 var NavBar = require('./components/common/navbar');
 
 var {
-  StyleSheet,
   Navigator
 } = React;
 
-//define our routes
 var Routes = {
-  //key can be anything: value must be a component
   map: Map,
   signin: Signin,
   activity: Activity,
   camera: Camera
 };
 
-//add <Signin /> before closing view tag to see sign in 
+
 module.exports = React.createClass({
 
-  //always called with an instance of the navigator
-  //pass navigator into the component being rendered by the navigator
-  renderScene: function (route, navigator){
-    var Component = Routes[route.name]; //ROUTES['signin'] => would return the sign in component
-    return <Component route={route} navigator={navigator} />;
+  renderScene: function (route, navigator) {
+    var Component = Routes[route.name];
+    return <Component route={route} navigator={navigator}/>;
   },
 
   render: function () {
     return (
+
          <Navigator
-         style={styles.container}
          navigationBar={<NavBar />}
          //determines what first component is when navigator is first rendered
          initialRoute={{name: 'map'}}
@@ -41,14 +36,9 @@ module.exports = React.createClass({
          //how newly rendered components will appear to the user / LIKE AN ANIMATION
          configureScene={()=> Navigator.SceneConfigs.FloatFromRight }
           /> 
-    )
+    );
   }
+
 });
 
-var styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center'
-  }
-});
+

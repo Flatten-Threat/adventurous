@@ -1,6 +1,5 @@
 var React = require('react-native');
 var Button = require('../common/button');
-var DropDown = require('../common/dropdown');
 var _ = require('underscore');
 
 var {
@@ -11,6 +10,7 @@ var {
 } = React;
 
 module.exports = React.createClass({
+
 
   getInitialState: function() {
     return {
@@ -23,14 +23,21 @@ module.exports = React.createClass({
     var isNew = this.props.route.passProps.isNew;
 
     return (
+
       <View style={styles.container}>
-          
-        <View style={[styles.header]}>
-          <Image source={{uri: this.props.route.passProps.photo}} style={styles.cover}/>
+        <View style={styles.header}>
+          <Image 
+          source={{uri: this.props.route.passProps.photo}}
+          // source={require('../images/Traveler.jpg')}
+          style={styles.cover}
+          resizeMode={'cover'}
+          />
         </View>
 
-        <View style={[styles.footer]}>
+        <View style={styles.footer}>
+          
           <View style={[styles.titleWrapper]}>
+
           <TextInput
            style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
            editable={ isNew }
@@ -39,7 +46,7 @@ module.exports = React.createClass({
            value = { this.state.activity.title }
           />
           </View>
-          {this.dropDownMenu()}
+
           <TextInput
             style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
             multiline={true}
@@ -80,12 +87,6 @@ module.exports = React.createClass({
     }
   },
 
-  dropDownMenu: function() {
-    return <View style={[styles.dropDownWrapper]}>
-      <DropDown/>
-    </View> 
-  }
-
 });
 
 
@@ -94,56 +95,58 @@ var styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: 'stretch',
-    paddingTop: 30 // offset for wifi, time, battery etc. display
+    backgroundColor:'white',
+    marginTop: 30
   },
+
   header: {
     flex: 2,
-    justifyContent: 'center',
-    flexDirection: 'row',
-    alignItems: 'stretch'
   },
+
+  cover: {
+    flex: 1,
+    width: null,
+    height: null,
+  },
+
   footer: {
-    flex: 3,
-    paddingRight: 20,
-    paddingLeft: 20
+    flex: 1
   },
+
   titleWrapper: {
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingTop: 10
   },
-  dropDownWrapper: {
-    flex: 1,
-    flexDirection: 'row',
-    alignItems: 'stretch',
-    justifyContent: 'center'
-  },
+
   descriptionWrapper: {
     flex: 3,
     flexDirection: 'column',
     alignItems: 'center'
   },
+
   buttonWrapper: {
-    flex: .5,
+    flex: 0,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    marginBottom: 10
   },
-  cover: {
-    flex: 1,
-    width: null,
-    height: null
-  },
+
   input: {
     flex: 0,
     margin: 4,
     padding: 8,
     fontSize: 18,
-    height: 36
+    height: 36,
+    color: 'gray',
   },
+
   editable: {
-    borderColor: 'black',
+    borderColor: '#FFD8C7',
     borderWidth: 1,
-    borderRadius: 3
+    borderRadius: 10
   }
-})
+
+});

@@ -1,3 +1,4 @@
+'use strict' // jenna
 var React = require('react-native');
 var Button = require('../common/button');
 var DropDown = require('../common/dropdown');
@@ -7,15 +8,23 @@ var {
   StyleSheet,
   View,
   TextInput,
-  Image
+  Image,
+  DeviceEventEmitter, // jenna
+  Dimensions // jenna
 } = React;
 
 module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      activity: this.props.route.passProps.activity
+      activity: this.props.route.passProps.activity,
+      visibleHeight: Dimensions.get('window').height // jenna
     };
+  },
+
+  componentWillMount: function() { // jenna
+    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
+    DeviceEventEmitter.addListener('KeyboardWillHide', this.KeyboardWillHide);
   },
 
   render: function(){
@@ -23,7 +32,7 @@ module.exports = React.createClass({
     var isNew = this.props.route.passProps.isNew;
 
     return (
-      <View style={styles.container}>
+      <View style={ styles.container, { height: this.state.visibleHeight }}>
           
         <View style={[styles.header]}>
           <Image source={{uri: this.props.route.passProps.photo}} style={styles.cover}/>
@@ -84,6 +93,15 @@ module.exports = React.createClass({
     return <View style={[styles.dropDownWrapper]}>
       <DropDown/>
     </View> 
+  },
+
+  keyboardWillShow: function(e) { // jenna
+    let newSize = Dimensions.get('window').height - e.endCoordinates.height;
+    this.setState({ visibleHeight: newSize });
+  },
+
+  KeyboardWillHide: function(e) { // jenna
+    this.setState({ visibleHeight: Dimensions.get('window').height });
   }
 
 });

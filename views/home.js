@@ -6,9 +6,11 @@ export default class Home extends Component {
   render() {
     return (
       <div className="image-area">
-         <div className="home-title">
-            Find a new adventure.
-        </div>
+          <div className="home-title">
+            <div>
+              Find a new adventure.
+            </div>
+          </div>
         <div className="home-description">
           <h2 className="home-description-h2">
             Let your friends and fellow travelers be your guides
@@ -22,7 +24,7 @@ export default class Home extends Component {
         </div>
       </div>
       
-    )
+    );
   }
 
 }

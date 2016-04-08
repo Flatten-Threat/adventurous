@@ -42,8 +42,8 @@ var styles = StyleSheet.create ({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#42B299',
-    borderBottomColor: '#42B299',
+    backgroundColor: 'black',
+    // borderBottomColor: '#42B299',
     borderBottomWidth: 1,
     
   },

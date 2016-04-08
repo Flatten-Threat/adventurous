@@ -41,7 +41,7 @@ body {
 
 .menu-bar {
   position: relative;
-  background-color: #FF8E7D;
+  background-color: black;
   /*color: rgba(255,255,100,0.75);*/
   color: white;
   text-align: left;
@@ -78,6 +78,7 @@ body {
 }*/
 
 .image-area {
+  text-align: center;
   background-image: url(../images/ManInCity.jpeg);
   background-size: cover;
   background-repeat: no-repeat;
@@ -86,10 +87,15 @@ body {
 }
 
 .home-title {
-  font-size: 60px;
+  font-size: 70px;
+  letter-spacing: 4;
   text-align: center;
-  text-shadow: 'rgba(0,0,0,0.2)'; 
-  color: #FF8E7D;
+/*  text-shadow: rgba(255,255,255,0.5);*/ 
+
+  text-shadow: 2px 2px 1px gray;
+  
+  color: black;
+  /*background-color: rgba(255,255,255,.2);*/
   font-weight: bold;
   position: relative;
   padding-top: 150px;
@@ -100,10 +106,11 @@ body {
   border-width: 2px;
   border-radius: 25px;
   color: white;
+  text-shadow: 2px 1px 1px gray;
   /*top right bottom left*/
   margin: 160px 250px auto 250px;
   width: 300px;
-  float: left;
+  text-align: left;
 }
 
 .home-description-h2 {

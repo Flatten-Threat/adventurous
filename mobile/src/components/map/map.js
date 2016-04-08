@@ -1,24 +1,19 @@
 var React = require('react-native');
-var Icon_Restaurant = require('./images/restaurant.png');
-var Icon_Shopping = require('../images/icon_shopping.png');
-var Icon_Pub = require('../images/icon_bar.png');
-var Icon_Coffee = require('../images/icon_coffee.png');
-var MapPin = require('./mapPin.js');
-var RightArrow = require('../images/icon_right_arrow.png');
+var pinFactory = require('./map-markers.js');
+var api = require('../network/api.js');
 import FloatingButton from '../common/floating-button';
 
 var {
   StyleSheet,
   MapView,
-  View,
-  TouchableOpacity,
-  Image
+  View
 } = React;
 
 module.exports = React.createClass({
 
   getInitialState: function() {
     return {
+<<<<<<< HEAD
       markers: [
         this.createMapMarkers()
       ]    
@@ -50,8 +45,28 @@ module.exports = React.createClass({
           style={styles.map}
         >
         </MapView>
+=======
+      mapMarkers: []
+      };
+  },
+
+  render: function(){
+    console.log('this.state.mapMarkers: ', this.state.mapMarkers);
+    return(
+
+        <View style={styles.container}>
+          <MapView 
+            showsPointsOfInterest={false}
+            annotations={ this.state.mapMarkers }
+            showsUserLocation={true}
+            followUserLocation={true}
+            onRegionChangeComplete={ this.onRegionChangeComplete }
+            style={styles.map}
+          >
+          </MapView>
+>>>>>>> 2470b9bc378682c3fce921eccbe96aebceb41242
           <FloatingButton
-            onPress={ this.addActivity }
+            onPress={ this.startAddActivity }
             text='+'
             bkColor='#6e73ee'
             color='white'
@@ -59,6 +74,7 @@ module.exports = React.createClass({
         </View>
     );
   },
+<<<<<<< HEAD
   // create 1 marker
   createMapMarkers: function() {
     return {
@@ -88,13 +104,101 @@ module.exports = React.createClass({
     this.props.navigator.push({
       name: 'camera', 
       passProps: { isNew: true, activity: newActivity }
+=======
+
+  showActivity: function( activity ) {
+    this.props.navigator.push({
+      name: 'activity', 
+      passProps: { isNew: false, activity: activity }
+    });
+  },
+
+  startAddActivity: function() {
+
+    this.createEmptyActivity()
+      .then( function( newActivity ) {
+
+        this.props.navigator.push({
+          name: 'camera',
+          passProps: { isNew: true, initiateSave: this.endAddActivity, activity: newActivity }
+        });
+
+      }.bind(this));
+  },
+
+  endAddActivity: function( newActivity ) {
+    this.setState({
+      mapMarkers: this.state.mapMarkers.concat( [ pinFactory.create( newActivity, this.showActivity ) ] )
+    });
+  },
+
+  onRegionChangeComplete: function( region ) {
+
+    // previous position
+    var previousPosition = {
+      longitudeDelta: 0.005000000117433956, 
+      latitude: 37.88021599999999,
+      longitude: -122.268381,
+      latitudeDelta: 0.00670375545112023
+    }
+    
+    // current position
+    var currentPosition = {
+      longitudeDelta: 0.005000000117448167,
+      latitude: 37.88036859710102,
+      longitude: -122.2647876665823, 
+      latitudeDelta: 0.006703741561835841
+    }
+
+    console.log('onRegionChangeComplete! new region: ', region);
+
+      api.getNearbyActivities( region = null )
+      .then( function( activities ) {
+        console.log('activities: ', activities);
+          this.setState({
+          mapMarkers: activities.map( (activity) => pinFactory.create( activity, this.showActivity ) )
+        });
+
+      }.bind(this));
+  },
+
+  createEmptyActivity: function() {
+
+    return new Promise( function( fulfill, reject ) {
+
+      var newActivity = { title: '', description: '', region: {} };
+
+      // geolocation call requires 'simulate location' to be active in XCode
+      // otherwise, we'll default to TGA location in Berkeley...
+
+      navigator.geolocation.getCurrentPosition(
+        (location) => {
+          newActivity.region.latitude = location.coords.latitude;
+          newActivity.region.longitude = location.coords.longitude;
+          console.log('succeeded getting geo coords');
+          fulfill( newActivity );
+        },
+        (error) => {
+          newActivity.region.latitude = 37.7873589;
+          newActivity.region.longitude = -122.408227;
+          console.log('failed getting geo coords:', error.message );
+          fulfill( newActivity );
+        },
+        { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
+      );
+
+>>>>>>> 2470b9bc378682c3fce921eccbe96aebceb41242
     });
   }
 
 }); // end of react class
 
+<<<<<<< HEAD
 var styles = StyleSheet.create({
 
+=======
+var styles = StyleSheet.create ({
+>>>>>>> 2470b9bc378682c3fce921eccbe96aebceb41242
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -116,5 +220,4 @@ var styles = StyleSheet.create({
     borderRadius: 2,
     backgroundColor: 'white'
   }
-
 });

@@ -68,4 +68,3 @@ var styles = StyleSheet.create ({
   },
 
 });
-

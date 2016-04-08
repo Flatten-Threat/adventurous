@@ -43,16 +43,21 @@ module.exports = React.createClass({
 
   takePicture: function() {
     this.camera.capture()
-      .then((data) => {
+
+      .then( (data) => {
+
+        var activity = this.props.route.passProps;
+        activity.photo = data;
+        console.log('activity: ', activity);
+
         this.props.navigator.replace({
-          name: 'activity', // jenna
-          passProps: {
-            isNew: true, 
-            photo: data,
-          }});
+          name: 'activity',
+          passProps: activity
+        });
+
       })
       .catch(err => console.error(err));
-  },
+  }
 
 });
 

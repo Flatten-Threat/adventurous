@@ -1,6 +1,7 @@
 var React = require('react-native');
 var Button = require('../common/button');
 var DropDown = require('../common/dropdown');
+var _ = require('underscore');
 
 var {
   StyleSheet,
@@ -18,9 +19,7 @@ module.exports = React.createClass({
     };
   },
 
-  render: function() {
-
-    console.log(this.props.route.passProps.photo);
+  render: function(){
 
     var isNew = this.props.route.passProps.isNew;
 
@@ -39,38 +38,60 @@ module.exports = React.createClass({
         <View style={styles.footer}>
           
           <View style={[styles.titleWrapper]}>
-            <TextInput
-             style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
-             editable={ isNew }
-             placeholder={ 'add a title...' }
-             // value = { this.state.activity.title }
-            />
-          </View>
 
-          <View style={styles.descriptionWrapper}>
-            <TextInput
-              style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
-              multiline={true}
-              maxLength={200}
-              editable={ isNew }
-              placeholder={'What makes this place so special?'}
-              // value = { this.state.activity.description }
-            />
-           </View>
-            
-        </View>
-          
-        <View style={styles.buttonWrapper} >
-          <Button text={'Submit'} onPress={this.changeToSignIn}/>
+          <TextInput
+           style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
+           editable={ isNew }
+           placeholder={ 'add a title...' }
+           onChangeText={ (text) => this.updateActivity({ title: text }) }
+           value = { this.state.activity.title }
+          />
+          </View>
+          {this.dropDownMenu()}
+          <TextInput
+            style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
+            multiline={true}
+            maxLength={200}
+            editable={ isNew }
+            placeholder={'What makes this place so special?'}
+            onChangeText={ (text) => this.updateActivity({ description: text }) }
+            value = { this.state.activity.description }
+          />
+          { isNew ? // only show 'save' button if this is a NEW activity
+            <View style={styles.buttonWrapper}>
+              <Button text={'Save'} onPress={ this.save }/>
+            </View>
+            : null
+          }
         </View>
       
       </View>    
-    );
-    
+    )
   },
 
-  changeToSignIn: function() {
-    this.props.navigator.push({name: 'signin'});
+  // setState replaces ENTIRE element (can't set properties etc.)
+  updateActivity: function( newValue ) {
+    this.setState({
+      activity: _.extend( this.state.activity, newValue )
+    });
+  },
+
+  save: function() {
+    this.props.navigator.popToTop();
+    this.props.route.passProps.initiateSave( this.state.activity );
+  },
+
+  border: function(color) {
+    return {
+      borderColor: color,
+      borderWidth: 4
+    }
+  },
+
+  dropDownMenu: function() {
+    return <View style={[styles.dropDownWrapper]}>
+      <DropDown/>
+    </View> 
   }
 
 });

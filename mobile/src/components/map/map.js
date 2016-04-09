@@ -141,16 +141,6 @@ var styles = StyleSheet.create ({
 
   map: {
     flex: 1
-  },
-
-  buttonWrapper: {
-    flex: 1,
-    alignItems: 'center'
-  },
-
-  mapPin: {
-    borderWidth: 1,
-    borderRadius: 2,
-    backgroundColor: 'white'
   }
+  
 });

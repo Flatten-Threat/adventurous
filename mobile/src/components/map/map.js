@@ -1,7 +1,9 @@
 var React = require('react-native');
-var pinFactory = require('./map-markers.js');
-var api = require('../network/api.js');
+var pinFactory = require('./map-markers');
+var api = require('../network/api');
+var Promise = require('bluebird');
 import FloatingButton from '../common/floating-button';
+
 
 var {
   StyleSheet,
@@ -9,17 +11,31 @@ var {
   View
 } = React;
 
+
 module.exports = React.createClass({
 
   getInitialState: function() {
     return {
-      mapMarkers: []
-      };
+      mapMarkers: [],
+    };
   },
 
-  render: function(){
-    console.log('this.state.mapMarkers: ', this.state.mapMarkers);
-    return(
+  componentWillMount: function() {
+    
+    api.getNearbyActivities( region = null )
+      .then( function( activities ) {
+
+        this.setState({
+          mapMarkers: activities.map( (activity) => pinFactory.create( activity, this.showActivity ) )
+        });
+
+      }.bind(this));
+
+  },
+
+  render: function() {
+    
+    return (
 
         <View style={styles.container}>
           <MapView 
@@ -62,60 +78,45 @@ module.exports = React.createClass({
   },
 
   endAddActivity: function( newActivity ) {
+    
+    // display new map pin right away
+
     this.setState({
       mapMarkers: this.state.mapMarkers.concat( [ pinFactory.create( newActivity, this.showActivity ) ] )
     });
+
+    // post to server -- assume server & Database operations will succeed (for now)
+
+    api.saveData( newActivity );
+
   },
 
-  onRegionChangeComplete: function( region ) {
-
-    // previous position
-    var previousPosition = {
-      longitudeDelta: 0.005000000117433956, 
-      latitude: 37.88021599999999,
-      longitude: -122.268381,
-      latitudeDelta: 0.00670375545112023
-    }
-    
-    // current position
-    var currentPosition = {
-      longitudeDelta: 0.005000000117448167,
-      latitude: 37.88036859710102,
-      longitude: -122.2647876665823, 
-      latitudeDelta: 0.006703741561835841
-    }
-
-    console.log('onRegionChangeComplete! new region: ', region);
-
-      api.getNearbyActivities( region = null )
-      .then( function( activities ) {
-        console.log('activities: ', activities);
-          this.setState({
-          mapMarkers: activities.map( (activity) => pinFactory.create( activity, this.showActivity ) )
-        });
-
-      }.bind(this));
-  },
 
   createEmptyActivity: function() {
 
     return new Promise( function( fulfill, reject ) {
 
-      var newActivity = { title: '', description: '', region: {} };
+      var newActivity = {
+        title: '',
+        description: '',
+        image: '',
+        category: '',
+        region: {}
+      };
 
       // geolocation call requires 'simulate location' to be active in XCode
       // otherwise, we'll default to TGA location in Berkeley...
 
       navigator.geolocation.getCurrentPosition(
         (location) => {
-          newActivity.region.latitude = location.coords.latitude;
           newActivity.region.longitude = location.coords.longitude;
+          newActivity.region.latitude = location.coords.latitude;
           console.log('succeeded getting geo coords');
           fulfill( newActivity );
         },
         (error) => {
-          newActivity.region.latitude = 37.7873589;
           newActivity.region.longitude = -122.408227;
+          newActivity.region.latitude = 37.7873589;
           console.log('failed getting geo coords:', error.message );
           fulfill( newActivity );
         },
@@ -123,9 +124,12 @@ module.exports = React.createClass({
       );
 
     });
+
   }
 
 }); // end of react class
+
+
 
 var styles = StyleSheet.create ({
   container: {

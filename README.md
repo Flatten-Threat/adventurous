@@ -33,14 +33,14 @@ Tech. Stack:
     Webpack
     Web Fonts
     Express
-    MongoDB
+    MongoDB (mlab)
     Axios
-    Heroku
-    (planned) - React Native
+    deployed on Heroku
+    React Native
+    mobile device: geoloc, camera access
     (planned) - Mocha/Chai
     (probably) - Bootstrap
     (probably) - Less
-    (maybe) - Google maps & mobile device geo-loc
     (maybe) - server-side rendering
     (maybe) - Redux, Redux Router
     (maybe) - mySQL, D3

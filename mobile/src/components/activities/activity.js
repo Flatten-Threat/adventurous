@@ -8,8 +8,8 @@ var {
   View,
   TextInput,
   Image,
-  DeviceEventEmitter, // jenna
-  Dimensions // jenna
+  DeviceEventEmitter,
+  Dimensions
 } = React;
 
 module.exports = React.createClass({
@@ -18,11 +18,11 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       activity: this.props.route.passProps.activity,
-      visibleHeight: Dimensions.get('window').height // jenna
+      visibleHeight: Dimensions.get('window').height
     };
   },
 
-  componentWillMount: function() { // jenna
+  componentWillMount: function() {
     DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
     DeviceEventEmitter.addListener('KeyboardWillHide', this.KeyboardWillHide);
   },
@@ -33,7 +33,7 @@ module.exports = React.createClass({
 
     return (
 
-      <View style={[styles.container, { height: this.state.visibleHeight }]}>
+      <View style={ styles.container, { height: this.state.visibleHeight } }>
         <View style={styles.header}>
           <Image
             source={{uri: this.props.route.passProps.photo}}
@@ -95,12 +95,12 @@ module.exports = React.createClass({
     };
   },
 
-  keyboardWillShow: function(e) { // jenna
+  keyboardWillShow: function(e) {
     let newSize = Dimensions.get('window').height - e.endCoordinates.height;
     this.setState({ visibleHeight: newSize });
   },
 
-  KeyboardWillHide: function(e) { // jenna
+  KeyboardWillHide: function(e) {
     this.setState({ visibleHeight: Dimensions.get('window').height });
   }
   

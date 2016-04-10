@@ -1,7 +1,9 @@
-'use strict'; // jenna
+'use strict';
 var React = require('react-native');
 var Button = require('../common/button');
+var PopupList = require('react-native-list-popover');
 var _ = require('underscore');
+
 
 var {
   StyleSheet,
@@ -9,11 +11,12 @@ var {
   TextInput,
   Image,
   DeviceEventEmitter,
-  Dimensions
+  Dimensions,
+  TouchableHighlight
 } = React;
 
-module.exports = React.createClass({
 
+module.exports = React.createClass({
 
   getInitialState: function() {
     return {
@@ -22,10 +25,12 @@ module.exports = React.createClass({
     };
   },
 
+
   componentWillMount: function() {
     DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
     DeviceEventEmitter.addListener('KeyboardWillHide', this.KeyboardWillHide);
   },
+
 
   render: function() {
 
@@ -45,15 +50,17 @@ module.exports = React.createClass({
 
         <View style={styles.footer}>
           
-          <View style={[styles.titleWrapper]}>
-
-          <TextInput
-           style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
-           editable={ isNew }
-           placeholder={ 'add a title...' }
-           onChangeText={ (text) => this.updateActivity({ title: text }) }
-           value = { this.state.activity.title }
-          />
+          <View style={[ styles.titleWrapper, isNew ? styles.editable : null ]}>
+            <TouchableHighlight style={styles.categoryButton} onPress={ this.showCategoryList }>
+              <Image source={ require('../map/images/bar.png') } />
+            </TouchableHighlight>
+            <TextInput
+             style={ [styles.input, styles.inputWithIcon, { textAlign: 'center' } ] }
+             editable={ isNew }
+             placeholder={ 'please add a category and title...' }
+             onChangeText={ (text) => this.updateActivity({ title: text }) }
+             value = { this.state.activity.title }
+            />
           </View>
 
           <TextInput
@@ -76,6 +83,11 @@ module.exports = React.createClass({
     );
   },
 
+  showCategoryList: function() {
+
+  },
+
+
   // setState replaces ENTIRE element (can't set properties etc.)
   updateActivity: function( newValue ) {
     this.setState({
@@ -83,10 +95,12 @@ module.exports = React.createClass({
     });
   },
 
+
   save: function() {
     this.props.navigator.popToTop();
     this.props.route.passProps.initiateSave( this.state.activity );
   },
+
 
   border: function(color) {
     return {
@@ -95,16 +109,19 @@ module.exports = React.createClass({
     };
   },
 
+
   keyboardWillShow: function(e) {
     let newSize = Dimensions.get('window').height - e.endCoordinates.height;
     this.setState({ visibleHeight: newSize });
   },
+
 
   KeyboardWillHide: function(e) {
     this.setState({ visibleHeight: Dimensions.get('window').height });
   }
   
 });
+
 
 
 var styles = StyleSheet.create({
@@ -132,10 +149,22 @@ var styles = StyleSheet.create({
 
   titleWrapper: {
     flex: 1,
-    flexDirection: 'column',
+    margin: 4,
+    flexDirection: 'row',
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 10
+    alignItems: 'center'
+  },
+
+  categoryButton: {
+    width: 30,
+    height: 29,
+    overflow: 'hidden',
+    margin: 2,
+    marginLeft: 4
+  },
+
+  categoryImage: {
+    resizeMode: 'cover'
   },
 
   descriptionWrapper: {
@@ -156,8 +185,12 @@ var styles = StyleSheet.create({
     margin: 4,
     padding: 8,
     fontSize: 18,
-    height: 36,
     color: 'gray',
+  },
+
+  inputWithIcon: {
+    flex: 1,
+    margin: 0
   },
 
   editable: {

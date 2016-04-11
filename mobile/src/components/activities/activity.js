@@ -67,19 +67,7 @@ module.exports = React.createClass({
           </View>
 
           { isNew ? <ListPopover containerStyle={ {backgroundColor: 'white' } }
-            list={[
-              'restaurant',
-              'shopping',
-              'bar',
-              'coffee',
-              'museum-art',
-              'groceries',
-              'books',
-              'hotel',
-              'garden',
-              'hiking',
-              'sports'
-            ]}
+            list={ Categories.getCategories() }
             isVisible={this.state.isVisible}
             onClick={this.setItem}
             onClose={this.closePopover}

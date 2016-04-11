@@ -21,4 +21,9 @@ export default class Categories {
     return category ? iconMap[category] : require('./images/category-undefined.png');
   }
 
+
+  static getCategories() {
+    return Object.keys( iconMap );
+  }
+
 }

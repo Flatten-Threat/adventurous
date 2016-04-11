@@ -4,6 +4,8 @@ var Button = require('../common/button');
 var ListPopover = require('react-native-list-popover');
 var _ = require('underscore');
 
+import Categories from './categories'; // start converting to ES6...
+
 
 var {
   StyleSheet,
@@ -53,7 +55,7 @@ module.exports = React.createClass({
           
           <View style={[ styles.titleWrapper, isNew ? styles.editable : null ]}>
             <TouchableHighlight style={styles.categoryButton} disabled={!isNew} onPress={ this.showCategoryList }>
-              <Image source={ require('../map/images/category-undefined.png') } />
+              <Image source={ Categories.getIcon( this.state.activity.category ) } />
             </TouchableHighlight>
             <TextInput
              style={ [styles.input, styles.inputWithIcon, { textAlign: 'center' } ] }

@@ -1,5 +1,5 @@
 var React = require('react-native');
-var RightArrow = require('./images/icon_right_arrow.png');
+var RightArrow = require('../activities/images/icon_right_arrow.png');
 
 var {
     Image,
@@ -9,17 +9,17 @@ var {
 } = React;
 
 var iconMap = {
-  restaurant : require('./images/restaurant.png'),
-  shopping : require('./images/clothes.png'),
-  bar : require('./images/bar.png'),
-  coffee : require('./images/coffee.png'),
-  'museum-art' : require('./images/museum_art.png'),
-  groceries : require('./images/supermarket.png'),
-  books : require('./images/books.png'),
-  hotel : require('./images/hotel.png'),
-  garden : require('./images/garden.png'),
-  hiking : require('./images/hiking.png'),
-  sports : require('./images/sports.png')
+  restaurant : require('../activities/images/restaurant.png'),
+  shopping : require('../activities/images/clothes.png'),
+  bar : require('../activities/images/bar.png'),
+  coffee : require('../activities/images/coffee.png'),
+  'museum-art' : require('../activities/images/museum_art.png'),
+  groceries : require('../activities/images/supermarket.png'),
+  books : require('../activities/images/books.png'),
+  hotel : require('../activities/images/hotel.png'),
+  garden : require('../activities/images/garden.png'),
+  hiking : require('../activities/images/hiking.png'),
+  sports : require('../activities/images/sports.png')
 };
 
 module.exports = {

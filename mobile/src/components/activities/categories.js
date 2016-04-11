@@ -1,5 +1,5 @@
-var React = require('react-native');
 
+const unknownCategory = require('./images/category-undefined.png');
 
 const iconMap = {
   restaurant : require('./images/restaurant.png'),
@@ -15,15 +15,16 @@ const iconMap = {
   sports : require('./images/sports.png')
 };
 
-export default class Categories {
 
-  static getIcon( category ) {
-    return category ? iconMap[category] : require('./images/category-undefined.png');
-  }
+export default {
+
+  getIcon( category ) {
+    return category ? iconMap[category] : unknownCategory;
+  },
 
 
-  static getCategories() {
+  getCategories() {
     return Object.keys( iconMap );
   }
 
-}
+};

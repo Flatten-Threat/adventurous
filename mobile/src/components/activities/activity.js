@@ -1,7 +1,7 @@
 'use strict';
 var React = require('react-native');
 var Button = require('../common/button');
-var PopupList = require('react-native-list-popover');
+var ListPopover = require('react-native-list-popover');
 var _ = require('underscore');
 
 
@@ -21,7 +21,8 @@ module.exports = React.createClass({
   getInitialState: function() {
     return {
       activity: this.props.route.passProps.activity,
-      visibleHeight: Dimensions.get('window').height
+      visibleHeight: Dimensions.get('window').height,
+      isVisible: false
     };
   },
 
@@ -51,8 +52,8 @@ module.exports = React.createClass({
         <View style={styles.footer}>
           
           <View style={[ styles.titleWrapper, isNew ? styles.editable : null ]}>
-            <TouchableHighlight style={styles.categoryButton} onPress={ this.showCategoryList }>
-              <Image source={ require('../map/images/bar.png') } />
+            <TouchableHighlight style={styles.categoryButton} disabled={!isNew} onPress={ this.showCategoryList }>
+              <Image source={ require('../map/images/category-undefined.png') } />
             </TouchableHighlight>
             <TextInput
              style={ [styles.input, styles.inputWithIcon, { textAlign: 'center' } ] }
@@ -62,6 +63,25 @@ module.exports = React.createClass({
              value = { this.state.activity.title }
             />
           </View>
+
+          { isNew ? <ListPopover containerStyle={ {backgroundColor: 'white' } }
+            list={[
+              'restaurant',
+              'shopping',
+              'bar',
+              'coffee',
+              'museum-art',
+              'groceries',
+              'books',
+              'hotel',
+              'garden',
+              'hiking',
+              'sports'
+            ]}
+            isVisible={this.state.isVisible}
+            onClick={this.setItem}
+            onClose={this.closePopover}
+          /> : null }
 
           <TextInput
             style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
@@ -81,10 +101,6 @@ module.exports = React.createClass({
         </View>
     </View>   
     );
-  },
-
-  showCategoryList: function() {
-
   },
 
 
@@ -118,7 +134,20 @@ module.exports = React.createClass({
 
   KeyboardWillHide: function(e) {
     this.setState({ visibleHeight: Dimensions.get('window').height });
-  }
+  },
+
+
+  showCategoryList: function() {
+    this.setState({isVisible: true});
+  },
+  
+  closePopover: function() {
+    this.setState({isVisible: false});
+  },
+
+  setItem: function( category ) {
+    this.updateActivity({ category: category });
+  },
   
 });
 

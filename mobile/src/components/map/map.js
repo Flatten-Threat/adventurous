@@ -30,7 +30,6 @@ module.exports = React.createClass({
         });
 
       }.bind(this));
-
   },
 
   render: function() {

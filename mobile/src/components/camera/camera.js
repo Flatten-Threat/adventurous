@@ -1,4 +1,5 @@
 var React = require('react-native');
+var _ = require('underscore');
 
 import Camera from 'react-native-camera';
 import Button from '../common/button';
@@ -47,13 +48,11 @@ module.exports = React.createClass({
 
       .then( (data) => {
 
-        var activity = this.props.route.passProps;
-        activity.photo = data;
-        console.log('activity: ', activity);
+        this.props.route.passProps.activity.image = data; 
 
         this.props.navigator.replace({
           name: 'activity',
-          passProps: activity
+          passProps: this.props.route.passProps
         });
 
       })

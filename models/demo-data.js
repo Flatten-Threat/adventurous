@@ -28,7 +28,7 @@ var demoData = [
   {
     'title' : 'Affordable Pottery and Glassware by Local Artists',
     'description' : 'Some truly amazing pieces, and totally worth browsing, even if your not in the market to buy -- although the prices are totally affordable.',
-    'image' : 'http://someurl...',
+    'image' : 'http://i.ebayimg.com/00/s/MTA3MFgxMDcw/z/5dsAAOxyRNJSdbtV/$(KGrHqV,!nsFJv)qWSH4BSdbtVnGLw~~60_1.JPG?set_id=2',
     'category' : 'museum-art',
     'region' : {
        longitude: -122.269195,
@@ -39,7 +39,7 @@ var demoData = [
   {
     'title' : 'Best Local Grocery Store',
     'description' : 'Lots of quality stuff -- priced so you will not have to rub elbows with the riff-raff while you shop.',
-    'image' : 'http://someurl...',
+    'image' : 'http://cdn.bleedingcool.net/wp-content/uploads/2010/12/grocery-store.jpg',
     'category' : 'groceries',
     'region' : {
        longitude: -122.269948,
@@ -50,7 +50,7 @@ var demoData = [
   {
     'title' : 'World-Famous Chez Panisse Restaurant',
     'description' : 'Gordon Ramsay WISHES he could cook like this! Pricey (~$100), but worth it. Dont bother trying to get reservations for the main restaurant, but the cafe is just as good, and usually has a few spots, with just a slightly more limited menu.',
-    'image' : 'http://someurl...',
+    'image' : 'http://oakbaybeachhotel.com/wp-content/uploads/2015/05/KatesCafe.jpg',
     'category' : 'restaurant',
     'region' : {
        longitude: -122.268963,
@@ -61,7 +61,7 @@ var demoData = [
   {
     'title' : 'Chat With Published Local Authors',
     'description' : 'Little corner book shop targeting the Birkenstock-wearing wheat-grass-drinking college town demographic... which is why I love it so much!',
-    'image' : 'http://someurl...',
+    'image' : 'https://morselsofbread.files.wordpress.com/2013/08/fireside-chat.jpg?w=705',
     'category' : 'books',
     'region' : {
        longitude: -122.268875,
@@ -72,7 +72,7 @@ var demoData = [
   {
     'title' : 'Pizza To Corrupt Your Soul',
     'description' : 'I honestly dont know how they do it, but I budget about $100/wk for pizza at this place.',
-    'image' : 'http://someurl...',
+    'image' : 'http://417mag-images.dashdigital.com/417-Magazine/November-2012/Best-Italian-Restaurants-Springfield-MO/brunos-pizza.jpg?ver=1350940500',
     'category' : 'restaurant',
     'region' : {
        longitude: -122.269528,
@@ -83,7 +83,7 @@ var demoData = [
   {
     'title' : 'Quiet Little Hotel, Near Everything Downtown',
     'description' : 'Great little family-run hotel with a fantastic cafe on the ground floor. On one of the major shopping streets in Berkeley, but a few blocks away from the grittier area downtown.',
-    'image' : 'http://someurl...',
+    'image' : 'http://www.minimalisti.com/wp-content/uploads/2014/03/historic-elements-modern-boutique-hotel-interior-design-Zash-Sicily-Italy.jpg',
     'category' : 'hotel',
     'region' : {
        longitude: -122.269355,
@@ -94,7 +94,7 @@ var demoData = [
   {
     'title' : 'Very beautiful rose garden',
     'description' : 'Very peaceful rose garden with views, nice tennis courts too',
-    'image' : 'http://someurl...',
+    'image' : 'https://edgeofthewest.files.wordpress.com/2008/09/berkeley_rose_garden.jpg',
     'category' : 'garden',
     'region' : {
         longitude: -122.262901,
@@ -105,7 +105,7 @@ var demoData = [
   {
     'title' : "Peaceful trail walk",
     'description' : 'Great 30 minute trial walk, great views!!',
-    'image' : 'http://someurl...',
+    'image' : 'http://images.fineartamerica.com/images-medium-large/peaceful-trail-nancy-graham.jpg',
     'category' : 'hiking',
     'region' : {
         longitude: -122.26442,
@@ -116,7 +116,7 @@ var demoData = [
   {
     'title' : 'Large softball field for biking, basketball, or soccer!',
     'description' : 'Great for groups to play sports!!',
-    'image' : 'http://someurl...',
+    'image' : 'http://grfx.cstv.com/schools/rutu/graphics/facilities/images/softball2.jpg',
     'category' : 'sports',
     'region' : {
         longitude: -122.26204,
@@ -127,7 +127,7 @@ var demoData = [
   {
     'title' : 'Walk through and smell the eucalyptus trees here',
     'description' : 'There are benches for you to sit and enjoy the natural setting',
-    'image' : 'http://someurl...',
+    'image' : 'https://images.sciencedaily.com/2011/05/110512104214_1_540x360.jpg',
     'category' : 'hiking',
     'region' : {
       longitude: -122.26429,
@@ -138,7 +138,7 @@ var demoData = [
   {
     'title' : 'Cozy space for working remotely!',
     'description' : 'Fast free wifi, upstairs area is very cozy and there are plenty of outlets!',
-    'image' : 'http://someurl...',
+    'image' : 'http://farm8.staticflickr.com/7392/13155134573_a6f5d32879_z.jpg',
     'category' : 'coffee',
     'region' : {
       longitude: -122.26832,

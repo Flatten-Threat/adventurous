@@ -1,4 +1,4 @@
-'use strict'; // jenna
+'use strict';
 var React = require('react-native');
 var Button = require('../common/button');
 var _ = require('underscore');
@@ -16,6 +16,7 @@ module.exports = React.createClass({
 
 
   getInitialState: function() {
+
     return {
       activity: this.props.route.passProps.activity,
       visibleHeight: Dimensions.get('window').height
@@ -31,12 +32,14 @@ module.exports = React.createClass({
 
     var isNew = this.props.route.passProps.isNew;
 
+    console.log('jenna activity: ', this.state.activity);
+
     return (
 
       <View style={ styles.container, { height: this.state.visibleHeight } }>
         <View style={styles.header}>
           <Image
-            source={{uri: this.props.route.passProps.photo}}
+            source={ {uri: this.state.activity.image} }
             // source={require('../images/Traveler.jpg')}
             style={styles.cover}
             resizeMode={'cover'}

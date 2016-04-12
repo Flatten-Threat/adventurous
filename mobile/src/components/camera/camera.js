@@ -28,8 +28,7 @@ module.exports = React.createClass({
             style = {styles.preview}
             aspect = {Camera.constants.Aspect.fill}
             captureTarget={Camera.constants.CaptureTarget.disk}
-            >
-          </Camera>
+          />
         </View> 
             
          <View style={styles.footer}>    
@@ -47,13 +46,11 @@ module.exports = React.createClass({
 
       .then( (data) => {
 
-        var activity = this.props.route.passProps;
-        activity.photo = data;
-        console.log('activity: ', activity);
+        this.props.route.passProps.activity.image = data;
 
         this.props.navigator.replace({
           name: 'activity',
-          passProps: activity
+          passProps: this.props.route.passProps
         });
 
       })

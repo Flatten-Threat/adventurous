@@ -24,7 +24,7 @@ module.exports = React.createClass({
     return {
       activity: this.props.route.passProps.activity,
       visibleHeight: Dimensions.get('window').height,
-      isVisible: false
+      categoryListIsVisible: false
     };
   },
 
@@ -43,12 +43,17 @@ module.exports = React.createClass({
 
       <View style={ styles.container, { height: this.state.visibleHeight } }>
         <View style={styles.header}>
-          <Image
-            source={{uri: this.props.route.passProps.photo}}
-            // source={require('../images/Traveler.jpg')}
+          { this.state.categoryListIsVisible ? null : <Image
+            source={{uri: this.state.activity.image}}
             style={styles.cover}
             resizeMode={'cover'}
-            />
+          />}
+          { isNew ? <ListPopover containerStyle={ {backgroundColor: 'white', flex: 1} }
+            list={ Categories.getCategories() }
+            isVisible={this.state.categoryListIsVisible}
+            onClick={this.setItem}
+            onClose={this.closePopover}
+          /> : null }
         </View>
 
         <View style={styles.footer}>
@@ -66,13 +71,6 @@ module.exports = React.createClass({
             />
           </View>
 
-          { isNew ? <ListPopover containerStyle={ {backgroundColor: 'white' } }
-            list={ Categories.getCategories() }
-            isVisible={this.state.isVisible}
-            onClick={this.setItem}
-            onClose={this.closePopover}
-          /> : null }
-
           <TextInput
             style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
             multiline={true}
@@ -82,6 +80,7 @@ module.exports = React.createClass({
             onChangeText={ (text) => this.updateActivity({ description: text }) }
             value = { this.state.activity.description }
           />
+
           { isNew ? // only show 'save' button if this is a NEW activity
             <View style={styles.buttonWrapper}>
               <Button text={'Save'} onPress={ this.save }/>
@@ -89,6 +88,7 @@ module.exports = React.createClass({
             : null
           }
         </View>
+
     </View>   
     );
   },
@@ -128,11 +128,11 @@ module.exports = React.createClass({
 
 
   showCategoryList: function() {
-    this.setState({isVisible: true});
+    this.setState({categoryListIsVisible: true});
   },
   
   closePopover: function() {
-    this.setState({isVisible: false});
+    this.setState({categoryListIsVisible: false});
   },
 
   setItem: function( category ) {

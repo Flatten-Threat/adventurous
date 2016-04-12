@@ -32,14 +32,12 @@ module.exports = React.createClass({
 
     var isNew = this.props.route.passProps.isNew;
 
-    console.log('jenna activity: ', this.state.activity);
-
     return (
 
       <View style={ styles.container, { height: this.state.visibleHeight } }>
         <View style={styles.header}>
           <Image
-            source={ {uri: this.state.activity.image} }
+            source={ {uri: this.state.activity.image} } // jenna
             // source={require('../images/Traveler.jpg')}
             style={styles.cover}
             resizeMode={'cover'}

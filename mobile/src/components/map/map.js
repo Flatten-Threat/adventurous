@@ -87,7 +87,7 @@ module.exports = React.createClass({
 
     // post to server -- assume server & Database operations will succeed (for now)
 
-    api.saveData( newActivity );
+    //api.saveData( newActivity );
 
   },
 

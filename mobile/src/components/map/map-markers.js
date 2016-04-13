@@ -1,26 +1,16 @@
 var React = require('react-native');
-var RightArrow = require('./images/icon_right_arrow.png');
+import Categories from '../activities/categories'; // start converting to ES6...
+
 
 var {
     Image,
     StyleSheet,
-    TouchableHighlight,
     TouchableOpacity
 } = React;
 
-var iconMap = {
-  restaurant : require('./images/restaurant.png'),
-  shopping : require('./images/clothes.png'),
-  bar : require('./images/bar.png'),
-  coffee : require('./images/coffee.png'),
-  'museum-art' : require('./images/museum_art.png'),
-  groceries : require('./images/supermarket.png'),
-  books : require('./images/books.png'),
-  hotel : require('./images/hotel.png'),
-  garden : require('./images/garden.png'),
-  hiking : require('./images/hiking.png'),
-  sports : require('./images/sports.png')
-};
+
+const arrowIcon = require('./right-arrow.png');
+
 
 module.exports = {
 
@@ -31,22 +21,15 @@ module.exports = {
       latitude: activity.region.latitude,
       rightCalloutView: (
           <TouchableOpacity onPress={ ()=> callback( activity ) }>
-            <Image style={ styles.image } source={RightArrow} />
+            <Image style={ styles.image } source={ arrowIcon } />
           </TouchableOpacity>
           ),
-      image: this.getPinIcon( activity.category )
-    }
-  },
-
-  getPinIcon: function( category ) {
-    // get pin icon or use default pin
-    if ( iconMap[category] !== undefined ) {
-      // var icon = require( './images/' + iconMap[category] );
-      return iconMap[category];
-    }
+      image: activity.category ? Categories.getIcon( activity.category ) : null
+    };
   }
 
 };
+
 
 var styles = StyleSheet.create({
   image: {

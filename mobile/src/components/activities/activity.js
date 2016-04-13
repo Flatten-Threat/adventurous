@@ -1,221 +1,204 @@
-'use strict';
-var React = require('react-native');
-var Button = require('../common/button');
-var ListPopover = require('react-native-list-popover');
+
+import Categories from './categories';
 var _ = require('underscore');
 
-import Categories from './categories'; // start converting to ES6...
-
-
-var {
+import React, {
+  Component,
   StyleSheet,
   View,
+  Text,
   TextInput,
+  ListView,
   Image,
-  DeviceEventEmitter,
-  Dimensions,
-  TouchableHighlight
-} = React;
+  TouchableHighlight,
+  TouchableOpacity
+} from 'react-native';
 
 
-module.exports = React.createClass({
+export default class TestApp extends Component {
 
-  getInitialState: function() {
-    return {
+  constructor(props) {
+
+    super(props);
+
+    // explicit binding required in ES6...
+    this.renderListRow = this.renderListRow.bind(this);
+    this.showCategoryList = this.showCategoryList.bind(this);
+    this.updateActivity = this.updateActivity.bind(this);
+    
+    var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.dataSource = ds.cloneWithRows( Categories.getCategories() );
+
+    this.isNew = this.props.route.passProps.isNew;
+    
+    this.state = {
       activity: this.props.route.passProps.activity,
-      visibleHeight: Dimensions.get('window').height,
-      categoryListIsVisible: false
+      category: '',
+      showList: false
     };
-  },
+  }
 
 
-  componentWillMount: function() {
-    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
-    DeviceEventEmitter.addListener('KeyboardWillHide', this.KeyboardWillHide);
-  },
-
-
-  render: function() {
-
-    var isNew = this.props.route.passProps.isNew;
-
+  render() {
     return (
+      <View style={styles.container} >
 
-      <View style={ styles.container, { height: this.state.visibleHeight } }>
-        <View style={styles.header}>
-          { this.state.categoryListIsVisible ? null : <Image
-            source={{uri: this.state.activity.image}}
-            style={styles.cover}
-            resizeMode={'cover'}
-          />}
-          { isNew ? <ListPopover containerStyle={ {backgroundColor: 'white', flex: 1} }
-            list={ Categories.getCategories() }
-            isVisible={this.state.categoryListIsVisible}
-            onClick={this.setItem}
-            onClose={this.closePopover}
-          /> : null }
-        </View>
+        <Image style={styles.image}
+          source = {{ uri: this.state.activity.image }}
+        />
 
-        <View style={styles.footer}>
-          
-          <View style={[ styles.titleWrapper, isNew ? styles.editable : null ]}>
-            <TouchableHighlight style={styles.categoryButton} disabled={!isNew} onPress={ this.showCategoryList }>
-              <Image source={ Categories.getIcon( this.state.activity.category ) } />
+        <View style={styles.footer} >
+
+          <View style={styles.titleBar}>
+            <TouchableHighlight style={styles.categoryButton}
+              disabled={ !this.isNew }
+              onPress={ this.showCategoryList }>
+              <Image source={ Categories.getIcon(this.state.activity.category) } />
             </TouchableHighlight>
             <TextInput
-             style={ [styles.input, styles.inputWithIcon, { textAlign: 'center' } ] }
-             editable={ isNew }
-             placeholder={ 'please add a category and title...' }
-             onChangeText={ (text) => this.updateActivity({ title: text }) }
-             value = { this.state.activity.title }
+              style={[ styles.titleText, styles.input ]}
+              editable={ this.isNew }
+              placeholder={ 'please add a category and title...' }
+              value = { this.state.activity.title }
             />
           </View>
 
-          <TextInput
-            style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
+          { this.state.showList ? <ListView
+            dataSource={this.dataSource}
+            renderRow={ this.renderListRow }
+            style={ styles.list }
+          /> : null }
+
+          { this.state.showList ? null : <TextInput
+            style={[ styles.description, styles.input ]}
             multiline={true}
-            maxLength={200}
-            editable={ isNew }
+            maxLength={300}
+            editable={ this.isNew }
             placeholder={'What makes this place so special?'}
-            onChangeText={ (text) => this.updateActivity({ description: text }) }
             value = { this.state.activity.description }
-          />
+          />}
 
-          { isNew ? // only show 'save' button if this is a NEW activity
-            <View style={styles.buttonWrapper}>
-              <Button text={'Save'} onPress={ this.save }/>
-            </View>
-            : null
-          }
+          <Text style={ styles.saveButton }>Save</Text>
+
         </View>
-
-    </View>   
+      </View>
     );
-  },
+  }
 
 
-  // setState replaces ENTIRE element (can't set properties etc.)
-  updateActivity: function( newValue ) {
+  renderListRow(rowData) {
+    return <TouchableOpacity style={styles.listRow} onPress={ () => this.setCategory(rowData.category) }>
+             <Image source={ rowData.icon } />
+             <Text style={styles.listRowText} >
+               { rowData.category }
+             </Text>
+           </TouchableOpacity>
+  }
+
+
+  // setState must replace ENTIRE element (can't set properties etc.)
+  updateActivity( newValue ) {
     this.setState({
       activity: _.extend( this.state.activity, newValue )
     });
-  },
+  }
 
-
-  save: function() {
-    this.props.navigator.popToTop();
-    this.props.route.passProps.initiateSave( this.state.activity );
-  },
-
-
-  border: function(color) {
-    return {
-      borderColor: color,
-      borderWidth: 4
-    };
-  },
-
-
-  keyboardWillShow: function(e) {
-    let newSize = Dimensions.get('window').height - e.endCoordinates.height;
-    this.setState({ visibleHeight: newSize });
-  },
-
-
-  KeyboardWillHide: function(e) {
-    this.setState({ visibleHeight: Dimensions.get('window').height });
-  },
-
-
-  showCategoryList: function() {
-    this.setState({categoryListIsVisible: true});
-  },
   
-  closePopover: function() {
-    this.setState({categoryListIsVisible: false});
-  },
-
-  setItem: function( category ) {
-    this.updateActivity({ category: category });
-  },
-  
-});
+  showCategoryList() {
+    this.setState({ showList: true });
+  }
 
 
+  setCategory(name) {
+    this.updateActivity({ category: name });
+    this.setState({ showList: false });
+  }
 
-var styles = StyleSheet.create({
-  
+}
+
+
+const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    alignItems: 'stretch',
-    backgroundColor: 'white',
-    marginTop: 30
+    paddingTop: 30,
+    backgroundColor: '#F5FCFF',
   },
 
-  header: {
-    flex: 2,
-  },
-
-  cover: {
-    flex: 1,
-    width: null,
-    height: null,
+  image: {
+    flex: 3,
+    resizeMode: 'cover'
   },
 
   footer: {
-    flex: 1
+    flex: 2
   },
 
-  titleWrapper: {
+  titleBar: {
     flex: 1,
-    margin: 4,
     flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center'
+    padding: 8,
+    backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
   categoryButton: {
     width: 30,
     height: 29,
     overflow: 'hidden',
-    margin: 2,
-    marginLeft: 4
-  },
-
-  categoryImage: {
-    resizeMode: 'cover'
-  },
-
-  descriptionWrapper: {
-    flex: 3,
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-
-  buttonWrapper: {
-    flex: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10
+    margin: 2
   },
 
   input: {
-    flex: 0,
-    margin: 4,
     padding: 8,
     fontSize: 18,
-    color: 'gray',
+    color: 'gray'
   },
 
-  inputWithIcon: {
+  titleText: {
     flex: 1,
-    margin: 0
+    textAlign: 'center'
   },
 
-  editable: {
-    borderColor: '#7A87A7',
+  description: {
+    flex: 8,
     borderWidth: 1,
-    borderRadius: 10
+    borderColor: 'gray',
+    borderRadius: 3,
+    margin: 4
+  },
+
+  list: {
+    flex: 8
+  },
+
+  listRow: {
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#DDDDDD',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+
+  listRowText: {
+    flex: 1,
+    fontSize: 20,
+    marginLeft: 8
+  },
+
+  saveButton: {
+    flex: 1,
+    fontSize: 20,
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 3,
+    marginBottom: 8,
+    paddingTop: 5,
+    paddingLeft: 8,
+    paddingBottom: 5,
+    paddingRight: 8
   }
 
 });

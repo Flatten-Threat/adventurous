@@ -24,7 +24,9 @@ export default {
 
 
   getCategories() {
-    return Object.keys( iconMap );
+    return Object.keys( iconMap ).map( (key) => {
+      return { icon: iconMap[key], category: key };
+    });
   }
 
 };

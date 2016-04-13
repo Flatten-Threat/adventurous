@@ -10,8 +10,8 @@ var app = express();
 app.use( compression() ); // must come first!
 
 //Here we are configuring express to use body-parser as middle-ware.
-app.use(bodyParser.urlencoded({ extended: false, limit: '200mb' })); // jenna
-app.use(bodyParser.json({ limit: '200mb' })); // jenna
+app.use(bodyParser.urlencoded({ extended: false, limit: '100000mb' })); // jenna
+app.use(bodyParser.json({ limit: '100000mb' })); // jenna
 
 // serve static files like index.html, css etc.
 app.use( express.static( __dirname + '/public' ) );

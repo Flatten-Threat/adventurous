@@ -11,7 +11,9 @@ import React, {
   ListView,
   Image,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  DeviceEventEmitter,
+  Dimensions
 } from 'react-native';
 
 
@@ -26,6 +28,8 @@ export default class TestApp extends Component {
     this.showCategoryList = this.showCategoryList.bind(this);
     this.updateActivity = this.updateActivity.bind(this);
     this.save = this.save.bind(this);
+    this.keyboardWillShow = this.keyboardWillShow.bind(this);
+    this.KeyboardWillHide = this.KeyboardWillHide.bind(this);
     
     var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.dataSource = ds.cloneWithRows( Categories.getCategories() );
@@ -34,15 +38,21 @@ export default class TestApp extends Component {
     
     this.state = {
       activity: this.props.route.passProps.activity,
-      category: '',
+      visibleHeight: Dimensions.get('window').height,
       showList: false
     };
   }
 
 
+  componentWillMount() {
+    DeviceEventEmitter.addListener( 'keyboardWillShow', this.keyboardWillShow );
+    DeviceEventEmitter.addListener( 'KeyboardWillHide', this.KeyboardWillHide );
+  }
+
+
   render() {
     return (
-      <View style={styles.container} >
+      <View style={styles.container, { height: this.state.visibleHeight } } >
 
         <Image style={styles.image}
           source = {{ uri: this.state.activity.image }}
@@ -127,6 +137,17 @@ export default class TestApp extends Component {
   save() {
     this.props.navigator.popToTop();
     this.props.route.passProps.initiateSave( this.state.activity );
+  }
+
+
+  keyboardWillShow(e) {
+    let newSize = Dimensions.get('window').height - e.endCoordinates.height;
+    this.setState({ visibleHeight: newSize });
+  }
+
+
+  KeyboardWillHide(e) {
+    this.setState({ visibleHeight: Dimensions.get('window').height });
   }
 
 }

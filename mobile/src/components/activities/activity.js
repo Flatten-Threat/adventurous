@@ -1,6 +1,4 @@
 'use strict';
-var React = require('react-native');
-var Button = require('../common/button');
 import Categories from './categories';
 var _ = require('underscore');
 

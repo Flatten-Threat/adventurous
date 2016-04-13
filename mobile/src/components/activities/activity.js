@@ -1,170 +1,243 @@
 'use strict';
 var React = require('react-native');
 var Button = require('../common/button');
+import Categories from './categories';
 var _ = require('underscore');
 
-var {
+import React, {
+  Component,
   StyleSheet,
   View,
+  Text,
   TextInput,
+  ListView,
   Image,
+  TouchableHighlight,
+  TouchableOpacity,
   DeviceEventEmitter,
   Dimensions
-} = React;
-
-module.exports = React.createClass({
+} from 'react-native';
 
 
-  getInitialState: function() {
+export default class TestApp extends Component {
 
-    return {
+  constructor(props) {
+
+    super(props);
+
+    // explicit binding required in ES6...
+    this.renderListRow = this.renderListRow.bind(this);
+    this.showCategoryList = this.showCategoryList.bind(this);
+    this.updateActivity = this.updateActivity.bind(this);
+    this.save = this.save.bind(this);
+    this.keyboardWillShow = this.keyboardWillShow.bind(this);
+    this.KeyboardWillHide = this.KeyboardWillHide.bind(this);
+    
+    var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+    this.dataSource = ds.cloneWithRows( Categories.getCategories() );
+
+    this.isNew = this.props.route.passProps.isNew;
+    
+    this.state = {
       activity: this.props.route.passProps.activity,
-      visibleHeight: Dimensions.get('window').height
+      visibleHeight: Dimensions.get('window').height,
+      showList: false
     };
-  },
+  }
 
-  componentWillMount: function() {
-    DeviceEventEmitter.addListener('keyboardWillShow', this.keyboardWillShow);
-    DeviceEventEmitter.addListener('KeyboardWillHide', this.KeyboardWillHide);
-  },
+  componentWillMount() {
+    DeviceEventEmitter.addListener( 'keyboardWillShow', this.keyboardWillShow );
+    DeviceEventEmitter.addListener( 'KeyboardWillHide', this.KeyboardWillHide );
+  }
 
-  render: function() {
 
-    var isNew = this.props.route.passProps.isNew;
-
+  render() {
     return (
 
-      <View style={ styles.container, { height: this.state.visibleHeight } }>
-        <View style={styles.header}>
-          <Image
-            source={ {uri: this.state.activity.image} } // jenna
-            // source={require('../images/Traveler.jpg')}
-            style={styles.cover}
-            resizeMode={'cover'}
+      <View style={styles.container, { height: this.state.visibleHeight } } >
+
+        <Image style={styles.image}
+          source = {{ uri: this.state.activity.image }}
+        />
+
+        <View style={styles.footer} >
+
+          <View style={styles.titleBar}>
+            <TouchableHighlight style={styles.categoryButton}
+              disabled={ !this.isNew }
+              onPress={ this.showCategoryList }>
+              <Image source={ Categories.getIcon(this.state.activity.category) } />
+            </TouchableHighlight>
+            <TextInput
+              style={ styles.titleText }
+              editable={ this.isNew }
+              placeholder={ 'please add a category and title...' }
+              onChangeText={ (text) => this.updateActivity({ title: text }) }
+              value = { this.state.activity.title }
             />
-        </View>
-
-        <View style={styles.footer}>
-          
-          <View style={[styles.titleWrapper]}>
-
-          <TextInput
-           style={ [styles.input, { textAlign: 'center' }, isNew ? styles.editable : null ] }
-           editable={ isNew }
-           placeholder={ 'add a title...' }
-           onChangeText={ (text) => this.updateActivity({ title: text }) }
-           value = { this.state.activity.title }
-          />
           </View>
 
-          <TextInput
-            style={ [ styles.input, { flex: 3 }, isNew ? styles.editable : null ] } 
+          { this.state.showList ? <ListView
+            dataSource={this.dataSource}
+            renderRow={ this.renderListRow }
+            style={ styles.list }
+          /> : null }
+
+          { this.state.showList ? null : <TextInput
+            style={ styles.description }
             multiline={true}
-            maxLength={200}
-            editable={ isNew }
+            maxLength={300}
+            editable={ this.isNew }
             placeholder={'What makes this place so special?'}
             onChangeText={ (text) => this.updateActivity({ description: text }) }
             value = { this.state.activity.description }
-          />
-          { isNew ? // only show 'save' button if this is a NEW activity
-            <View style={styles.buttonWrapper}>
-              <Button text={'Save'} onPress={ this.save }/>
-            </View>
-            : null
-          }
-        </View>
-    </View>   
-    );
-  },
+          />}
 
-  // setState replaces ENTIRE element (can't set properties etc.)
-  updateActivity: function( newValue ) {
+          { this.isNew ? <TouchableHighlight
+            style={ styles.saveButton }
+            onPress={ this.save }
+            underlayColor='gray' >
+              <Text style={ styles.saveButtonText }>Save</Text>
+            </TouchableHighlight>
+          : null }
+
+        </View>
+      </View>
+    );
+  }
+
+
+  renderListRow(rowData) {
+    return <TouchableOpacity style={styles.listRow} onPress={ () => this.setCategory(rowData.category) }>
+             <Image source={ rowData.icon } />
+             <Text style={styles.listRowText} >
+               { rowData.category }
+             </Text>
+           </TouchableOpacity>
+  }
+
+
+  // setState must replace ENTIRE element (can't set properties etc.)
+  updateActivity( newValue ) {
     this.setState({
       activity: _.extend( this.state.activity, newValue )
     });
-  },
+  }
 
-  save: function() {
+  
+  showCategoryList() {
+    this.setState({ showList: true });
+  }
+
+
+  setCategory(name) {
+    this.updateActivity({ category: name });
+    this.setState({ showList: false });
+  }
+
+
+  save() {
     this.props.navigator.popToTop();
     this.props.route.passProps.initiateSave( this.state.activity );
-  },
+  }
 
-  border: function(color) {
-    return {
-      borderColor: color,
-      borderWidth: 4
-    };
-  },
 
-  keyboardWillShow: function(e) {
+  keyboardWillShow(e) {
     let newSize = Dimensions.get('window').height - e.endCoordinates.height;
     this.setState({ visibleHeight: newSize });
-  },
+  }
 
-  KeyboardWillHide: function(e) {
+
+  KeyboardWillHide(e) {
     this.setState({ visibleHeight: Dimensions.get('window').height });
   }
-  
-});
+
+}
 
 
-var styles = StyleSheet.create({
-  
+const styles = StyleSheet.create({
+
   container: {
     flex: 1,
-    alignItems: 'stretch',
-    backgroundColor: 'white',
-    marginTop: 30
+    paddingTop: 30,
+    backgroundColor: '#F5FCFF',
   },
 
-  header: {
-    flex: 2,
-  },
-
-  cover: {
-    flex: 1,
-    width: null,
-    height: null,
+  image: {
+    flex: 3,
+    resizeMode: 'cover'
   },
 
   footer: {
-    flex: 1
+    flex: 2
   },
 
-  titleWrapper: {
+  titleBar: {
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    paddingTop: 10
-  },
-
-  descriptionWrapper: {
-    flex: 3,
-    flexDirection: 'column',
-    alignItems: 'center'
-  },
-
-  buttonWrapper: {
-    flex: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 10
-  },
-
-  input: {
-    flex: 0,
-    margin: 4,
+    flexDirection: 'row',
     padding: 8,
-    fontSize: 18,
-    height: 36,
-    color: 'gray',
+    backgroundColor: 'lightblue',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
 
-  editable: {
-    borderColor: '#7A87A7',
+  categoryButton: {
+    width: 30,
+    height: 29,
+    overflow: 'hidden',
+    margin: 2
+  },
+
+  titleText: {
+    flex: 1,
+    fontSize: 18,
+    textAlign: 'center'
+  },
+
+  description: {
+    flex: 8,
+    fontSize: 18,
     borderWidth: 1,
-    borderRadius: 10
+    borderColor: 'gray',
+    borderRadius: 3,
+    padding: 8,
+    margin: 4
+  },
+
+  list: {
+    flex: 8
+  },
+
+  listRow: {
+    padding: 8,
+    borderWidth: 1,
+    borderColor: '#DDDDDD',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  },
+
+  listRowText: {
+    flex: 1,
+    fontSize: 20,
+    marginLeft: 8
+  },
+
+  saveButton: {
+    flex: 1,
+    alignSelf: 'center',
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 3,
+    paddingTop: 5,
+    paddingLeft: 8,
+    paddingBottom: 5,
+    paddingRight: 8,
+    marginBottom: 8,
+    marginTop: 4
+  },
+
+  saveButtonText: {
+    fontSize: 20
   }
 
 });

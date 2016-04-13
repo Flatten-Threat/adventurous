@@ -28,7 +28,8 @@ module.exports = React.createClass({
             }}
             style = {styles.preview}
             aspect = {Camera.constants.Aspect.fill}
-            captureTarget={Camera.constants.CaptureTarget.disk}
+            captureTarget={Camera.constants.CaptureTarget.memory}
+            captureQuality={Camera.constants.CaptureQuality.low} // jenna
             >
           </Camera>
         </View> 
@@ -48,7 +49,9 @@ module.exports = React.createClass({
 
       .then( (data) => {
 
-        this.props.route.passProps.activity.image = data; 
+        var temp = 'data:image/jpeg;base64,' + data; // jenna
+
+        this.props.route.passProps.activity.image = temp; // jenna
 
         this.props.navigator.replace({
           name: 'activity',

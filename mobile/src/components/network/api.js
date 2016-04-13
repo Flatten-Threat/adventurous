@@ -14,8 +14,9 @@ module.exports = {
 
 
   saveData: function( newActivity ) {
-  
-    var url = 'http://adventureus.herokuapp.com/api/activities/new';
+
+    var url = 'http://localhost:3000/api/activities/new';
+    // var url = 'http://adventureus.herokuapp.com/api/activities/new';
 
     fetch( url, {  
       method: 'POST',

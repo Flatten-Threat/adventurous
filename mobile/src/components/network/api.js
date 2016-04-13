@@ -27,7 +27,10 @@ module.exports = {
       body: JSON.stringify({
         activity: newActivity
       })
-    });
+    })
+    .then( (response) => response.json() )
+    .then( (data) => data )
+    .catch( e => console.log( 'error posting new activity data:', e ) );
   }
 
 };

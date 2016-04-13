@@ -25,6 +25,7 @@ export default class TestApp extends Component {
     this.renderListRow = this.renderListRow.bind(this);
     this.showCategoryList = this.showCategoryList.bind(this);
     this.updateActivity = this.updateActivity.bind(this);
+    this.save = this.save.bind(this);
     
     var ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
     this.dataSource = ds.cloneWithRows( Categories.getCategories() );
@@ -56,9 +57,10 @@ export default class TestApp extends Component {
               <Image source={ Categories.getIcon(this.state.activity.category) } />
             </TouchableHighlight>
             <TextInput
-              style={[ styles.titleText, styles.input ]}
+              style={ styles.titleText }
               editable={ this.isNew }
               placeholder={ 'please add a category and title...' }
+              onChangeText={ (text) => this.updateActivity({ title: text }) }
               value = { this.state.activity.title }
             />
           </View>
@@ -70,15 +72,22 @@ export default class TestApp extends Component {
           /> : null }
 
           { this.state.showList ? null : <TextInput
-            style={[ styles.description, styles.input ]}
+            style={ styles.description }
             multiline={true}
             maxLength={300}
             editable={ this.isNew }
             placeholder={'What makes this place so special?'}
+            onChangeText={ (text) => this.updateActivity({ description: text }) }
             value = { this.state.activity.description }
           />}
 
-          <Text style={ styles.saveButton }>Save</Text>
+          { this.isNew ? <TouchableHighlight
+            style={ styles.saveButton }
+            onPress={ this.save }
+            underlayColor='gray' >
+              <Text style={ styles.saveButtonText }>Save</Text>
+            </TouchableHighlight>
+          : null }
 
         </View>
       </View>
@@ -112,6 +121,12 @@ export default class TestApp extends Component {
   setCategory(name) {
     this.updateActivity({ category: name });
     this.setState({ showList: false });
+  }
+
+
+  save() {
+    this.props.navigator.popToTop();
+    this.props.route.passProps.initiateSave( this.state.activity );
   }
 
 }
@@ -150,22 +165,19 @@ const styles = StyleSheet.create({
     margin: 2
   },
 
-  input: {
-    padding: 8,
-    fontSize: 18,
-    color: 'gray'
-  },
-
   titleText: {
     flex: 1,
+    fontSize: 18,
     textAlign: 'center'
   },
 
   description: {
     flex: 8,
+    fontSize: 18,
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 3,
+    padding: 8,
     margin: 4
   },
 
@@ -189,16 +201,20 @@ const styles = StyleSheet.create({
 
   saveButton: {
     flex: 1,
-    fontSize: 20,
     alignSelf: 'center',
     borderWidth: 1,
     borderColor: 'gray',
     borderRadius: 3,
-    marginBottom: 8,
     paddingTop: 5,
     paddingLeft: 8,
     paddingBottom: 5,
-    paddingRight: 8
+    paddingRight: 8,
+    marginBottom: 8,
+    marginTop: 4
+  },
+
+  saveButtonText: {
+    fontSize: 20
   }
 
 });

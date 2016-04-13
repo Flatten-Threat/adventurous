@@ -1,4 +1,4 @@
-
+'use strict';
 import Categories from './categories';
 var _ = require('underscore');
 
@@ -43,7 +43,6 @@ export default class TestApp extends Component {
     };
   }
 
-
   componentWillMount() {
     DeviceEventEmitter.addListener( 'keyboardWillShow', this.keyboardWillShow );
     DeviceEventEmitter.addListener( 'KeyboardWillHide', this.KeyboardWillHide );
@@ -52,6 +51,7 @@ export default class TestApp extends Component {
 
   render() {
     return (
+
       <View style={styles.container, { height: this.state.visibleHeight } } >
 
         <Image style={styles.image}

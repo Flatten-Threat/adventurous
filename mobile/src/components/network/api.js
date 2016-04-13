@@ -14,8 +14,9 @@ module.exports = {
 
 
   saveData: function( newActivity ) {
-  
-    var url = 'http://adventureus.herokuapp.com/api/activities/new';
+
+    var url = 'http://localhost:3000/api/activities/new';
+    // var url = 'http://adventureus.herokuapp.com/api/activities/new';
 
     fetch( url, {  
       method: 'POST',
@@ -26,7 +27,10 @@ module.exports = {
       body: JSON.stringify({
         activity: newActivity
       })
-    });
+    })
+    .then( (response) => response.json() )
+    .then( (data) => data )
+    .catch( e => console.log( 'error posting new activity data:', e ) );
   }
 
 };

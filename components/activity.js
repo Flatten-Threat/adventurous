@@ -10,7 +10,8 @@ export default class Activity extends Component {
     return (
       <div className="activity">
         <h2>{ activity.title }</h2>
-        <div className="activity-image"></div>
+        {/* <div className="activity-image"></div> */}
+        <img src={ activity.image } />
         <p>{ activity.description }</p>
       </div>
     );

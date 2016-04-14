@@ -10,7 +10,7 @@ export default class Activities extends Component {
       <div>
         <ul className="unstyled-list activity-list">{
          activities.map( function( activity, i ) {
-           return ( <li><Activity activity={ activity } /></li> )
+           return <li><Activity activity={ activity } odd={ i % 2 } /></li>;
          }, this )
         }</ul>
       </div>

@@ -44,8 +44,13 @@ export default class Activity extends Component {
   }
 
   componentWillMount() {
-    DeviceEventEmitter.addListener( 'keyboardWillShow', this.keyboardWillShow );
-    DeviceEventEmitter.addListener( 'KeyboardWillHide', this.KeyboardWillHide );
+    this.listenerShowKeyboard = DeviceEventEmitter.addListener( 'keyboardWillShow', this.keyboardWillShow );
+    this.listenerHideKeyboard = DeviceEventEmitter.addListener( 'KeyboardWillHide', this.KeyboardWillHide );
+  }
+
+  componentWillUnmount() {
+    this.listenerShowKeyboard.remove();
+    this.listenerHideKeyboard.remove();
   }
 
 

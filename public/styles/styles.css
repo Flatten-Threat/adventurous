@@ -197,12 +197,43 @@ body {
 *********************************/
 
 .activity-list li {
-  margin-top: 16px;
+  margin-top: 32px;
 }
 
-.activity-image {
-  height: 200px;
-  margin-bottom: 8px;
+.activity {
+  border-radius: 6px;
   background-color: #428BCA;
+}
+
+/* NOTE: see component instance for background image url */
+.activity-image {
+  height: 420px;
+  width: 40%;
+  margin: 4px;
+  display: inline-block;
+  vertical-align: top;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border: 2px solid black;
+  border-radius: 4px;
+}
+
+.activity .info-frame {
+  width: 59%;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.activity h2 {
+  font-size: 28px;
+  color: white;
+  letter-spacing: 2px;
+  text-align: center;
+}
+
+.activity p {
+  margin: 36px 20px 20px 20px;
+  font-size: 24px;
+  color: rgba(255,255,255,0.75);
 }
 

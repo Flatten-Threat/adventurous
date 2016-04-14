@@ -1,14 +1,10 @@
 var React = require('react-native');
-var _ = require('underscore');
-var Api = require('../network/api.js');
-
 import Camera from 'react-native-camera';
 
 // import 
 var {
   StyleSheet,
   View,
-  Text,
   Dimensions,
   Image,
   TouchableHighlight
@@ -34,9 +30,11 @@ module.exports = React.createClass({
           </Camera>
         </View> 
             
-         <View style={styles.footer}>    
-          <TouchableHighlight onPress={this.takePicture}>
-            <Image source={require('./camera.png')}/>
+         <View style={styles.footer}>
+
+          <TouchableHighlight onPress={ this.takePicture }>
+            <Image source={ require('./camera.png') } />
+
           </TouchableHighlight>
          </View> 
          

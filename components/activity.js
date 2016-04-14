@@ -13,7 +13,7 @@ export default class Activity extends Component {
     
     return <div className='activity'>
 
-      // image on LEFT in ODD index rows
+      {/* image on LEFT in ODD index rows */}
       { this.props.odd ? <div className='activity-image' style={imageStyle} ></div> : null }
 
       <div className='info-frame'>
@@ -21,7 +21,7 @@ export default class Activity extends Component {
         <p>{ activity.description }</p>
       </div> 
 
-      // image on RIGHT in EVEN index rows
+      {/* image on RIGHT in EVEN index rows */}
       { this.props.odd ? null : <div className='activity-image' style={imageStyle} ></div> }
 
     </div>

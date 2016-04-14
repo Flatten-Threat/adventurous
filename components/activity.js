@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 
 export default class Activity extends Component {
@@ -7,14 +7,24 @@ export default class Activity extends Component {
 
     var activity = this.props.activity;
     
-    return (
-      <div className="activity">
+    var imageStyle = {
+      backgroundImage: 'url(' + activity.image + ')'
+    };
+    
+    return <div className='activity'>
+
+      // image on LEFT in ODD index rows
+      { this.props.odd ? <div className='activity-image' style={imageStyle} ></div> : null }
+
+      <div className='info-frame'>
         <h2>{ activity.title }</h2>
-        {/* <div className="activity-image"></div> */}
-        <img src={ activity.image } />
         <p>{ activity.description }</p>
-      </div>
-    );
+      </div> 
+
+      // image on RIGHT in EVEN index rows
+      { this.props.odd ? null : <div className='activity-image' style={imageStyle} ></div> }
+
+    </div>
   }
 
-};
+}

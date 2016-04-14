@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Activities from '../components/activities'
+import React, { Component } from 'react';
+import Activities from '../components/activities';
 import axios from 'axios';
 
 
@@ -33,7 +33,7 @@ export default class Travels extends Component {
           {title: '(dev. mode DB access still under development...)', description: 'blah blah blah...'},
           {title: '(dev. mode DB access still under development...)', description: 'blah blah blah...'}
         ]
-      })
+      });
 
     }.bind(this));
   }

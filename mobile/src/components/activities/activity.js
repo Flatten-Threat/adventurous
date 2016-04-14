@@ -17,7 +17,7 @@ import React, {
 } from 'react-native';
 
 
-export default class Activity extends Component {
+export default class Activity extends Component { // jenna
 
   constructor(props) {
 

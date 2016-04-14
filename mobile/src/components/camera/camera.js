@@ -36,7 +36,7 @@ module.exports = React.createClass({
             
          <View style={styles.footer}>    
           <TouchableHighlight onPress={this.takePicture}>
-            <Image source={require('../images/Camera.png')}/>
+            <Image source={require('../images/camera.png')}/>
           </TouchableHighlight>
          </View> 
          

@@ -17,7 +17,7 @@ import React, {
 } from 'react-native';
 
 
-export default class TestApp extends Component {
+export default class Activity extends Component {
 
   constructor(props) {
 

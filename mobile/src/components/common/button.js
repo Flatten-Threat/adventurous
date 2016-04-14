@@ -25,22 +25,14 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 5,
     padding: 5,
-    borderColor: '#6E73EE',
-    backgroundColor: '#6E73EE',
+    borderColor: 'black',
     marginTop: 10
   },
   buttonText: {
     flex: 1,
     alignSelf: 'center',
-    color: 'white',
-    textShadowColor: 'rgba(0,0,0,0.2)',
-    textShadowRadius: 2,
-    textShadowOffset: {
-      width: 2,
-      height: 2
-    },
-  },
-
-});
+    // text: 20
+  }
+})

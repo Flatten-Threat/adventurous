@@ -1,3 +1,4 @@
+var _ = require('underscore');
 
 const unknownCategory = require('./images/category-undefined.png');
 
@@ -24,8 +25,8 @@ export default {
 
 
   getCategories() {
-    return Object.keys( iconMap ).map( (key) => {
-      return { icon: iconMap[key], category: key };
+    return _(iconMap).map( ( image, category ) => {
+      return { icon: image, category: category };
     });
   }
 

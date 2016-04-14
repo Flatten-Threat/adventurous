@@ -12,10 +12,9 @@ module.exports = {
       .catch( e => console.log( 'error fetching activity data:', e ) );
   },
 
-
   saveData: function( newActivity ) {
 
-    // jenna: change this depending on if you test on simulator or iphone, will research more scalable way to do this in future
+    // jenna: change this depending on if you test on simulator or iphone, will research more scalable way to do this
     var url = 'http://localhost:3000/api/activities/new';
     // var url = 'http://192.168.0.121:3000/api/activities/new';
     // var url = 'http://adventureus.herokuapp.com/api/activities/new';

@@ -2,9 +2,9 @@ module.exports = {
 
   getNearbyActivities: function( region ) {
   
-    // var url = 'http://adventureus.herokuapp.com/api/activities';
+    var url = 'http://adventureus.herokuapp.com/api/activities';
     // var url = 'http://192.168.0.121:3000/api/activities';
-    var url = 'http://localhost:3000/api/activities';
+    // var url = 'http://localhost:3000/api/activities';
 
     return fetch( url )
       .then( (response) => response.json() )
@@ -15,6 +15,7 @@ module.exports = {
 
   saveData: function( newActivity ) {
 
+    // jenna: change this depending on if you test on simulator or iphone, will research more scalable way to do this in future
     var url = 'http://localhost:3000/api/activities/new';
     // var url = 'http://192.168.0.121:3000/api/activities/new';
     // var url = 'http://adventureus.herokuapp.com/api/activities/new';

@@ -2,7 +2,6 @@ var React = require('react-native');
 var _ = require('underscore');
 
 import Camera from 'react-native-camera';
-import Button from '../common/button';
 
 // import 
 var {
@@ -36,7 +35,7 @@ module.exports = React.createClass({
             
          <View style={styles.footer}>    
           <TouchableHighlight onPress={this.takePicture}>
-            <Image source={require('../images/camera.png')}/>
+            <Image source={require('./camera.png')}/>
           </TouchableHighlight>
          </View> 
          

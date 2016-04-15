@@ -25,14 +25,16 @@ module.exports = React.createClass({
             style = {styles.preview}
             aspect = {Camera.constants.Aspect.fill}
             captureTarget={Camera.constants.CaptureTarget.memory}
-            captureQuality={Camera.constants.CaptureQuality.low} // jenna
+            captureQuality={Camera.constants.CaptureQuality.high} // jenna
             >
           </Camera>
         </View> 
             
-         <View style={styles.footer}>    
+         <View style={styles.footer}>
+
           <TouchableHighlight onPress={ this.takePicture }>
             <Image source={ require('./camera.png') } />
+
           </TouchableHighlight>
          </View> 
          

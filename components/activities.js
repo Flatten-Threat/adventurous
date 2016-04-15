@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import Activity from './activity'
+import React, { Component } from 'react';
+import Activity from './activity';
 
 
 export default class Activities extends Component {
@@ -10,11 +10,11 @@ export default class Activities extends Component {
       <div>
         <ul className="unstyled-list activity-list">{
          activities.map( function( activity, i ) {
-           return <li><Activity activity={ activity } odd={ i % 2 } /></li>;
+           return <li><Activity activity={ activity } oddRow={ i % 2 } /></li>;
          }, this )
         }</ul>
       </div>
     );
   }
   
-};
+}

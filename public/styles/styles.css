@@ -241,3 +241,26 @@ body {
   color: rgba(255,255,255,0.85);
 }
 
+@media (max-width: 1250px) {
+
+  .activity {
+    padding: 32px;
+  }
+
+  .activity-image {
+    width: auto;
+    display: block;
+  }
+
+  .activity .info-frame {
+    width: auto;
+    display: block;
+    padding: 0;
+  }
+
+  .activity p {
+    width: auto;
+    margin: 0;
+  }
+}
+

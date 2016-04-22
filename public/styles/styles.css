@@ -214,12 +214,14 @@ body {
   vertical-align: top;
   background-size: cover;
   background-repeat: no-repeat;
-  border: 2px solid black;
+  background-position: center;
+  border: 2px solid indigo;
   border-radius: 4px;
 }
 
 .activity .info-frame {
   width: 59%;
+  padding: 36px 0;
   display: inline-block;
   vertical-align: top;
 }
@@ -227,13 +229,38 @@ body {
 .activity h2 {
   font-size: 28px;
   color: white;
+  text-shadow: blue 2px 2px 8px;
   letter-spacing: 2px;
   text-align: center;
 }
 
 .activity p {
-  margin: 36px 20px 20px 20px;
   font-size: 24px;
-  color: rgba(255,255,255,0.75);
+  width: 80%;
+  margin: 36px auto 0 auto;
+  color: rgba(255,255,255,0.85);
+}
+
+@media (max-width: 1250px) {
+
+  .activity {
+    padding: 32px;
+  }
+
+  .activity-image {
+    width: auto;
+    display: block;
+  }
+
+  .activity .info-frame {
+    width: auto;
+    display: block;
+    padding: 0;
+  }
+
+  .activity p {
+    width: auto;
+    margin: 0;
+  }
 }
 

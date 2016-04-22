@@ -3,28 +3,31 @@ import React, { Component } from 'react';
 
 export default class Activity extends Component {
 
-  render() {
+  constructor(props) {
 
-    var activity = this.props.activity;
-    
-    var imageStyle = {
-      backgroundImage: 'url(' + activity.image + ')'
+    super(props);
+
+    this.imageStyle = {
+      backgroundImage: 'url(' + this.props.activity.image + ')'
     };
+  }
+
+
+  render() {
     
     return <div className='activity'>
 
-      {/* image on LEFT in ODD index rows */}
-      { this.props.odd ? <div className='activity-image' style={imageStyle} ></div> : null }
+      {/* show or hide image, based on whether row is odd or even... */}
+      { this.props.oddRow ? <div className='activity-image' style={ this.imageStyle } ></div> : null }
 
       <div className='info-frame'>
-        <h2>{ activity.title }</h2>
-        <p>{ activity.description }</p>
+        <h2>{ this.props.activity.title }</h2>
+        <p>{ this.props.activity.description }</p>
       </div> 
 
-      {/* image on RIGHT in EVEN index rows */}
-      { this.props.odd ? null : <div className='activity-image' style={imageStyle} ></div> }
+     { this.props.oddRow ? null : <div className='activity-image' style={ this.imageStyle } ></div> }
 
-    </div>
+    </div>;
   }
 
 }

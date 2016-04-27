@@ -3,6 +3,10 @@
 
 Adventurous is a location-aware iOS mobile and web app for travelers to recommend local activities to friends.
 
+(adventurous/public/images/adventurous desktop.png)
+
+## Team
+
 Product Owner: Jenna Vuong
 
 Lead Developer: Andrew Lloyd

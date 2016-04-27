@@ -24,17 +24,17 @@ Adventurous is a location-aware iOS mobile and web app for travelers to recommen
 
     npm install
     
-to start with webpack-dev-server (port 8080):
+Start with webpack-dev-server (port 8080):
 
     npm start
 
-to start with express server (PORT optional, defaults to 3000):
+Start with express server (PORT optional, defaults to 3000):
 
     mongod (start in a separate terminal)
     
     PORT=4568 NODE_ENV=production npm start
 
-to view:
+View:
 
     browse to localhost + port (e.g. localhost:8080 etc.)
 

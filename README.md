@@ -8,11 +8,11 @@ Adventurous is a location-aware iOS mobile and web app for travelers to recommen
 
 ## Team
 
-Product Owner: Jenna Vuong
+**Product Owner**: Jenna Vuong
 
-Lead Developer: Andrew Lloyd
+**Lead Developer**: Andrew Lloyd
 
-Scrum Master: Tritia Timmins
+**Scrum Master**: Tritia Timmins
 
 ## Table of Contents
 
@@ -45,6 +45,7 @@ to view:
     Webpack
     Web Fonts
     Express
+    Mongoose (ORM)
     MongoDB (mlab)
     Axios
     deployed on Heroku

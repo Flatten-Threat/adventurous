@@ -49,10 +49,8 @@ to view:
     Axios
     deployed on Heroku
     React Native
-    mobile device: geoloc, camera access
+    mobile device: geoloc, react-native-camera
+    Bootstrap
     (planned) - Mocha/Chai
-    (probably) - Bootstrap
     (probably) - Less
     (maybe) - server-side rendering
-    (maybe) - Redux, Redux Router
-    (maybe) - mySQL, D3

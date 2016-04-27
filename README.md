@@ -14,7 +14,13 @@ Lead Developer: Andrew Lloyd
 
 Scrum Master: Tritia Timmins
 
-Instructions:
+## Table of Contents
+
+1. Tech Stack
+2. Installing Dependencies
+3. Contributing
+
+## Installing Dependencies
 
     npm install
     
@@ -32,8 +38,7 @@ to view:
 
     browse to localhost + port (e.g. localhost:8080 etc.)
 
-
-Tech. Stack:
+## Tech Stack:
 
     React
     React Router

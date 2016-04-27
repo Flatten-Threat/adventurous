@@ -1,5 +1,7 @@
 [![Stories in Ready](https://badge.waffle.io/Flatten-Threat/Spree.png?label=ready&title=Ready)](https://waffle.io/Flatten-Threat/Spree)
-# Spree
+# Adventurous
+
+Adventurous is a location-aware iOS mobile and web app for travelers to recommend local activities to friends.
 
 Product Owner: Jenna Vuong
 

@@ -3,7 +3,7 @@
 
 Adventurous is a location-aware iOS mobile and web app for travelers to recommend local activities to friends.
 
-(adventurous/public/images/adventurous desktop.png)
+<span><img src="../public/images/adventurous desktop.png" alt=""></span>
 
 ## Team
 

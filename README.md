@@ -8,7 +8,7 @@ Adventurous is a location-aware iOS mobile and web app for travelers to recommen
 
 ## Team
 
-**Product & Engineering Team: Jenna Vuong, Andrew Lloyd, Tritia Timmins
+**Product & Engineering Team: Jenna Vuong, Andrew Lloyd, Tritia Timmins**
 
 ## Table of Contents
 
